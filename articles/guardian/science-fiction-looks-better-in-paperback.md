@@ -1,0 +1,16 @@
+---
+title: Science fiction looks better in paperback
+slug: science-fiction-looks-better-in-paperback
+category: Science & Technology
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>Reading a subversive genre | Stalking horses | Putin’s Victory Day parade |
+  Standing room only | Middle-aged at 60</p>
+word_count: 477
+translation: ''
+date: ''
+cefr: B2
+---
+<p>My science fiction paperbacks were treasured as much for their imaginative cover art as for the words inside (<a href="https://www.theguardian.com/commentisfree/2026/may/06/hill-i-will-die-on-hardback-books">The hill I will die on: Heavy, awkward and incredibly expensive – we don’t need hardback books, 6 May</a>). Reading science fiction in hardback just feels wrong. I miss the lurid covers, smudgy print and acidic paper that marked it out as a subversive genre.<br><strong>Tony Durham</strong><br><em>Brighton</em></p> <p>• Further to recent references to stalking horses, I am much cheered by recalling a radio commentator many years ago who declared that the then dissidents were waiting in the wings for a stalking horse to test the water with.<br><strong>Helen Cooper</strong><br><em>Cambridge</em></p> <p>• History repeats itself with Putin’s scaled-back Victory Day parade (<a href="https://www.theguardian.com/world/2026/may/10/vladimir-putin-suggests-ukraine-war-is-coming-to-an-end">Report, 10 May</a>). The appointment of Hitler as chancellor was marked every year by a torchlight parade in Berlin, until it was cancelled in 1940 because it was thought that the RAF might drop bombs on it.<br><strong>William Ward</strong><br><em>London</em></p> <p>• So, when Kip Williams first listened to the opera Angel’s Bone, he nearly fell off his chair (<a href="https://www.theguardian.com/music/2026/may/11/behind-the-scenes-angels-bone-eno-manchester-debut">11 May</a>). Sadly, it’s an experience that those of us in the audience for his production at Aviva Studios won’t be able to share: nearly 50 quid a ticket and it’s all standing.<br><strong>Kerry Jones</strong><br><em>Manchester</em></p> <p>• Many, many years ago, I received a birthday card from my brother. “Now you are 60 will you finally accept you are middle-aged?” it said on the front. “So how many 120 year-olds do you know?” it added inside (<a href="https://www.theguardian.com/science/2026/may/11/hamlet-knew-about-the-nocebo-effect">Letters, 11 May</a>).<br><strong>Denis Beaumont </strong><br><em>Wombourne, Staffordshire </em></p> <p><strong><em>• Have an opinion on anything you’ve read in the Guardian today? Please </em></strong><a href="mailto:guardian.letters@theguardian.com?body=Please%20include%20your%20name,%20full%20postal%20address%20and%20phone%20number%20with%20your%20letter%20below.%20Letters%20are%20usually%20published%20with%20the%20author%27s%20name%20and%20city/town/village.%20The%20rest%20of%20the%20information%20is%20for%20verification%20only%20and%20to%20contact%20you%20where%20necessary."><strong><em>email</em></strong></a><strong><em> </em></strong><strong><em>us your letter and it will be considered for publication in our </em></strong><a href="https://www.theguardian.com/tone/letters"><strong><em>letters</em></strong></a><strong><em> section.</em></strong></p>

@@ -1,0 +1,16 @@
+---
+title: 'Malcolm Dean, creator of the Guardian’s Society pages, dies aged 86'
+slug: malcolm-dean-creator-of-the-guardian-s-society-pages-dies-aged-86
+category: Society
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>Journalist covered social care, criminal justice and other policy topics in
+  a distinguished career</p>
+word_count: 456
+translation: ''
+date: ''
+cefr: C1
+---
+<p>Malcolm Dean, who created the Guardian’s legendary Society section and wrote widely on topics from social care and poverty to criminal justice and the NHS, has died aged 86 after a long illness.</p> <p>He spent 37 years at the Guardian as a reporter, columnist, assistant editor and member of the paper’s governing body, the Scott Trust, between 1969 and 2006, before moving into academic research and sitting on working parties and commissions.</p> <p>David McKie, a former deputy editor of the Guardian and contemporary of Dean, described him as a “social policy king” who was not only immensely knowledgable about his specialism but passionate about the real-life impact of policy.</p> <p>Dean helped design and launch the lucrative weekly Society section in September 1979. It contained pages of classified adverts for public sector jobs and was a unique space for social policy reporting and commentary.</p> <p>The Society pages, which Dean edited for two decades, made their debut just four months after Margaret Thatcher’s Conservatives were elected and had begun to dismantle the welfare state.</p> <p>The seismic importance of this was not lost on Dean, who noted in his <a href="https://www.theguardian.com/society/1979/sep/19/comment.guardiansocietysupplement">first Society column</a> that decades of postwar optimism had led people to confidently assume that “society tomorrow” was always “going to get better”.</p> <p>He wrote: “But for the first time since the founding of the welfare state this is no longer true. If Mrs Thatcher proceeds with the cuts that she has threatened, society today looks far preferable to society tomorrow.”</p> <p>Dean had just returned to the paper after a one-year secondment as a special adviser to David Ennals, then Labour’s social services secretary. He was convinced that experiencing life from “the other side” would benefit his journalism.</p> <p>After retiring from the Guardian, Dean took up a two-year fellowship at Oxford’s Nuffield College, where he would draw on his journalistic experience to write a book, <a href="https://policy.bristoluniversitypress.co.uk/trade/democracy-under-attack">Democracy Under Attack: How the Media Distort Policy and Politics</a>.</p> <p>He continued as a <a href="https://www.theguardian.com/profile/malcolmdean">Guardian contributor</a> and served on several national social policy working parties. He chaired a Joseph Rowntree Foundation commission on older people and was a founding trustee of the <a href="https://www.youngfoundation.org/">Young Foundation</a> thinktank.</p> <p>Dean, who died on Thursday, was born in Cheshire, the son of a village baker. He started as a local journalist and worked in the US Congress on a Harkness fellowship before attending Ruskin College, Oxford.</p>

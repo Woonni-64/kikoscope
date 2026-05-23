@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试结果</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>考试结果</h1>
+        </header>
+
+        <main class="result-content">
+            <div class="result-summary">
+                <div class="score-card">
+                    <h2>总分</h2>
+                    <div class="score" id="totalScore">--</div>
+                    <div class="score-label" id="scoreLabel">--</div>
+                </div>
+
+                <div class="exam-info">
+                    <h3>考试信息</h3>
+                    <p>考试ID: <span id="examIdResult"></span></p>
+                    <p>完成时间: <span id="completionTime"></span></p>
+                    <p>用时: <span id="timeUsed"></span></p>
+                </div>
+            </div>
+
+            <div class="section-results">
+                <h3>各部分得分</h3>
+                <div class="section-grid">
+                    <div class="section-item">
+                        <h4>选词填空</h4>
+                        <div class="section-score" id="wfScore">--</div>
+                    </div>
+                    <div class="section-item">
+                        <h4>段落匹配</h4>
+                        <div class="section-score" id="pmScore">--</div>
+                    </div>
+                    <div class="section-item">
+                        <h4>仔细阅读</h4>
+                        <div class="section-score" id="rcScore">--</div>
+                    </div>
+                    <div class="section-item">
+                        <h4>翻译</h4>
+                        <div class="section-score" id="trScore">--</div>
+                    </div>
+                    <div class="section-item">
+                        <h4>写作</h4>
+                        <div class="section-score" id="wrScore">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feedback-section">
+                <h3>学习建议</h3>
+                <div class="feedback-content" id="feedbackContent">
+                    <!-- 反馈内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="newExam" class="btn btn-primary">开始新考试</button>
+                <button id="reviewAnswers" class="btn btn-secondary">查看答案</button>
+                <button id="goHome" class="btn btn-outline">返回首页</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 四级考试刷题工具. 持续学习，持续进步！</p>
+        </footer>
+    </div>
+
+    <script src="result.js"></script>
+</body>
+</html> 

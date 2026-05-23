@@ -1,0 +1,20 @@
+---
+title: >-
+  Rave Culture: A New Era review – high energy testimonial to the UK’s dance
+  revolution 
+slug: >-
+  rave-culture-a-new-era-review-high-energy-testimonial-to-the-uk-s-dance-revoluti
+category: Society
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>It could do with more robust political context, but this Spanish-made
+  documentary is still a loving, insightful delve into rave’s lasting influence
+  and lost-weekend logistics</p>
+word_count: 550
+translation: ''
+date: ''
+cefr: C2
+---
+<p>This Spanish documentary about the 80s and 90s rave revolution in the UK has a similar energy to the archetypal “4am guy”: eyes shining, gabbling non-sequiturs with strangely infectious enthusiasm. A pantheon of electronic music greats – including Fabio, Orbital’s Hartnoll brothers, Slipmatt, Goldie and the Prodigy’s Leeroy Thornhill – step up to provide deep dancefloor testimony that, though it could be better structured, still manages copious insights.</p> <p>Director Eduardo Cubillo Blasco’s obvious interest in rave’s logistics – the artwork, promotion, booking and myriad other aspects – suggests he may have had a lost weekend or two himself. When it came to the early outdoor and warehouse parties, there was artful dodging aplenty: as well as decoy lorries to fool police, some organisers played on legal sophistries, arguing their events were not illegal, but unlicensed; while, by issuing tickets with stubs on for ravers to fill out with personal details, many gatherings tried to qualify as private members’ clubs. In terms of personnel, female DJs were scarce – but women originally dominated the bookings, until they were shunted aside when it became clear how lucrative rave was becoming.</p>       <figure class="element element-video" data-canonical-url="https://www.youtube.com/watch?v=QcAhrY_U5OU"                                                                        >  <iframe height="480" width="854" src="https://www.youtube-nocookie.com/embed/QcAhrY_U5OU?wmode=opaque&feature=oembed" frameborder="0" allowfullscreen ></iframe> </figure>   <p>While the film ably ferrets out the scene’s evolution from exhilarating free-for-all to big business, its grasp of the political context is less firm. Thatcher gets begrudging respect from pirate radio don Andy Swallow for neutering the scene in the 1980s by coercing it into indoor venues – but it feels remiss that there is no mention of the later 1994 Criminal Justice Act. Cubillo Blasco touches on a few elements of rave’s subversive power (its free’n’easy attitude to race; its alchemising of football hooliganism into something positive) without pinpointing the exact cause. Could its essentially apolitical hedonism and a rejection of capitalism’s structural violence have been what really threatened the establishment?</p> <p>The radicalism didn’t last (just why that was is another underexplored question here). But Cubillo Blasco leaves us in no doubt, though, of rave’s creative longevity – charting how it ramped up into hardcore breakbeats and then jungle. Genaside II’s Kris Bones says evolution stopped there and everything that followed was mere iteration. Speed garage, grime and dubstep producers might disagree.</p> <p>But if one thing demonstrates the force of the countercultural torrent that poured out of the UK at the time, it’s that this documentary has emerged from Spain nearly 40 years later – where, according to one interviewee, Andalucía currently flies the flag for breakbeat electronica. (There’s also a tangent on Tenerife’s contribution, less-heralded next to Ibiza’s, to the Euro evangelisation of rave.) One-time cheesy quavers will be won over by the obvious aficionado’s care with which Cubillo Blasco assembles this tribute, which doubles up as a reminder to digital-native generations to keep the live club experience going.</p> <p>• Rave Culture: A New Era is at the Rio, London on 27 March, <a href="https://www.docnrollfestival.com/films/rave-culture-a-new-era/">then tours</a>.</p>

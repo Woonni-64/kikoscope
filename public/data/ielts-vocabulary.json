@@ -1,0 +1,3762 @@
+[
+  {
+    "id": 1,
+    "english": "abandon",
+    "phonetic": "/əˈbændən/",
+    "chinese": "放弃；抛弃",
+    "definition": "to leave someone or something permanently",
+    "example": "The crew abandoned the sinking ship.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 2,
+    "english": "ability",
+    "phonetic": "/əˈbɪləti/",
+    "chinese": "能力；才能",
+    "definition": "the quality or state of being able to do something",
+    "example": "She has the ability to learn quickly.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 3,
+    "english": "absence",
+    "phonetic": "/ˈæbsəns/",
+    "chinese": "缺席；缺乏",
+    "definition": "the state of not being present",
+    "example": "His absence from work was noticed.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 4,
+    "english": "absolute",
+    "phonetic": "/ˈæbsəluːt/",
+    "chinese": "绝对的；完全的",
+    "definition": "complete and not limited",
+    "example": "There is absolute silence in the room.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 5,
+    "english": "absorb",
+    "phonetic": "/əbˈsɔːrb/",
+    "chinese": "吸收；吸引",
+    "definition": "to take in or soak up",
+    "example": "Plants absorb carbon dioxide.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 6,
+    "english": "abstract",
+    "phonetic": "/ˈæbstrækt/",
+    "chinese": "抽象的；摘要",
+    "definition": "existing in thought or as an idea",
+    "example": "This is an abstract concept.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 7,
+    "english": "academic",
+    "phonetic": "/ˌækəˈdemɪk/",
+    "chinese": "学术的；理论的",
+    "definition": "relating to education and scholarship",
+    "example": "She has an academic background.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 8,
+    "english": "accept",
+    "phonetic": "/əkˈsept/",
+    "chinese": "接受；认可",
+    "definition": "to agree to take or receive",
+    "example": "He accepted the invitation.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 9,
+    "english": "access",
+    "phonetic": "/ˈækses/",
+    "chinese": "访问；通道；使用",
+    "definition": "the right to use or enter",
+    "example": "Access to the building is restricted.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 10,
+    "english": "accommodate",
+    "phonetic": "/əˈkɒmədeɪt/",
+    "chinese": "容纳；适应；提供住宿",
+    "definition": "to provide space for",
+    "example": "The hotel can accommodate 200 guests.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 11,
+    "english": "accompany",
+    "phonetic": "/əˈkʌmpəni/",
+    "chinese": "陪伴；伴随",
+    "definition": "to go along with",
+    "example": "She accompanied him to the meeting.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 12,
+    "english": "accomplish",
+    "phonetic": "/əˈkʌmplɪʃ/",
+    "chinese": "完成；实现",
+    "definition": "to succeed in doing something",
+    "example": "They accomplished their goal.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 13,
+    "english": "accurate",
+    "phonetic": "/ˈækjərət/",
+    "chinese": "准确的；精确的",
+    "definition": "correct and precise",
+    "example": "Give me an accurate report.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 14,
+    "english": "achieve",
+    "phonetic": "/əˈtʃiːv/",
+    "chinese": "实现；达到",
+    "definition": "to successfully reach a goal",
+    "example": "She achieved her dream.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 15,
+    "english": "acquire",
+    "phonetic": "/əˈkwaɪər/",
+    "chinese": "获得；取得",
+    "definition": "to gain possession of",
+    "example": "He acquired a new skill.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 16,
+    "english": "adapt",
+    "phonetic": "/əˈdæpt/",
+    "chinese": "适应；改编",
+    "definition": "to adjust to new conditions",
+    "example": "Animals adapt to their environment.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 17,
+    "english": "adequate",
+    "phonetic": "/ˈædɪkwət/",
+    "chinese": "足够的；适当的",
+    "definition": "sufficient for a particular purpose",
+    "example": "We have adequate supplies.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 18,
+    "english": "adjust",
+    "phonetic": "/əˈdʒʌst/",
+    "chinese": "调整；适应",
+    "definition": "to change slightly",
+    "example": "Please adjust the temperature.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 19,
+    "english": "adopt",
+    "phonetic": "/əˈdɒpt/",
+    "chinese": "采用；收养",
+    "definition": "to take and use as one's own",
+    "example": "The company adopted new policies.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 20,
+    "english": "advance",
+    "phonetic": "/ədˈvɑːns/",
+    "chinese": "前进；提前；进展",
+    "definition": "to move forward",
+    "example": "Technology continues to advance.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 21,
+    "english": "advantage",
+    "phonetic": "/ədˈvɑːntɪdʒ/",
+    "chinese": "优势；有利条件",
+    "definition": "a beneficial factor",
+    "example": "This gives us an advantage.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 22,
+    "english": "affect",
+    "phonetic": "/əˈfekt/",
+    "chinese": "影响；感动",
+    "definition": "to produce an effect on",
+    "example": "The weather affects our plans.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 23,
+    "english": "afford",
+    "phonetic": "/əˈfɔːrd/",
+    "chinese": "负担得起；提供",
+    "definition": "to have enough money for",
+    "example": "Can you afford this?",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 24,
+    "english": "agency",
+    "phonetic": "/ˈeɪdʒənsi/",
+    "chinese": "机构；代理",
+    "definition": "an organization providing a service",
+    "example": "She works at a travel agency.",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 25,
+    "english": "agreement",
+    "phonetic": "/əˈɡriːmənt/",
+    "chinese": "协议；同意",
+    "definition": "harmony or accordance",
+    "example": "We reached an agreement.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 26,
+    "english": "aid",
+    "phonetic": "/eɪd/",
+    "chinese": "援助；帮助",
+    "definition": "help or support",
+    "example": "They provided aid to victims.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 27,
+    "english": "aim",
+    "phonetic": "/eɪm/",
+    "chinese": "目标；瞄准",
+    "definition": "to direct toward a goal",
+    "example": "Our aim is to succeed.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 28,
+    "english": "allocate",
+    "phonetic": "/ˈæləkeɪt/",
+    "chinese": "分配；拨出",
+    "definition": "to set aside for a purpose",
+    "example": "Funds were allocated for the project.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 29,
+    "english": "alter",
+    "phonetic": "/ˈɔːltər/",
+    "chinese": "改变；修改",
+    "definition": "to change in some way",
+    "example": "We need to alter our plans.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 30,
+    "english": "alternative",
+    "phonetic": "/ɔːlˈtɜːrnətɪv/",
+    "chinese": "替代的；可供选择的",
+    "definition": "another option",
+    "example": "There is an alternative solution.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 31,
+    "english": "amount",
+    "phonetic": "/əˈmaʊnt/",
+    "chinese": "数量；总额",
+    "definition": "a quantity of something",
+    "example": "A large amount of money was spent.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 32,
+    "english": "analysis",
+    "phonetic": "/əˈnæləsɪs/",
+    "chinese": "分析",
+    "definition": "detailed examination",
+    "example": "The data requires careful analysis.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 33,
+    "english": "analyze",
+    "phonetic": "/ˈænəlaɪz/",
+    "chinese": "分析；研究",
+    "definition": "to examine methodically",
+    "example": "We need to analyze the results.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 34,
+    "english": "ancient",
+    "phonetic": "/ˈeɪnʃənt/",
+    "chinese": "古代的；古老的",
+    "definition": "very old",
+    "example": "This is an ancient artifact.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 35,
+    "english": "announce",
+    "phonetic": "/əˈnaʊns/",
+    "chinese": "宣布；通知",
+    "definition": "to make known publicly",
+    "example": "They announced the winner.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 36,
+    "english": "annual",
+    "phonetic": "/ˈænjuəl/",
+    "chinese": "每年的；年度的",
+    "definition": "happening once a year",
+    "example": "The annual conference is next week.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 37,
+    "english": "anticipate",
+    "phonetic": "/ænˈtɪsɪpeɪt/",
+    "chinese": "预期；预料",
+    "definition": "to expect or predict",
+    "example": "We anticipate good results.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 38,
+    "english": "apparent",
+    "phonetic": "/əˈpærənt/",
+    "chinese": "明显的；表面上的",
+    "definition": "clearly visible",
+    "example": "The problem is apparent.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 39,
+    "english": "appearance",
+    "phonetic": "/əˈpɪərəns/",
+    "chinese": "外观；出现",
+    "definition": "the way something looks",
+    "example": "Her appearance changed.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 40,
+    "english": "application",
+    "phonetic": "/ˌæplɪˈkeɪʃn/",
+    "chinese": "应用；申请",
+    "definition": "a formal request",
+    "example": "Submit your application online.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 41,
+    "english": "apply",
+    "phonetic": "/əˈplaɪ/",
+    "chinese": "应用；申请",
+    "definition": "to make use of",
+    "example": "Apply for the job now.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 42,
+    "english": "appoint",
+    "phonetic": "/əˈpɔɪnt/",
+    "chinese": "任命；指定",
+    "definition": "to assign a position",
+    "example": "They appointed a new manager.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 43,
+    "english": "approach",
+    "phonetic": "/əˈprəʊtʃ/",
+    "chinese": "方法；接近",
+    "definition": "a way of dealing with something",
+    "example": "Try a different approach.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 44,
+    "english": "appropriate",
+    "phonetic": "/əˈprəʊpriət/",
+    "chinese": "适当的；合适的",
+    "definition": "suitable for the situation",
+    "example": "Wear appropriate clothing.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 45,
+    "english": "approve",
+    "phonetic": "/əˈpruːv/",
+    "chinese": "批准；赞成",
+    "definition": "to agree to or confirm",
+    "example": "The committee approved the plan.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 46,
+    "english": "argue",
+    "phonetic": "/ˈɑːrɡjuː/",
+    "chinese": "争论；辩论",
+    "definition": "to present reasons",
+    "example": "They argued about the decision.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 47,
+    "english": "arise",
+    "phonetic": "/əˈraɪz/",
+    "chinese": "出现；产生",
+    "definition": "to come into being",
+    "example": "Problems may arise.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 48,
+    "english": "arrange",
+    "phonetic": "/əˈreɪndʒ/",
+    "chinese": "安排；整理",
+    "definition": "to organize or plan",
+    "example": "Arrange a meeting.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 49,
+    "english": "arrival",
+    "phonetic": "/əˈraɪvl/",
+    "chinese": "到达；到来",
+    "definition": "the act of arriving",
+    "example": "His arrival was unexpected.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 50,
+    "english": "article",
+    "phonetic": "/ˈɑːrtɪkl/",
+    "chinese": "文章；物品",
+    "definition": "a written piece",
+    "example": "This article is interesting.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 51,
+    "english": "artificial",
+    "phonetic": "/ˌɑːrtɪˈfɪʃəl/",
+    "chinese": "人工的；人造的",
+    "definition": "made by humans",
+    "example": "artificial intelligence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 52,
+    "english": "aspect",
+    "phonetic": "/ˈæspekt/",
+    "chinese": "方面；外观",
+    "definition": "a particular part or feature",
+    "example": "Consider all aspects.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 53,
+    "english": "assess",
+    "phonetic": "/əˈses/",
+    "chinese": "评估；评价",
+    "definition": "to evaluate or judge",
+    "example": "We need to assess the situation.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 54,
+    "english": "assign",
+    "phonetic": "/əˈsaɪn/",
+    "chinese": "分配；指派",
+    "definition": "to allocate a task",
+    "example": "Assign tasks to team members.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 55,
+    "english": "assist",
+    "phonetic": "/əˈsɪst/",
+    "chinese": "帮助；协助",
+    "definition": "to help or support",
+    "example": "I'll assist you with this.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 56,
+    "english": "associate",
+    "phonetic": "/əˈsoʊʃieɪt/",
+    "chinese": "联系；关联；同事",
+    "definition": "to connect or link",
+    "example": "I associate this smell with home.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 57,
+    "english": "assume",
+    "phonetic": "/əˈsuːm/",
+    "chinese": "假设；承担",
+    "definition": "to take for granted",
+    "example": "Don't assume anything.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 58,
+    "english": "assure",
+    "phonetic": "/əˈʃʊr/",
+    "chinese": "保证；确保",
+    "definition": "to promise confidently",
+    "example": "I assure you it's safe.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 59,
+    "english": "attach",
+    "phonetic": "/əˈtætʃ/",
+    "chinese": "附加；附着",
+    "definition": "to fasten or add",
+    "example": "Attach the file to the email.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 60,
+    "english": "attain",
+    "phonetic": "/əˈteɪn/",
+    "chinese": "获得；达到",
+    "definition": "to achieve or reach",
+    "example": "He attained his goal.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 61,
+    "english": "attempt",
+    "phonetic": "/əˈtempt/",
+    "chinese": "尝试；企图",
+    "definition": "to try to do something",
+    "example": "They attempted to climb the mountain.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 62,
+    "english": "attend",
+    "phonetic": "/əˈtend/",
+    "chinese": "出席；参加",
+    "definition": "to be present at",
+    "example": "Attend the meeting tomorrow.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 63,
+    "english": "attitude",
+    "phonetic": "/ˈætɪtjuːd/",
+    "chinese": "态度；看法",
+    "definition": "a way of thinking",
+    "example": "She has a positive attitude.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 64,
+    "english": "attract",
+    "phonetic": "/əˈtrækt/",
+    "chinese": "吸引；引起",
+    "definition": "to draw towards",
+    "example": "The event attracted many people.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 65,
+    "english": "authority",
+    "phonetic": "/əˈθɒrəti/",
+    "chinese": "权威；权力；当局",
+    "definition": "the power to make decisions",
+    "example": "The government has authority.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 66,
+    "english": "available",
+    "phonetic": "/əˈveɪləbl/",
+    "chinese": "可用的；可获得的",
+    "definition": "able to be used",
+    "example": "Is the product available?",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 67,
+    "english": "aware",
+    "phonetic": "/əˈweər/",
+    "chinese": "意识到的；知道的",
+    "definition": "having knowledge of",
+    "example": "Be aware of the risks.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 68,
+    "english": "balance",
+    "phonetic": "/ˈbæləns/",
+    "chinese": "平衡；余额",
+    "definition": "an even distribution",
+    "example": "Maintain a healthy balance.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 69,
+    "english": "barrier",
+    "phonetic": "/ˈbæriər/",
+    "chinese": "障碍；屏障",
+    "definition": "something that blocks",
+    "example": "Language is a barrier.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 70,
+    "english": "basis",
+    "phonetic": "/ˈbeɪsɪs/",
+    "chinese": "基础；根据",
+    "definition": "a foundation or starting point",
+    "example": "This is the basis for our plan.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 71,
+    "english": "benefit",
+    "phonetic": "/ˈbenɪfɪt/",
+    "chinese": "利益；好处；有益于",
+    "definition": "an advantage or profit",
+    "example": "The benefits are clear.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 72,
+    "english": "bias",
+    "phonetic": "/ˈbaɪəs/",
+    "chinese": "偏见；偏向",
+    "definition": "prejudice for or against",
+    "example": "Try to avoid bias.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 73,
+    "english": "boundary",
+    "phonetic": "/ˈbaʊndəri/",
+    "chinese": "边界；界限",
+    "definition": "a dividing line",
+    "example": "Cross the boundary.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 74,
+    "english": "breach",
+    "phonetic": "/briːtʃ/",
+    "chinese": "违反；缺口",
+    "definition": "a break or violation",
+    "example": "This is a breach of contract.",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 75,
+    "english": "budget",
+    "phonetic": "/ˈbʌdʒɪt/",
+    "chinese": "预算；预算案",
+    "definition": "a financial plan",
+    "example": "Stick to the budget.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 76,
+    "english": "campaign",
+    "phonetic": "/kæmˈpeɪn/",
+    "chinese": "运动；活动；战役",
+    "definition": "a series of actions",
+    "example": "Launch a marketing campaign.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 77,
+    "english": "capable",
+    "phonetic": "/ˈkeɪpəbl/",
+    "chinese": "有能力的；能胜任的",
+    "definition": "having the ability",
+    "example": "She is capable of handling this.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 78,
+    "english": "capacity",
+    "phonetic": "/kəˈpæsəti/",
+    "chinese": "容量；能力",
+    "definition": "the ability to contain",
+    "example": "The stadium has large capacity.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 79,
+    "english": "capture",
+    "phonetic": "/ˈkæptʃər/",
+    "chinese": "捕获；捕捉",
+    "definition": "to seize or record",
+    "example": "Capture the moment.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 80,
+    "english": "category",
+    "phonetic": "/ˈkætəɡəri/",
+    "chinese": "类别；种类",
+    "definition": "a group or class",
+    "example": "This falls into another category.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 81,
+    "english": "challenge",
+    "phonetic": "/ˈtʃælɪndʒ/",
+    "chinese": "挑战；质疑",
+    "definition": "a difficult task",
+    "example": "This is a big challenge.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 82,
+    "english": "channel",
+    "phonetic": "/ˈtʃænl/",
+    "chinese": "渠道；频道；通道",
+    "definition": "a means of communication",
+    "example": "Use different channels.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 83,
+    "english": "circumstance",
+    "phonetic": "/ˈsɜːrkəmstæns/",
+    "chinese": "情况；环境",
+    "definition": "conditions surrounding an event",
+    "example": "Under these circumstances.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 84,
+    "english": "cite",
+    "phonetic": "/saɪt/",
+    "chinese": "引用；引用",
+    "definition": "to mention as evidence",
+    "example": "Cite your sources.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 85,
+    "english": "claim",
+    "phonetic": "/kleɪm/",
+    "chinese": "声称；索赔",
+    "definition": "to assert or demand",
+    "example": "He claims to be innocent.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 86,
+    "english": "clarify",
+    "phonetic": "/ˈklærəfaɪ/",
+    "chinese": "澄清；阐明",
+    "definition": "to make clear",
+    "example": "Please clarify your point.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 87,
+    "english": "classification",
+    "phonetic": "/ˌklæsɪfɪˈkeɪʃn/",
+    "chinese": "分类；分级",
+    "definition": "the act of classifying",
+    "example": "Classification is important.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 88,
+    "english": "clause",
+    "phonetic": "/klɔːz/",
+    "chinese": "条款；从句",
+    "definition": "a provision in a contract",
+    "example": "Read the clause carefully.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 89,
+    "english": "collapse",
+    "phonetic": "/kəˈlæps/",
+    "chinese": "崩溃；倒塌",
+    "definition": "to fall down or fail",
+    "example": "The bridge collapsed.",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 90,
+    "english": "colleague",
+    "phonetic": "/ˈkɒliːɡ/",
+    "chinese": "同事；同僚",
+    "definition": "a fellow worker",
+    "example": "My colleague helped me.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 91,
+    "english": "collection",
+    "phonetic": "/kəˈlekʃn/",
+    "chinese": "收集；收藏；集合",
+    "definition": "a group of items",
+    "example": "This collection is valuable.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 92,
+    "english": "combine",
+    "phonetic": "/kəmˈbaɪn/",
+    "chinese": "结合；联合",
+    "definition": "to mix or merge",
+    "example": "Combine the ingredients.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 93,
+    "english": "comment",
+    "phonetic": "/ˈkɒment/",
+    "chinese": "评论；注释",
+    "definition": "a remark or opinion",
+    "example": "Leave a comment below.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 94,
+    "english": "commercial",
+    "phonetic": "/kəˈmɜːrʃl/",
+    "chinese": "商业的；商业化",
+    "definition": "relating to trade",
+    "example": "commercial products",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 95,
+    "english": "commission",
+    "phonetic": "/kəˈmɪʃn/",
+    "chinese": "委员会；佣金",
+    "definition": "a fee for services",
+    "example": "He earns a commission.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 96,
+    "english": "commit",
+    "phonetic": "/kəˈmɪt/",
+    "chinese": "承诺；犯罪；提交",
+    "definition": "to pledge or dedicate",
+    "example": "Commit to your goals.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 97,
+    "english": "community",
+    "phonetic": "/kəˈmjuːnəti/",
+    "chinese": "社区；社群",
+    "definition": "a group of people",
+    "example": "The local community.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 98,
+    "english": "compatible",
+    "phonetic": "/kəmˈpætəbl/",
+    "chinese": "兼容的；相容的",
+    "definition": "able to work together",
+    "example": "Are these compatible?",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 99,
+    "english": "compel",
+    "phonetic": "/kəmˈpel/",
+    "chinese": "强迫；迫使",
+    "definition": "to force or oblige",
+    "example": "Circumstances compelled him.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 100,
+    "english": "compensate",
+    "phonetic": "/ˈkɒmpenseɪt/",
+    "chinese": "补偿；赔偿",
+    "definition": "to make amends",
+    "example": "Compensate for the loss.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 101,
+    "english": "competition",
+    "phonetic": "/ˌkɒmpəˈtɪʃn/",
+    "chinese": "竞争；比赛",
+    "definition": "a contest or rivalry",
+    "example": "Competition is fierce.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 102,
+    "english": "comprehensive",
+    "phonetic": "/ˌkɒmprɪˈhensɪv/",
+    "chinese": "全面的；综合的",
+    "definition": "covering all aspects",
+    "example": "a comprehensive report",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 103,
+    "english": "conclude",
+    "phonetic": "/kənˈkluːd/",
+    "chinese": "得出结论；结束",
+    "definition": "to come to an end",
+    "example": "We conclude the meeting.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 104,
+    "english": "consequence",
+    "phonetic": "/ˈkɒnsɪkwəns/",
+    "chinese": "后果；结果",
+    "definition": "a result or effect",
+    "example": "Think about the consequences.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 105,
+    "english": "consent",
+    "phonetic": "/kənˈsent/",
+    "chinese": "同意；赞同",
+    "definition": "permission or agreement",
+    "example": "Give your consent.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 106,
+    "english": "consider",
+    "phonetic": "/kənˈsɪdər/",
+    "chinese": "考虑；认为",
+    "definition": "to think about carefully",
+    "example": "Consider all options.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 107,
+    "english": "consistent",
+    "phonetic": "/kənˈsɪstənt/",
+    "chinese": "一致的；一贯的",
+    "definition": "steady and unchanging",
+    "example": "Be consistent in your work.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 108,
+    "english": "constitute",
+    "phonetic": "/ˈkɒnstɪtjuːt/",
+    "chinese": "构成；建立",
+    "definition": "to form or make up",
+    "example": "These constitute the main points.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 109,
+    "english": "constraint",
+    "phonetic": "/kənˈstreɪnt/",
+    "chinese": "约束；限制",
+    "definition": "a limitation or restriction",
+    "example": "Budget constraints.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 110,
+    "english": "construct",
+    "phonetic": "/kənˈstrʌkt/",
+    "chinese": "建造；构建",
+    "definition": "to build or create",
+    "example": "Construct a new building.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 111,
+    "english": "consult",
+    "phonetic": "/kənˈsʌlt/",
+    "chinese": "咨询；查阅",
+    "definition": "to seek advice",
+    "example": "Consult an expert.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 112,
+    "english": "consume",
+    "phonetic": "/kənˈsjuːm/",
+    "chinese": "消耗；消费",
+    "definition": "to use up",
+    "example": "Consume less energy.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 113,
+    "english": "contemporary",
+    "phonetic": "/kənˈtempəreri/",
+    "chinese": "当代的；同时代的",
+    "definition": "modern or current",
+    "example": "contemporary art",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 114,
+    "english": "contend",
+    "phonetic": "/kənˈtend/",
+    "chinese": "主张；竞争",
+    "definition": "to argue or compete",
+    "example": "They contend for the title.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 115,
+    "english": "context",
+    "phonetic": "/ˈkɒntekst/",
+    "chinese": "背景；上下文",
+    "definition": "the circumstances surrounding",
+    "example": "Consider the context.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 116,
+    "english": "contract",
+    "phonetic": "/ˈkɒntrækt/",
+    "chinese": "合同；收缩",
+    "definition": "a legal agreement",
+    "example": "Sign the contract.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 117,
+    "english": "contradict",
+    "phonetic": "/ˌkɒntrəˈdɪkt/",
+    "chinese": "矛盾；反驳",
+    "definition": "to oppose or deny",
+    "example": "Don't contradict yourself.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 118,
+    "english": "contribute",
+    "phonetic": "/kənˈtrɪbjuːt/",
+    "chinese": "贡献；捐赠",
+    "definition": "to give or add",
+    "example": "Contribute to charity.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 119,
+    "english": "controversy",
+    "phonetic": "/ˈkɒntrəvɜːsi/",
+    "chinese": "争议；争论",
+    "definition": "a public disagreement",
+    "example": "The decision caused controversy.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 120,
+    "english": "convention",
+    "phonetic": "/kənˈvenʃn/",
+    "chinese": "惯例；大会",
+    "definition": "a traditional practice",
+    "example": "Follow convention.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 121,
+    "english": "convert",
+    "phonetic": "/kənˈvɜːrt/",
+    "chinese": "转换；转变",
+    "definition": "to change form",
+    "example": "Convert to PDF.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 122,
+    "english": "convince",
+    "phonetic": "/kənˈvɪns/",
+    "chinese": "说服；使信服",
+    "definition": "to persuade",
+    "example": "Convince them to agree.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 123,
+    "english": "coordinate",
+    "phonetic": "/koʊˈɔːrdɪneɪt/",
+    "chinese": "协调；坐标",
+    "definition": "to organize together",
+    "example": "Coordinate the schedule.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 124,
+    "english": "correspond",
+    "phonetic": "/ˌkɒrɪˈspɒnd/",
+    "chinese": "对应；通信",
+    "definition": "to match or communicate",
+    "example": "This corresponds with the data.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 125,
+    "english": "criteria",
+    "phonetic": "/kraɪˈtɪəriə/",
+    "chinese": "标准；准则",
+    "definition": "standards for judgment",
+    "example": "Meet the criteria.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 126,
+    "english": "critical",
+    "phonetic": "/ˈkrɪtɪkəl/",
+    "chinese": "关键的；批评的",
+    "definition": "crucial or evaluative",
+    "example": "This is critical.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 127,
+    "english": "crucial",
+    "phonetic": "/ˈkruːʃl/",
+    "chinese": "至关重要的",
+    "definition": "extremely important",
+    "example": "This is crucial.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 128,
+    "english": "current",
+    "phonetic": "/ˈkɜːrənt/",
+    "chinese": "当前的；流通的",
+    "definition": "present or flowing",
+    "example": "current trends",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 129,
+    "english": "debate",
+    "phonetic": "/dɪˈbeɪt/",
+    "chinese": "辩论；讨论",
+    "definition": "to argue about",
+    "example": "Debate the issue.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 130,
+    "english": "decade",
+    "phonetic": "/ˈdekeɪd/",
+    "chinese": "十年",
+    "definition": "a period of ten years",
+    "example": "Over the past decade.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 131,
+    "english": "decline",
+    "phonetic": "/dɪˈklaɪn/",
+    "chinese": "下降；拒绝",
+    "definition": "to decrease or refuse",
+    "example": "Sales declined.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 132,
+    "english": "dedicate",
+    "phonetic": "/ˈdedɪkeɪt/",
+    "chinese": "致力于；奉献",
+    "definition": "to commit to",
+    "example": "Dedicate yourself.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 133,
+    "english": "define",
+    "phonetic": "/dɪˈfaɪn/",
+    "chinese": "定义；明确",
+    "definition": "to state precisely",
+    "example": "Define your goals.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 134,
+    "english": "demonstrate",
+    "phonetic": "/ˈdemənstreɪt/",
+    "chinese": "演示；证明",
+    "definition": "to show or prove",
+    "example": "Demonstrate the process.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 135,
+    "english": "deny",
+    "phonetic": "/dɪˈnaɪ/",
+    "chinese": "否认；拒绝",
+    "definition": "to refuse or contradict",
+    "example": "Don't deny the truth.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 136,
+    "english": "depend",
+    "phonetic": "/dɪˈpend/",
+    "chinese": "依赖；依靠",
+    "definition": "to rely on",
+    "example": "Depend on yourself.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 137,
+    "english": "depict",
+    "phonetic": "/dɪˈpɪkt/",
+    "chinese": "描绘；描述",
+    "definition": "to portray or represent",
+    "example": "Depict the scene.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 138,
+    "english": "derive",
+    "phonetic": "/dɪˈraɪv/",
+    "chinese": "派生；获得",
+    "definition": "to obtain from a source",
+    "example": "derive from experience",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 139,
+    "english": "designate",
+    "phonetic": "/ˈdezɪɡneɪt/",
+    "chinese": "指定；命名",
+    "definition": "to assign a name",
+    "example": "Designate a leader.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 140,
+    "english": "detect",
+    "phonetic": "/dɪˈtekt/",
+    "chinese": "检测；发现",
+    "definition": "to discover or identify",
+    "example": "Detect the problem.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 141,
+    "english": "determine",
+    "phonetic": "/dɪˈtɜːrmɪn/",
+    "chinese": "确定；决定",
+    "definition": "to find out or decide",
+    "example": "Determine the cause.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 142,
+    "english": "devote",
+    "phonetic": "/dɪˈvoʊt/",
+    "chinese": "致力于；奉献",
+    "definition": "to give time or attention",
+    "example": "Devote time to study.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 143,
+    "english": "diminish",
+    "phonetic": "/dɪˈmɪnɪʃ/",
+    "chinese": "减少；降低",
+    "definition": "to make smaller",
+    "example": "diminish in importance",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 144,
+    "english": "discipline",
+    "phonetic": "/ˈdɪsɪplɪn/",
+    "chinese": "纪律；学科",
+    "definition": "training or control",
+    "example": "Maintain discipline.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 145,
+    "english": "discourse",
+    "phonetic": "/ˈdɪskɔːrs/",
+    "chinese": "论述；演讲",
+    "definition": "formal discussion",
+    "example": "Academic discourse.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 146,
+    "english": "discriminate",
+    "phonetic": "/dɪˈskrɪmɪneɪt/",
+    "chinese": "歧视；区分",
+    "definition": "to make distinctions",
+    "example": "Don't discriminate.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 147,
+    "english": "displace",
+    "phonetic": "/dɪsˈpleɪs/",
+    "chinese": "取代；位移",
+    "definition": "to take the place of",
+    "example": "New technology displaced old methods.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 148,
+    "english": "dispute",
+    "phonetic": "/dɪˈspjuːt/",
+    "chinese": "争议；争论",
+    "definition": "a disagreement",
+    "example": "Settle the dispute.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 149,
+    "english": "distinguish",
+    "phonetic": "/dɪˈstɪŋɡwɪʃ/",
+    "chinese": "区分；辨别",
+    "definition": "to tell apart",
+    "example": "distinguish between",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 150,
+    "english": "distribute",
+    "phonetic": "/dɪˈstrɪbjuːt/",
+    "chinese": "分配；分发",
+    "definition": "to give out",
+    "example": "Distribute the materials.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 151,
+    "english": "domestic",
+    "phonetic": "/dəˈmestɪk/",
+    "chinese": "国内的；家庭的",
+    "definition": "relating to home",
+    "example": "domestic market",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 152,
+    "english": "dominant",
+    "phonetic": "/ˈdɒmɪnənt/",
+    "chinese": "主导的；占优势的",
+    "definition": "most important",
+    "example": "the dominant factor",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 153,
+    "english": "draft",
+    "phonetic": "/dræft/",
+    "chinese": "草稿；草案",
+    "definition": "a preliminary version",
+    "example": "Write a draft.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 154,
+    "english": "dramatic",
+    "phonetic": "/drəˈmætɪk/",
+    "chinese": "戏剧性的；显著的",
+    "definition": "striking or theatrical",
+    "example": "a dramatic change",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 155,
+    "english": "duration",
+    "phonetic": "/dʊˈreɪʃn/",
+    "chinese": "持续时间",
+    "definition": "length of time",
+    "example": "The duration of the event.",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 156,
+    "english": "dynamic",
+    "phonetic": "/daɪˈnæmɪk/",
+    "chinese": "动态的；有活力的",
+    "definition": "active or changing",
+    "example": "dynamic environment",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 157,
+    "english": "emphasize",
+    "phonetic": "/ˈemfəsaɪz/",
+    "chinese": "强调；着重",
+    "definition": "to stress importance",
+    "example": "Emphasize the key points.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 158,
+    "english": "empirical",
+    "phonetic": "/ɪmˈpɪrɪkl/",
+    "chinese": "经验的；实证的",
+    "definition": "based on experience",
+    "example": "empirical evidence",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 159,
+    "english": "enable",
+    "phonetic": "/ɪˈneɪbl/",
+    "chinese": "使能够；使成为可能",
+    "definition": "to make possible",
+    "example": "This enables progress.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 160,
+    "english": "encounter",
+    "phonetic": "/ɪnˈkaʊntər/",
+    "chinese": "遇到；遭遇",
+    "definition": "to meet unexpectedly",
+    "example": "encounter difficulties",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 161,
+    "english": "endeavor",
+    "phonetic": "/ɪnˈdevər/",
+    "chinese": "努力；尝试",
+    "definition": "to try hard",
+    "example": "endeavor to succeed",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 162,
+    "english": "endure",
+    "phonetic": "/ɪnˈdjʊər/",
+    "chinese": "忍受；持续",
+    "definition": "to suffer or last",
+    "example": "endure hardship",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 163,
+    "english": "enforce",
+    "phonetic": "/ɪnˈfɔːrs/",
+    "chinese": "执行；强制",
+    "definition": "to compel obedience",
+    "example": "enforce the rules",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 164,
+    "english": "engage",
+    "phonetic": "/ɪnˈɡeɪdʒ/",
+    "chinese": "参与；从事；吸引",
+    "definition": "to involve or occupy",
+    "example": "engage in activities",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 165,
+    "english": "enhance",
+    "phonetic": "/ɪnˈhæns/",
+    "chinese": "增强；提升",
+    "definition": "to improve",
+    "example": "enhance performance",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 166,
+    "english": "enormous",
+    "phonetic": "/ɪˈnɔːrməs/",
+    "chinese": "巨大的；庞大的",
+    "definition": "very large",
+    "example": "an enormous amount",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 167,
+    "english": "ensure",
+    "phonetic": "/ɪnˈʃʊər/",
+    "chinese": "确保；保证",
+    "definition": "to make certain",
+    "example": "Ensure safety.",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 168,
+    "english": "establish",
+    "phonetic": "/ɪˈstæblɪʃ/",
+    "chinese": "建立；确立",
+    "definition": "to set up",
+    "example": "establish a company",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 169,
+    "english": "estimate",
+    "phonetic": "/ˈestɪmeɪt/",
+    "chinese": "估计；估算",
+    "definition": "to approximate",
+    "example": "estimate the cost",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 170,
+    "english": "evaluate",
+    "phonetic": "/ɪˈvæljueɪt/",
+    "chinese": "评估；评价",
+    "definition": "to assess or judge",
+    "example": "evaluate the results",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 171,
+    "english": "evidence",
+    "phonetic": "/ˈevɪdəns/",
+    "chinese": "证据；证明",
+    "definition": "facts supporting a claim",
+    "example": "provide evidence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 172,
+    "english": "evolve",
+    "phonetic": "/ɪˈvɒlv/",
+    "chinese": "演变；进化",
+    "definition": "to develop gradually",
+    "example": "evolve over time",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 173,
+    "english": "exceed",
+    "phonetic": "/ɪkˈsiːd/",
+    "chinese": "超过；超越",
+    "definition": "to go beyond",
+    "example": "exceed expectations",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 174,
+    "english": "exclude",
+    "phonetic": "/ɪkˈskluːd/",
+    "chinese": "排除；不包括",
+    "definition": "to leave out",
+    "example": "exclude certain items",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 175,
+    "english": "execute",
+    "phonetic": "/ˈeksɪkjuːt/",
+    "chinese": "执行；执行",
+    "definition": "to carry out",
+    "example": "execute the plan",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 176,
+    "english": "exhibit",
+    "phonetic": "/ɪɡˈzɪbɪt/",
+    "chinese": "展览；展示",
+    "definition": "to show or display",
+    "example": "exhibit artwork",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 177,
+    "english": "expand",
+    "phonetic": "/ɪkˈspænd/",
+    "chinese": "扩展；扩大",
+    "definition": "to increase in size",
+    "example": "expand the business",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 178,
+    "english": "expense",
+    "phonetic": "/ɪkˈspens/",
+    "chinese": "费用；开支",
+    "definition": "cost or expenditure",
+    "example": "cover the expenses",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 179,
+    "english": "experience",
+    "phonetic": "/ɪkˈspɪəriəns/",
+    "chinese": "经验；经历",
+    "definition": "practical knowledge",
+    "example": "gain experience",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 180,
+    "english": "experiment",
+    "phonetic": "/ɪkˈsperɪmənt/",
+    "chinese": "实验；试验",
+    "definition": "a scientific test",
+    "example": "conduct an experiment",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 181,
+    "english": "expertise",
+    "phonetic": "/ˌekspɜːrˈtiːz/",
+    "chinese": "专业知识；专长",
+    "definition": "specialized knowledge",
+    "example": "demonstrate expertise",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 182,
+    "english": "expose",
+    "phonetic": "/ɪkˈspoʊz/",
+    "chinese": "暴露；揭露",
+    "definition": "to reveal or uncover",
+    "example": "expose the truth",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 183,
+    "english": "extend",
+    "phonetic": "/ɪkˈstend/",
+    "chinese": "延长；扩展",
+    "definition": "to make longer",
+    "example": "extend the deadline",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 184,
+    "english": "external",
+    "phonetic": "/ɪkˈstɜːrnl/",
+    "chinese": "外部的；外在的",
+    "definition": "outside or outer",
+    "example": "external factors",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 185,
+    "english": "extract",
+    "phonetic": "/ˈekstrækt/",
+    "chinese": "提取；摘录",
+    "definition": "to pull out or obtain",
+    "example": "extract information",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 186,
+    "english": "facility",
+    "phonetic": "/fəˈsɪləti/",
+    "chinese": "设施；设备",
+    "definition": "a service or amenity",
+    "example": "sports facilities",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 187,
+    "english": "factor",
+    "phonetic": "/ˈfæktər/",
+    "chinese": "因素；因子",
+    "definition": "a contributing element",
+    "example": "key factors",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 188,
+    "english": "feature",
+    "phonetic": "/ˈfiːtʃər/",
+    "chinese": "特征；特色",
+    "definition": "a notable attribute",
+    "example": "main features",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 189,
+    "english": "finance",
+    "phonetic": "/ˈfaɪnæns/",
+    "chinese": "金融；财务",
+    "definition": "money management",
+    "example": "manage finances",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 190,
+    "english": "focus",
+    "phonetic": "/ˈfoʊkəs/",
+    "chinese": "焦点；聚焦",
+    "definition": "center of attention",
+    "example": "focus on the task",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 191,
+    "english": "fundamental",
+    "phonetic": "/ˌfʌndəˈmentl/",
+    "chinese": "基本的；根本的",
+    "definition": "basic or essential",
+    "example": "fundamental principles",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 192,
+    "english": "function",
+    "phonetic": "/ˈfʌŋkʃn/",
+    "chinese": "功能；函数",
+    "definition": "purpose or role",
+    "example": "main function",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 193,
+    "english": "generate",
+    "phonetic": "/ˈdʒenəreɪt/",
+    "chinese": "生成；产生",
+    "definition": "to create or produce",
+    "example": "generate ideas",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 194,
+    "english": "global",
+    "phonetic": "/ˈɡloʊbl/",
+    "chinese": "全球的；全球性的",
+    "definition": "worldwide",
+    "example": "global economy",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 195,
+    "english": "govern",
+    "phonetic": "/ˈɡʌvərn/",
+    "chinese": "治理；统治",
+    "definition": "to rule or manage",
+    "example": "govern a country",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 196,
+    "english": "guarantee",
+    "phonetic": "/ˌɡærənˈtiː/",
+    "chinese": "保证；担保",
+    "definition": "a promise of quality",
+    "example": "guarantee satisfaction",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 197,
+    "english": "hence",
+    "phonetic": "/hens/",
+    "chinese": "因此；从此",
+    "definition": "as a result",
+    "example": "hence the need",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 198,
+    "english": "hierarchy",
+    "phonetic": "/ˈhaɪərɑːrki/",
+    "chinese": "等级制度；层级",
+    "definition": "a ranking system",
+    "example": "social hierarchy",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 199,
+    "english": "hypothesis",
+    "phonetic": "/haɪˈpɒθəsɪs/",
+    "chinese": "假设；假说",
+    "definition": "a proposed explanation",
+    "example": "test the hypothesis",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 200,
+    "english": "identify",
+    "phonetic": "/aɪˈdentɪfaɪ/",
+    "chinese": "识别；鉴定",
+    "definition": "to recognize or name",
+    "example": "identify the problem",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 201,
+    "english": "illustrate",
+    "phonetic": "/ˈɪləstreɪt/",
+    "chinese": "说明；图解",
+    "definition": "to explain with examples",
+    "example": "illustrate the point",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 202,
+    "english": "impact",
+    "phonetic": "/ˈɪmpækt/",
+    "chinese": "影响；冲击",
+    "definition": "effect or collision",
+    "example": "environmental impact",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 203,
+    "english": "implement",
+    "phonetic": "/ˈɪmplɪment/",
+    "chinese": "实施；执行",
+    "definition": "to put into action",
+    "example": "implement the plan",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 204,
+    "english": "implication",
+    "phonetic": "/ˌɪmplɪˈkeɪʃn/",
+    "chinese": "暗示；含义",
+    "definition": "a suggested meaning",
+    "example": "consider the implications",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 205,
+    "english": "import",
+    "phonetic": "/ˈɪmpɔːrt/",
+    "chinese": "进口；导入",
+    "definition": "to bring from abroad",
+    "example": "import goods",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 206,
+    "english": "impose",
+    "phonetic": "/ɪmˈpoʊz/",
+    "chinese": "强加；征收",
+    "definition": "to force upon",
+    "example": "impose restrictions",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 207,
+    "english": "incentive",
+    "phonetic": "/ɪnˈsentɪv/",
+    "chinese": "激励；动机",
+    "definition": "a motivating factor",
+    "example": "financial incentive",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 208,
+    "english": "incorporate",
+    "phonetic": "/ɪnˈkɔːrpəreɪt/",
+    "chinese": "合并；包含",
+    "definition": "to include or combine",
+    "example": "incorporate feedback",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 209,
+    "english": "indicate",
+    "phonetic": "/ˈɪndɪkeɪt/",
+    "chinese": "指示；表明",
+    "definition": "to show or point out",
+    "example": "results indicate",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 210,
+    "english": "individual",
+    "phonetic": "/ˌɪndɪˈvɪdʒuəl/",
+    "chinese": "个人；个体",
+    "definition": "a single person",
+    "example": "individual rights",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 211,
+    "english": "influence",
+    "phonetic": "/ˈɪnfluəns/",
+    "chinese": "影响；影响力",
+    "definition": "power to affect",
+    "example": "social influence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 212,
+    "english": "inherent",
+    "phonetic": "/ɪnˈhɪrənt/",
+    "chinese": "固有的；内在的",
+    "definition": "existing naturally",
+    "example": "inherent risks",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 213,
+    "english": "initial",
+    "phonetic": "/ɪˈnɪʃl/",
+    "chinese": "初始的；最初的",
+    "definition": "first or beginning",
+    "example": "initial stage",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 214,
+    "english": "initiate",
+    "phonetic": "/ɪˈnɪʃieɪt/",
+    "chinese": "发起；启动",
+    "definition": "to begin or start",
+    "example": "initiate a project",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 215,
+    "english": "innovate",
+    "phonetic": "/ˈɪnəveɪt/",
+    "chinese": "创新；革新",
+    "definition": "to introduce new ideas",
+    "example": "innovate constantly",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 216,
+    "english": "input",
+    "phonetic": "/ˈɪnˌpʊt/",
+    "chinese": "输入；投入",
+    "definition": "something put in",
+    "example": "user input",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 217,
+    "english": "instance",
+    "phonetic": "/ˈɪnstəns/",
+    "chinese": "实例；例子",
+    "definition": "an example or case",
+    "example": "for instance",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 218,
+    "english": "integrate",
+    "phonetic": "/ˈɪntɪɡreɪt/",
+    "chinese": "整合；集成",
+    "definition": "to combine into a whole",
+    "example": "integrate systems",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 219,
+    "english": "intelligence",
+    "phonetic": "/ɪnˈtelɪdʒəns/",
+    "chinese": "智力；智能；情报",
+    "definition": "the ability to learn and understand",
+    "example": "artificial intelligence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 220,
+    "english": "intention",
+    "phonetic": "/ɪnˈtenʃn/",
+    "chinese": "意图；目的",
+    "definition": "a plan or purpose",
+    "example": "good intentions",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 221,
+    "english": "interact",
+    "phonetic": "/ˌɪntərˈækt/",
+    "chinese": "互动；交互",
+    "definition": "to communicate or act together",
+    "example": "interact with others",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 222,
+    "english": "interpret",
+    "phonetic": "/ɪnˈtɜːrprɪt/",
+    "chinese": "解释；翻译",
+    "definition": "to explain or translate",
+    "example": "interpret the results",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 223,
+    "english": "interval",
+    "phonetic": "/ˈɪntərvl/",
+    "chinese": "间隔；区间",
+    "definition": "a space between",
+    "example": "time interval",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 224,
+    "english": "intervention",
+    "phonetic": "/ˌɪntərˈvenʃn/",
+    "chinese": "干预；介入",
+    "definition": "the act of interfering",
+    "example": "government intervention",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 225,
+    "english": "investigate",
+    "phonetic": "/ɪnˈvestɪɡeɪt/",
+    "chinese": "调查；研究",
+    "definition": "to examine thoroughly",
+    "example": "investigate the cause",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 226,
+    "english": "invest",
+    "phonetic": "/ɪnˈvest/",
+    "chinese": "投资；投入",
+    "definition": "to put money into",
+    "example": "invest in stocks",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 227,
+    "english": "issue",
+    "phonetic": "/ˈɪʃuː/",
+    "chinese": "问题；发行",
+    "definition": "a problem or topic",
+    "example": "key issues",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 228,
+    "english": "isolate",
+    "phonetic": "/ˈaɪsəleɪt/",
+    "chinese": "隔离；孤立",
+    "definition": "to separate from others",
+    "example": "isolate the variable",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 229,
+    "english": "justify",
+    "phonetic": "/ˈdʒʌstɪfaɪ/",
+    "chinese": "证明；辩护",
+    "definition": "to show to be right",
+    "example": "justify the decision",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 230,
+    "english": "label",
+    "phonetic": "/ˈleɪbl/",
+    "chinese": "标签；标注",
+    "definition": "a tag or description",
+    "example": "price label",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 231,
+    "english": "legal",
+    "phonetic": "",
+    "chinese": "法律的",
+    "definition": "connected with law",
+    "example": "legal system",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 232,
+    "english": "legitimate",
+    "phonetic": "",
+    "chinese": "合法的；合理的",
+    "definition": "allowed by law or reason",
+    "example": "legitimate concern",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 233,
+    "english": "levy",
+    "phonetic": "",
+    "chinese": "征收；税款",
+    "definition": "to officially demand payment",
+    "example": "levy taxes",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 234,
+    "english": "liberal",
+    "phonetic": "",
+    "chinese": "自由的；开明的",
+    "definition": "open to new ideas",
+    "example": "liberal attitudes",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 235,
+    "english": "license",
+    "phonetic": "",
+    "chinese": "许可证；许可",
+    "definition": "official permission",
+    "example": "driving license",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 236,
+    "english": "likewise",
+    "phonetic": "",
+    "chinese": "同样地",
+    "definition": "in the same way",
+    "example": "students likewise benefited",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 237,
+    "english": "link",
+    "phonetic": "",
+    "chinese": "联系；连接",
+    "definition": "a connection between things",
+    "example": "link evidence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 238,
+    "english": "locate",
+    "phonetic": "",
+    "chinese": "定位；位于",
+    "definition": "to find the position of",
+    "example": "locate the source",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 239,
+    "english": "logic",
+    "phonetic": "",
+    "chinese": "逻辑",
+    "definition": "sound reasoning",
+    "example": "follow the logic",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 240,
+    "english": "maintain",
+    "phonetic": "",
+    "chinese": "维持；主张",
+    "definition": "to keep or continue",
+    "example": "maintain standards",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 241,
+    "english": "majority",
+    "phonetic": "",
+    "chinese": "多数",
+    "definition": "the greater number",
+    "example": "the majority of people",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 242,
+    "english": "manipulate",
+    "phonetic": "",
+    "chinese": "操纵；操作",
+    "definition": "to control skillfully",
+    "example": "manipulate data",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 243,
+    "english": "manual",
+    "phonetic": "",
+    "chinese": "手工的；手册",
+    "definition": "done by hand",
+    "example": "manual work",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 244,
+    "english": "margin",
+    "phonetic": "",
+    "chinese": "边缘；差额",
+    "definition": "an edge or difference",
+    "example": "profit margin",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 245,
+    "english": "mature",
+    "phonetic": "",
+    "chinese": "成熟的",
+    "definition": "fully developed",
+    "example": "mature market",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 246,
+    "english": "mechanism",
+    "phonetic": "",
+    "chinese": "机制",
+    "definition": "a system or process",
+    "example": "defence mechanism",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 247,
+    "english": "mediate",
+    "phonetic": "",
+    "chinese": "调解；影响",
+    "definition": "to help settle a dispute",
+    "example": "mediate conflict",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 248,
+    "english": "medium",
+    "phonetic": "",
+    "chinese": "媒介；中等的",
+    "definition": "a means of communication",
+    "example": "digital medium",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 249,
+    "english": "mental",
+    "phonetic": "",
+    "chinese": "心理的；精神的",
+    "definition": "related to the mind",
+    "example": "mental health",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 250,
+    "english": "method",
+    "phonetic": "",
+    "chinese": "方法",
+    "definition": "a way of doing something",
+    "example": "research method",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 251,
+    "english": "migration",
+    "phonetic": "",
+    "chinese": "迁移；移民",
+    "definition": "movement from one place to another",
+    "example": "seasonal migration",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 252,
+    "english": "military",
+    "phonetic": "",
+    "chinese": "军事的",
+    "definition": "related to armed forces",
+    "example": "military service",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 253,
+    "english": "minimal",
+    "phonetic": "",
+    "chinese": "最小的",
+    "definition": "very small in amount",
+    "example": "minimal impact",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 254,
+    "english": "minimise",
+    "phonetic": "",
+    "chinese": "最小化",
+    "definition": "to reduce as much as possible",
+    "example": "minimise risk",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 255,
+    "english": "ministry",
+    "phonetic": "",
+    "chinese": "部；部门",
+    "definition": "a government department",
+    "example": "Ministry of Education",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 256,
+    "english": "minor",
+    "phonetic": "",
+    "chinese": "较小的；未成年",
+    "definition": "less important or smaller",
+    "example": "minor changes",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 257,
+    "english": "mode",
+    "phonetic": "",
+    "chinese": "模式；方式",
+    "definition": "a way or form",
+    "example": "mode of transport",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 258,
+    "english": "modify",
+    "phonetic": "",
+    "chinese": "修改",
+    "definition": "to change slightly",
+    "example": "modify behaviour",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 259,
+    "english": "monitor",
+    "phonetic": "",
+    "chinese": "监测",
+    "definition": "to watch and check",
+    "example": "monitor progress",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 260,
+    "english": "motive",
+    "phonetic": "",
+    "chinese": "动机",
+    "definition": "a reason for doing something",
+    "example": "economic motive",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 261,
+    "english": "mutual",
+    "phonetic": "",
+    "chinese": "相互的",
+    "definition": "shared by two or more",
+    "example": "mutual benefit",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 262,
+    "english": "negate",
+    "phonetic": "",
+    "chinese": "否定；抵消",
+    "definition": "to make ineffective",
+    "example": "negate the effect",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 263,
+    "english": "network",
+    "phonetic": "",
+    "chinese": "网络",
+    "definition": "connected system",
+    "example": "transport network",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 264,
+    "english": "neutral",
+    "phonetic": "",
+    "chinese": "中立的",
+    "definition": "not supporting either side",
+    "example": "neutral position",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 265,
+    "english": "nevertheless",
+    "phonetic": "",
+    "chinese": "然而",
+    "definition": "despite that",
+    "example": "nevertheless important",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 266,
+    "english": "norm",
+    "phonetic": "",
+    "chinese": "规范；常态",
+    "definition": "accepted standard",
+    "example": "social norm",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 267,
+    "english": "notion",
+    "phonetic": "",
+    "chinese": "概念；观念",
+    "definition": "an idea or belief",
+    "example": "notion of progress",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 268,
+    "english": "objective",
+    "phonetic": "",
+    "chinese": "目标；客观的",
+    "definition": "aim or unbiased",
+    "example": "main objective",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 269,
+    "english": "obtain",
+    "phonetic": "",
+    "chinese": "获得",
+    "definition": "to get something",
+    "example": "obtain evidence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 270,
+    "english": "obvious",
+    "phonetic": "",
+    "chinese": "明显的",
+    "definition": "easy to see or understand",
+    "example": "obvious reason",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 271,
+    "english": "occupy",
+    "phonetic": "",
+    "chinese": "占据；占用",
+    "definition": "to take up space or time",
+    "example": "occupy land",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 272,
+    "english": "occur",
+    "phonetic": "",
+    "chinese": "发生",
+    "definition": "to happen",
+    "example": "changes occur",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 273,
+    "english": "offset",
+    "phonetic": "",
+    "chinese": "抵消",
+    "definition": "to balance an effect",
+    "example": "offset costs",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 274,
+    "english": "ongoing",
+    "phonetic": "",
+    "chinese": "持续的",
+    "definition": "continuing",
+    "example": "ongoing debate",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 275,
+    "english": "option",
+    "phonetic": "",
+    "chinese": "选项",
+    "definition": "a choice",
+    "example": "available options",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 276,
+    "english": "orient",
+    "phonetic": "",
+    "chinese": "定位；使适应",
+    "definition": "to direct or adjust",
+    "example": "orient students",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 277,
+    "english": "outcome",
+    "phonetic": "",
+    "chinese": "结果",
+    "definition": "the result of an action",
+    "example": "learning outcome",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 278,
+    "english": "output",
+    "phonetic": "",
+    "chinese": "产出；输出",
+    "definition": "production or result",
+    "example": "economic output",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 279,
+    "english": "overall",
+    "phonetic": "",
+    "chinese": "总体的",
+    "definition": "including everything",
+    "example": "overall effect",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 280,
+    "english": "overlap",
+    "phonetic": "",
+    "chinese": "重叠",
+    "definition": "to partly cover the same area",
+    "example": "overlap in meaning",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 281,
+    "english": "parallel",
+    "phonetic": "",
+    "chinese": "平行的；类似的",
+    "definition": "similar or side by side",
+    "example": "parallel development",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 282,
+    "english": "parameter",
+    "phonetic": "",
+    "chinese": "参数；范围",
+    "definition": "a limit or factor",
+    "example": "set parameters",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 283,
+    "english": "participate",
+    "phonetic": "",
+    "chinese": "参与",
+    "definition": "to take part",
+    "example": "participate in class",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 284,
+    "english": "passive",
+    "phonetic": "",
+    "chinese": "被动的",
+    "definition": "not active",
+    "example": "passive role",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 285,
+    "english": "perceive",
+    "phonetic": "",
+    "chinese": "察觉；认为",
+    "definition": "to notice or regard",
+    "example": "perceive risk",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 286,
+    "english": "period",
+    "phonetic": "",
+    "chinese": "时期",
+    "definition": "a length of time",
+    "example": "historical period",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 287,
+    "english": "persist",
+    "phonetic": "",
+    "chinese": "持续；坚持",
+    "definition": "to continue",
+    "example": "problems persist",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 288,
+    "english": "phase",
+    "phonetic": "",
+    "chinese": "阶段",
+    "definition": "a stage in a process",
+    "example": "initial phase",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 289,
+    "english": "policy",
+    "phonetic": "",
+    "chinese": "政策",
+    "definition": "a plan of action",
+    "example": "public policy",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 290,
+    "english": "portion",
+    "phonetic": "",
+    "chinese": "部分",
+    "definition": "a part of something",
+    "example": "large portion",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 291,
+    "english": "pose",
+    "phonetic": "",
+    "chinese": "造成；提出",
+    "definition": "to create or present",
+    "example": "pose a challenge",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 292,
+    "english": "potential",
+    "phonetic": "",
+    "chinese": "潜在的",
+    "definition": "possible in future",
+    "example": "potential benefit",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 293,
+    "english": "precede",
+    "phonetic": "",
+    "chinese": "先于",
+    "definition": "to come before",
+    "example": "events that precede",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 294,
+    "english": "precise",
+    "phonetic": "",
+    "chinese": "精确的",
+    "definition": "exact",
+    "example": "precise measurement",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 295,
+    "english": "predict",
+    "phonetic": "",
+    "chinese": "预测",
+    "definition": "to say what will happen",
+    "example": "predict outcomes",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 296,
+    "english": "preliminary",
+    "phonetic": "",
+    "chinese": "初步的",
+    "definition": "coming before main action",
+    "example": "preliminary results",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 297,
+    "english": "presume",
+    "phonetic": "",
+    "chinese": "假定",
+    "definition": "to suppose",
+    "example": "presume innocence",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 298,
+    "english": "previous",
+    "phonetic": "",
+    "chinese": "先前的",
+    "definition": "happening before",
+    "example": "previous studies",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 299,
+    "english": "primary",
+    "phonetic": "",
+    "chinese": "主要的；初级的",
+    "definition": "main or first",
+    "example": "primary cause",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 300,
+    "english": "prime",
+    "phonetic": "",
+    "chinese": "首要的",
+    "definition": "most important",
+    "example": "prime example",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 301,
+    "english": "principle",
+    "phonetic": "",
+    "chinese": "原则",
+    "definition": "basic rule or belief",
+    "example": "guiding principle",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 302,
+    "english": "prior",
+    "phonetic": "",
+    "chinese": "先前的",
+    "definition": "before",
+    "example": "prior knowledge",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 303,
+    "english": "priority",
+    "phonetic": "",
+    "chinese": "优先事项",
+    "definition": "something important",
+    "example": "top priority",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 304,
+    "english": "proceed",
+    "phonetic": "",
+    "chinese": "继续；进行",
+    "definition": "to continue",
+    "example": "proceed with caution",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 305,
+    "english": "process",
+    "phonetic": "",
+    "chinese": "过程；处理",
+    "definition": "series of actions",
+    "example": "learning process",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 306,
+    "english": "professional",
+    "phonetic": "",
+    "chinese": "专业的",
+    "definition": "relating to a profession",
+    "example": "professional advice",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 307,
+    "english": "prohibit",
+    "phonetic": "",
+    "chinese": "禁止",
+    "definition": "to forbid",
+    "example": "prohibit smoking",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 308,
+    "english": "project",
+    "phonetic": "",
+    "chinese": "项目；预测",
+    "definition": "planned work or estimate",
+    "example": "research project",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 309,
+    "english": "promote",
+    "phonetic": "",
+    "chinese": "促进",
+    "definition": "to encourage growth",
+    "example": "promote health",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 310,
+    "english": "proportion",
+    "phonetic": "",
+    "chinese": "比例",
+    "definition": "part compared with whole",
+    "example": "large proportion",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 311,
+    "english": "prospect",
+    "phonetic": "",
+    "chinese": "前景",
+    "definition": "possibility of future success",
+    "example": "career prospects",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 312,
+    "english": "protocol",
+    "phonetic": "",
+    "chinese": "协议；规程",
+    "definition": "official procedure",
+    "example": "research protocol",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 313,
+    "english": "psychology",
+    "phonetic": "",
+    "chinese": "心理学",
+    "definition": "study of mind and behaviour",
+    "example": "human psychology",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 314,
+    "english": "publication",
+    "phonetic": "",
+    "chinese": "出版物",
+    "definition": "printed or online work",
+    "example": "academic publication",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 315,
+    "english": "purchase",
+    "phonetic": "",
+    "chinese": "购买",
+    "definition": "to buy",
+    "example": "purchase goods",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 316,
+    "english": "pursue",
+    "phonetic": "",
+    "chinese": "追求；从事",
+    "definition": "to follow or seek",
+    "example": "pursue goals",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 317,
+    "english": "qualitative",
+    "phonetic": "",
+    "chinese": "定性的",
+    "definition": "based on qualities",
+    "example": "qualitative research",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 318,
+    "english": "quote",
+    "phonetic": "",
+    "chinese": "引用",
+    "definition": "to repeat words",
+    "example": "quote evidence",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 319,
+    "english": "radical",
+    "phonetic": "",
+    "chinese": "激进的；根本的",
+    "definition": "extreme or fundamental",
+    "example": "radical change",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 320,
+    "english": "random",
+    "phonetic": "",
+    "chinese": "随机的",
+    "definition": "without pattern",
+    "example": "random sample",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 321,
+    "english": "range",
+    "phonetic": "",
+    "chinese": "范围",
+    "definition": "variety or extent",
+    "example": "wide range",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 322,
+    "english": "ratio",
+    "phonetic": "",
+    "chinese": "比例",
+    "definition": "relationship between amounts",
+    "example": "ratio of students",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 323,
+    "english": "rational",
+    "phonetic": "",
+    "chinese": "理性的",
+    "definition": "based on reason",
+    "example": "rational decision",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 324,
+    "english": "react",
+    "phonetic": "",
+    "chinese": "反应",
+    "definition": "to respond",
+    "example": "react quickly",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 325,
+    "english": "recover",
+    "phonetic": "",
+    "chinese": "恢复",
+    "definition": "to return to normal",
+    "example": "recover from loss",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 326,
+    "english": "refine",
+    "phonetic": "",
+    "chinese": "完善；提炼",
+    "definition": "to improve by small changes",
+    "example": "refine the method",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 327,
+    "english": "regime",
+    "phonetic": "",
+    "chinese": "制度；政权",
+    "definition": "system of government or rules",
+    "example": "regulatory regime",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 328,
+    "english": "region",
+    "phonetic": "",
+    "chinese": "地区",
+    "definition": "an area",
+    "example": "coastal region",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 329,
+    "english": "register",
+    "phonetic": "",
+    "chinese": "登记；记录",
+    "definition": "to record officially",
+    "example": "register for course",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 330,
+    "english": "regulate",
+    "phonetic": "",
+    "chinese": "调节；监管",
+    "definition": "to control by rules",
+    "example": "regulate markets",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 331,
+    "english": "reinforce",
+    "phonetic": "",
+    "chinese": "加强",
+    "definition": "to strengthen",
+    "example": "reinforce learning",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 332,
+    "english": "reject",
+    "phonetic": "",
+    "chinese": "拒绝",
+    "definition": "to refuse",
+    "example": "reject an idea",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 333,
+    "english": "relax",
+    "phonetic": "",
+    "chinese": "放松；放宽",
+    "definition": "to become less strict",
+    "example": "relax rules",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 334,
+    "english": "release",
+    "phonetic": "",
+    "chinese": "释放；发布",
+    "definition": "to let out or publish",
+    "example": "release data",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 335,
+    "english": "relevant",
+    "phonetic": "",
+    "chinese": "相关的",
+    "definition": "closely connected",
+    "example": "relevant evidence",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 336,
+    "english": "rely",
+    "phonetic": "",
+    "chinese": "依赖",
+    "definition": "to depend on",
+    "example": "rely on technology",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 337,
+    "english": "remove",
+    "phonetic": "",
+    "chinese": "移除",
+    "definition": "to take away",
+    "example": "remove barriers",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 338,
+    "english": "require",
+    "phonetic": "",
+    "chinese": "需要；要求",
+    "definition": "to need or demand",
+    "example": "require attention",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 339,
+    "english": "research",
+    "phonetic": "",
+    "chinese": "研究",
+    "definition": "systematic study",
+    "example": "scientific research",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 340,
+    "english": "reside",
+    "phonetic": "",
+    "chinese": "居住",
+    "definition": "to live somewhere",
+    "example": "reside in cities",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 341,
+    "english": "resolve",
+    "phonetic": "",
+    "chinese": "解决",
+    "definition": "to settle or solve",
+    "example": "resolve conflict",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 342,
+    "english": "resource",
+    "phonetic": "",
+    "chinese": "资源",
+    "definition": "supply that can be used",
+    "example": "natural resources",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 343,
+    "english": "respond",
+    "phonetic": "",
+    "chinese": "回应",
+    "definition": "to answer or react",
+    "example": "respond to change",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 344,
+    "english": "restore",
+    "phonetic": "",
+    "chinese": "恢复",
+    "definition": "to bring back",
+    "example": "restore confidence",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 345,
+    "english": "restrain",
+    "phonetic": "",
+    "chinese": "限制；抑制",
+    "definition": "to hold back",
+    "example": "restrain growth",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 346,
+    "english": "restrict",
+    "phonetic": "",
+    "chinese": "限制",
+    "definition": "to limit",
+    "example": "restrict access",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 347,
+    "english": "retain",
+    "phonetic": "",
+    "chinese": "保留",
+    "definition": "to keep",
+    "example": "retain information",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 348,
+    "english": "reveal",
+    "phonetic": "",
+    "chinese": "揭示",
+    "definition": "to make known",
+    "example": "reveal patterns",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 349,
+    "english": "reverse",
+    "phonetic": "",
+    "chinese": "逆转；相反",
+    "definition": "to change to opposite",
+    "example": "reverse trend",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 350,
+    "english": "revise",
+    "phonetic": "",
+    "chinese": "修订；复习",
+    "definition": "to change or review",
+    "example": "revise notes",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 351,
+    "english": "revolution",
+    "phonetic": "",
+    "chinese": "革命；重大变化",
+    "definition": "dramatic change",
+    "example": "industrial revolution",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 352,
+    "english": "rigid",
+    "phonetic": "",
+    "chinese": "僵硬的；严格的",
+    "definition": "not flexible",
+    "example": "rigid rules",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 353,
+    "english": "role",
+    "phonetic": "",
+    "chinese": "角色；作用",
+    "definition": "function or part",
+    "example": "important role",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 354,
+    "english": "route",
+    "phonetic": "",
+    "chinese": "路线",
+    "definition": "a way from one place to another",
+    "example": "trade route",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 355,
+    "english": "scenario",
+    "phonetic": "",
+    "chinese": "情景",
+    "definition": "possible situation",
+    "example": "future scenario",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 356,
+    "english": "scheme",
+    "phonetic": "",
+    "chinese": "计划；方案",
+    "definition": "organized plan",
+    "example": "training scheme",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 357,
+    "english": "scope",
+    "phonetic": "",
+    "chinese": "范围",
+    "definition": "extent covered",
+    "example": "scope of study",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 358,
+    "english": "section",
+    "phonetic": "",
+    "chinese": "部分",
+    "definition": "a distinct part",
+    "example": "next section",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 359,
+    "english": "sector",
+    "phonetic": "",
+    "chinese": "部门；领域",
+    "definition": "part of economy or society",
+    "example": "public sector",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 360,
+    "english": "secure",
+    "phonetic": "",
+    "chinese": "安全的；获得",
+    "definition": "safe or obtain",
+    "example": "secure funding",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 361,
+    "english": "select",
+    "phonetic": "",
+    "chinese": "选择",
+    "definition": "to choose",
+    "example": "select samples",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 362,
+    "english": "sequence",
+    "phonetic": "",
+    "chinese": "顺序",
+    "definition": "order of events",
+    "example": "sequence of steps",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 363,
+    "english": "series",
+    "phonetic": "",
+    "chinese": "系列",
+    "definition": "a number of related things",
+    "example": "series of experiments",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 364,
+    "english": "shift",
+    "phonetic": "",
+    "chinese": "转变",
+    "definition": "change in position or direction",
+    "example": "policy shift",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 365,
+    "english": "signify",
+    "phonetic": "",
+    "chinese": "表示；意味着",
+    "definition": "to mean",
+    "example": "signify importance",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 366,
+    "english": "similar",
+    "phonetic": "",
+    "chinese": "相似的",
+    "definition": "almost the same",
+    "example": "similar results",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 367,
+    "english": "simulate",
+    "phonetic": "",
+    "chinese": "模拟",
+    "definition": "to imitate conditions",
+    "example": "simulate environment",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 368,
+    "english": "site",
+    "phonetic": "",
+    "chinese": "地点；网站",
+    "definition": "place or location",
+    "example": "site of study",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 369,
+    "english": "sole",
+    "phonetic": "",
+    "chinese": "唯一的",
+    "definition": "only",
+    "example": "sole reason",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 370,
+    "english": "somewhat",
+    "phonetic": "",
+    "chinese": "有点",
+    "definition": "to some degree",
+    "example": "somewhat different",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 371,
+    "english": "source",
+    "phonetic": "",
+    "chinese": "来源",
+    "definition": "origin",
+    "example": "source of energy",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 372,
+    "english": "specific",
+    "phonetic": "",
+    "chinese": "具体的",
+    "definition": "clearly defined",
+    "example": "specific example",
+    "category": "ultra-high",
+    "learned": false
+  },
+  {
+    "id": 373,
+    "english": "sphere",
+    "phonetic": "",
+    "chinese": "领域；球体",
+    "definition": "area of activity",
+    "example": "public sphere",
+    "category": "common",
+    "learned": false
+  },
+  {
+    "id": 374,
+    "english": "stable",
+    "phonetic": "",
+    "chinese": "稳定的",
+    "definition": "not changing",
+    "example": "stable system",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 375,
+    "english": "statistic",
+    "phonetic": "",
+    "chinese": "统计数据",
+    "definition": "numerical fact",
+    "example": "official statistics",
+    "category": "high",
+    "learned": false
+  },
+  {
+    "id": 376,
+    "english": "status",
+    "phonetic": "",
+    "chinese": "状态；地位",
+    "definition": "position or condition",
+    "example": "social status",
+    "category": "high",
+    "learned": false
+  }
+]

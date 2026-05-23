@@ -1,371 +1,335 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { use, useState, useEffect } from "react";
+import Link from "next/link";
+import Nav from "@/components/Nav";
 
-interface AnalysisData {
-  title: string;
-  article: string;
-  questions: string;
-  sentences: string[];
-  slug?: string;
-}
-
-interface WordInfo {
+interface VocabularyItem {
   word: string;
-  phonetic?: string;
-  audio?: string;
-  partOfSpeech?: string;
-  definition?: string;
-  example?: string;
-  chinese?: string;
-  synonyms?: string[];
+  phonetic: string;
+  pos: string;
+  chineseMeaning: string;
+  definition: string;
+  example: string;
 }
 
-export default function AnalysisPage() {
-  const params = useParams();
-  const router = useRouter();
-  const id = params.id as string;
-  
-  const [data, setData] = useState<AnalysisData | null>(null);
+interface SentenceAnalysis {
+  sentence: string;
+  translation: string;
+  analysis: string;
+  clauses: { type: string; text: string }[];
+}
+
+interface Question {
+  type: 'multiple-choice' | 'true-false' | 'fill-in-blank';
+  question: string;
+  options?: string[];
+  answer: string;
+  explanation: string;
+  reference: string;
+}
+
+interface AnalysisResult {
+  id: string;
+  fileName: string;
+  analyzedAt: string;
+  extractedText: string;
+  vocabulary: VocabularyItem[];
+  sentences: SentenceAnalysis[];
+  questions: Question[];
+}
+
+export default function AnalysisResultPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedWord, setSelectedWord] = useState<WordInfo | null>(null);
-  const [wordPosition, setWordPosition] = useState({ x: 0, y: 0 });
-  const [translations, setTranslations] = useState<Record<number, string>>({});
-  const [showTranslations, setShowTranslations] = useState<Record<number, boolean>>({});
-  const [vocabulary, setVocabulary] = useState<Set<string>>(new Set());
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [error, setError] = useState<string>("");
+  const [expandedSentences, setExpandedSentences] = useState<Set<number>>(new Set());
+  const [favoritedWords, setFavoritedWords] = useState<Set<string>>(new Set());
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    const loadData = async () => {
+    const fetchAnalysis = async () => {
       try {
-        const response = await fetch(`/api/articles/${id}`);
+        const response = await fetch(`/api/analyze-document?id=${id}`);
         if (!response.ok) {
-          throw new Error('文章不存在');
+          throw new Error("获取分析结果失败");
         }
-        const result = await response.json();
-        setData(result);
+        const data = await response.json();
+        setAnalysis(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : '加载失败');
+        setError(err instanceof Error ? err.message : "未知错误");
       } finally {
         setLoading(false);
       }
     };
 
-    loadData();
+    fetchAnalysis();
+
+    const storedVocab = localStorage.getItem("vocabulary");
+    if (storedVocab) {
+      try {
+        const vocab = JSON.parse(storedVocab) as VocabularyItem[];
+        setFavoritedWords(new Set(vocab.map((item) => item.word.toLowerCase())));
+      } catch {
+        setFavoritedWords(new Set());
+      }
+    }
   }, [id]);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('kikoscope_vocabulary');
-    if (saved) {
-      const words = JSON.parse(saved);
-      setVocabulary(new Set(words.map((w: any) => w.english)));
-    }
-  }, []);
-
-  const handleWordClick = async (word: string, event: React.MouseEvent) => {
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    setWordPosition({
-      x: Math.min(rect.right + 10, window.innerWidth - 350),
-      y: Math.min(rect.bottom + 10, window.innerHeight - 400),
+  const toggleSentenceExpand = (index: number) => {
+    setExpandedSentences((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
     });
-    setSelectedWord({ word });
-
-    try {
-      const [dictRes, transRes] = await Promise.all([
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`),
-        fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(word)}&langpair=en|zh`),
-      ]);
-
-      if (dictRes.ok) {
-        const dictData = await dictRes.json();
-        const entry = dictData[0];
-        setSelectedWord({
-          word,
-          phonetic: entry.phonetic || entry.phonetics?.[0]?.text,
-          audio: entry.phonetics?.[0]?.audio,
-          partOfSpeech: entry.meanings?.[0]?.partOfSpeech,
-          definition: entry.meanings?.[0]?.definitions?.[0]?.definition,
-          example: entry.meanings?.[0]?.definitions?.[0]?.example,
-          synonyms: entry.meanings?.[0]?.synonyms?.slice(0, 5),
-        });
-      }
-
-      if (transRes.ok) {
-        const transData = await transRes.json();
-        setSelectedWord(prev => ({
-          ...prev!,
-          chinese: transData.responseData?.translatedText,
-        }));
-      }
-    } catch (err) {
-      console.error('Failed to fetch word info:', err);
-    }
   };
 
-  const playAudio = () => {
-    if (selectedWord?.audio && audioRef.current) {
-      audioRef.current.src = selectedWord.audio;
-      audioRef.current.play();
-    }
-  };
-
-  const translateSentence = async (sentence: string, index: number) => {
-    if (translations[index]) {
-      setShowTranslations(prev => ({ ...prev, [index]: !prev[index] }));
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/define', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: sentence }),
+  const toggleFavoriteWord = (word: VocabularyItem) => {
+    const isFavorited = favoritedWords.has(word.word.toLowerCase());
+    
+    const storedVocab = localStorage.getItem("vocabulary");
+    const vocab = storedVocab ? (JSON.parse(storedVocab) as VocabularyItem[]) : [];
+    
+    let newVocab;
+    if (isFavorited) {
+      newVocab = vocab.filter((item) => item.word.toLowerCase() !== word.word.toLowerCase());
+      setFavoritedWords((prev) => {
+        const next = new Set(prev);
+        next.delete(word.word.toLowerCase());
+        return next;
       });
-      const data = await response.json();
-      if (data.translation) {
-        setTranslations(prev => ({ ...prev, [index]: data.translation }));
-        setShowTranslations(prev => ({ ...prev, [index]: true }));
-      }
-    } catch (err) {
-      console.error('Translation error:', err);
+    } else {
+      newVocab = [...vocab, word];
+      setFavoritedWords((prev) => new Set([...prev, word.word.toLowerCase()]));
+    }
+    
+    localStorage.setItem("vocabulary", JSON.stringify(newVocab));
+    
+    if (!isFavorited) {
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     }
   };
-
-  const addToVocabulary = () => {
-    if (!selectedWord) return;
-    
-    const newWord = {
-      english: selectedWord.word,
-      chinese: selectedWord.chinese,
-      phonetic: selectedWord.phonetic,
-      partOfSpeech: selectedWord.partOfSpeech,
-      definition: selectedWord.definition,
-    };
-
-    const saved = localStorage.getItem('kikoscope_vocabulary');
-    const words = saved ? JSON.parse(saved) : [];
-    
-    if (!words.some((w: any) => w.english === selectedWord.word)) {
-      words.push(newWord);
-      localStorage.setItem('kikoscope_vocabulary', JSON.stringify(words));
-      setVocabulary(prev => new Set([...prev, selectedWord.word]));
-    }
-
-    setSelectedWord(null);
-  };
-
-  const isInVocabulary = selectedWord && vocabulary.has(selectedWord.word);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FEFAF5] flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl mb-4">📖</div>
-          <p className="text-[#8D7B6B]">正在加载...</p>
-        </div>
+      <div className="min-h-screen bg-[#FDFBF7]">
+        <Nav />
+        <main className="mx-auto max-w-4xl px-6 py-12">
+          <div className="text-center">
+            <div className="text-6xl mb-4">🔍</div>
+            <p className="text-[#8D7B6B]">Kiki 正在帮你整理...</p>
+          </div>
+        </main>
       </div>
     );
   }
 
-  if (error || !data) {
+  if (error || !analysis) {
     return (
-      <div className="min-h-screen bg-[#FEFAF5] flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-4xl mb-4">😿</div>
-          <p className="text-[#8D7B6B] mb-4">{error || '文章不存在'}</p>
-          <button
-            onClick={() => router.push('/import')}
-            className="px-6 py-2 bg-[#4A3F35] text-white rounded-lg hover:bg-[#3A2F25] transition-colors"
-          >
-            去上传
-          </button>
-        </div>
+      <div className="min-h-screen bg-[#FDFBF7]">
+        <Nav />
+        <main className="mx-auto max-w-4xl px-6 py-12">
+          <div className="text-center">
+            <div className="text-6xl mb-4">❌</div>
+            <p className="text-[#8D7B6B]">{error || "分析结果不存在"}</p>
+            <Link href="/import" className="text-[#8B5E3C] hover:underline">
+              回到交给Kiki
+            </Link>
+          </div>
+        </main>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#FEFAF5]">
-      <header className="bg-white border-b border-[#D4C4B0] px-6 py-4 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button onClick={() => router.push('/import')} className="text-[#8D7B6B] hover:text-[#6B5B4F]">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </button>
-            <h1 className="text-xl font-semibold text-[#4A3F35]">{data.title}</h1>
+    <div className="min-h-screen bg-[#FDFBF7]">
+      <Nav />
+      
+      <main className="mx-auto max-w-4xl px-6 py-12">
+        <section className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="sf text-3xl font-bold text-[#8B5E3C] mb-2">Kiki 整理好了</h1>
+              <p className="text-[#8D7B6B]">
+                文件：{analysis.fileName} | 分析时间：{analysis.analyzedAt}
+              </p>
+            </div>
+            <Link
+              href={`/article/${id}`}
+              className="bg-[#8B5E3C] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              去精读 →
+            </Link>
           </div>
-          <button
-            onClick={() => router.push(`/analysis/${id}/quiz`)}
-            className="px-4 py-2 bg-[#4A3F35] text-white rounded-lg hover:bg-[#3A2F25] transition-colors text-sm"
-          >
-            去练习 →
-          </button>
-        </div>
-      </header>
+        </section>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <h2 className="text-lg font-medium text-[#4A3F35] mb-4">精读</h2>
-            <div className="space-y-4">
-              {data.sentences.map((sentence, index) => (
-                <div key={index} className="bg-white rounded-xl border border-[#E8DFD4] p-4">
-                  <p className="text-[#4A3F35] leading-relaxed mb-3">
-                    {sentence.split(' ').map((word, wordIndex) => {
-                      const cleanWord = word.replace(/[^a-zA-Z'-]/g, '');
-                      if (!cleanWord) return word + ' ';
-                      
-                      return (
-                        <span
-                          key={wordIndex}
-                          onClick={(e) => handleWordClick(cleanWord, e)}
-                          className="cursor-pointer hover:bg-[#F5EFE7] hover:text-[#C9A96E] transition-colors rounded px-0.5"
-                          title={`点击查看 ${cleanWord} 的释义`}
-                        >
-                          {word}{' '}
+        {analysis.vocabulary.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-[#3E2723] mb-4 flex items-center gap-2">
+              <span>📚</span>
+              遇见的生词
+              <span className="text-sm font-normal text-[#8D7B6B]">({analysis.vocabulary.length}个)</span>
+            </h2>
+            <div className="grid gap-4">
+              {analysis.vocabulary.map((word, index) => (
+                <div
+                  key={index}
+                  className="bg-white border border-[#EEDDCC] rounded-xl p-4 hover:shadow-sm transition-shadow"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="sf text-xl font-bold text-[#8B5E3C]">{word.word}</span>
+                        <span className="text-[#8D7B6B] text-sm">{word.phonetic}</span>
+                        <span className="bg-[#EEDDCC] text-[#8B5E3C] text-xs px-2 py-0.5 rounded">
+                          {word.pos}
                         </span>
-                      );
-                    })}
-                  </p>
-                  <div className="flex items-center gap-3">
+                      </div>
+                      <p className="text-[#8B5E3C] mb-2">{word.chineseMeaning}</p>
+                      <p className="text-[#8D7B6B] text-sm mb-2">{word.definition}</p>
+                      <p className="text-[#8D7B6B] text-sm italic">例：{word.example}</p>
+                    </div>
                     <button
-                      onClick={() => translateSentence(sentence, index)}
-                      className="text-sm px-3 py-1 bg-[#F5EFE7] text-[#8D7B6B] rounded hover:bg-[#E8DFD4] transition-colors"
+                      onClick={() => toggleFavoriteWord(word)}
+                      className={`flex h-10 w-10 items-center justify-center rounded-full border transition ${
+                        favoritedWords.has(word.word.toLowerCase())
+                          ? "border-yellow-400 bg-yellow-50 text-yellow-500"
+                          : "border-[#EEDDCC] text-[#8D7B6B] hover:border-[#8B5E3C] hover:text-[#8B5E3C]"
+                      }`}
                     >
-                      {showTranslations[index] ? '隐藏' : '译'}
+                      {favoritedWords.has(word.word.toLowerCase()) ? "★" : "☆"}
                     </button>
-                    {translations[index] && showTranslations[index] && (
-                      <p className="text-sm text-[#6B5B4F]">{translations[index]}</p>
-                    )}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
+        )}
 
-          <div>
-            <h2 className="text-lg font-medium text-[#4A3F35] mb-4">本文生词</h2>
-            <div className="bg-white rounded-xl border border-[#E8DFD4] p-4">
-              {vocabulary.size === 0 ? (
-                <p className="text-[#8D7B6B] text-sm text-center py-4">
-                  点击句子中的单词收藏
-                </p>
-              ) : (
-                <div className="flex flex-wrap gap-2">
-                  {Array.from(vocabulary).map((word) => (
-                    <span
-                      key={word}
-                      className="px-3 py-1 bg-[#F5EFE7] text-[#4A3F35] rounded-full text-sm"
-                    >
-                      {word}
-                    </span>
-                  ))}
+        {analysis.sentences.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-[#3E2723] mb-4 flex items-center gap-2">
+              <span>📝</span>
+              句子小纸条
+              <span className="text-sm font-normal text-[#8D7B6B]">({analysis.sentences.length}句)</span>
+            </h2>
+            <div className="space-y-4">
+              {analysis.sentences.map((sentence, index) => (
+                <div
+                  key={index}
+                  className="bg-white border border-[#EEDDCC] rounded-xl overflow-hidden"
+                >
+                  <div
+                    className="p-4 cursor-pointer hover:bg-[#FDFBF7] transition-colors"
+                    onClick={() => toggleSentenceExpand(index)}
+                  >
+                    <p className="text-[#3E2723] mb-2">{sentence.sentence}</p>
+                    <p className="text-[#8D7B6B]">{sentence.translation}</p>
+                    <div className="flex items-center gap-2 mt-2 text-sm text-[#8B5E3C]">
+                      <span>{expandedSentences.has(index) ? "收起" : "看看结构"}</span>
+                      <span>{expandedSentences.has(index) ? "▲" : "▼"}</span>
+                    </div>
+                  </div>
+                  {expandedSentences.has(index) && (
+                    <div className="border-t border-[#EEDDCC] p-4 bg-[#FDFBF7]">
+                      <p className="text-[#8D7B6B] mb-3">{sentence.analysis}</p>
+                      <div className="space-y-2">
+                        {sentence.clauses.map((clause, i) => (
+                          <div key={i} className="flex items-start gap-2">
+                            <span className="bg-[#EEDDCC] text-[#8B5E3C] text-xs px-2 py-0.5 rounded shrink-0">
+                              {clause.type}
+                            </span>
+                            <span className="text-[#3E2723]">{clause.text}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              ))}
             </div>
+          </section>
+        )}
 
-            <div className="mt-6">
-              <button
-                onClick={() => router.push('/ielts-flashcards')}
-                className="w-full px-4 py-3 bg-[#C9A96E] text-white rounded-lg hover:bg-[#B8995E] transition-colors text-center"
-              >
-                🃏 去背单词
-              </button>
+        {analysis.questions.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-xl font-semibold text-[#3E2723] mb-4 flex items-center gap-2">
+              <span>❓</span>
+              练习小纸条
+              <span className="text-sm font-normal text-[#8D7B6B]">({analysis.questions.length}题)</span>
+            </h2>
+            <div className="space-y-4">
+              {analysis.questions.map((question, index) => (
+                <div
+                  key={index}
+                  className="bg-white border border-[#EEDDCC] rounded-xl p-4"
+                >
+                  <div className="flex items-start gap-2 mb-3">
+                    <span className="bg-[#8B5E3C] text-white text-xs px-2 py-0.5 rounded shrink-0">
+                      {question.type === "multiple-choice" ? "选择题" : 
+                       question.type === "true-false" ? "判断题" : "填空题"}
+                    </span>
+                    <span className="text-[#3E2723]">{question.question}</span>
+                  </div>
+                  {question.options && (
+                    <div className="ml-8 mb-3 space-y-2">
+                      {question.options.map((option, i) => (
+                        <div key={i} className={`text-sm ${
+                          String.fromCharCode(65 + i) === question.answer 
+                            ? "text-green-600 font-medium" 
+                            : "text-[#8D7B6B]"
+                        }`}>
+                          {String.fromCharCode(65 + i)}. {option}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div className="ml-8 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-[#8D7B6B]">答案：</span>
+                      <span className="text-green-600 font-medium">{question.answer}</span>
+                    </div>
+                    <div>
+                      <span className="text-sm text-[#8D7B6B]">解析：</span>
+                      <p className="text-sm text-[#3E2723]">{question.explanation}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-[#8D7B6B]">原文依据：</span>
+                      <span className="text-sm text-[#8B5E3C]">{question.reference}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-        </div>
+          </section>
+        )}
+
+        <section className="text-center py-8">
+          <Link
+            href={`/article/${id}`}
+            className="bg-[#8B5E3C] text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-flex items-center gap-2"
+          >
+            <span>📖</span>
+            去精读
+            <span>→</span>
+          </Link>
+        </section>
       </main>
 
-      {selectedWord && (
-        <div
-          className="fixed bg-white rounded-xl shadow-xl p-6 w-80 z-50 border border-[#E8DFD4]"
-          style={{
-            left: wordPosition.x,
-            top: wordPosition.y,
-            maxWidth: 'calc(100vw - 40px)',
-          }}
-        >
-          <button
-            onClick={() => setSelectedWord(null)}
-            className="absolute top-2 right-2 text-[#8D7B6B] hover:text-[#4A3F35]"
-          >
-            ✕
-          </button>
+      <footer className="text-center py-8 text-[#8D7B6B] text-sm">
+        Made with 🐾 by Kikoscope · 一个安静的雅思阅读角落
+      </footer>
 
-          <div className="text-center mb-4">
-            <h3 className="text-2xl font-bold text-[#4A3F35]">{selectedWord.word}</h3>
-            {selectedWord.phonetic && (
-              <p className="text-[#8D7B6B]">{selectedWord.phonetic}</p>
-            )}
-            <button
-              onClick={playAudio}
-              className="mt-2 text-2xl hover:scale-110 transition-transform"
-              disabled={!selectedWord.audio}
-            >
-              🔊
-            </button>
-          </div>
-
-          {selectedWord.partOfSpeech && (
-            <div className="mb-3">
-              <span className="px-2 py-1 bg-[#F5EFE7] text-[#C9A96E] text-xs rounded">
-                {selectedWord.partOfSpeech}
-              </span>
-            </div>
-          )}
-
-          {selectedWord.chinese && (
-            <p className="text-lg text-[#4A3F35] mb-3">{selectedWord.chinese}</p>
-          )}
-
-          {selectedWord.definition && (
-            <div className="mb-3">
-              <p className="text-sm text-[#6B5B4F]">{selectedWord.definition}</p>
-            </div>
-          )}
-
-          {selectedWord.example && (
-            <p className="text-sm text-[#8D7B6B] italic mb-3">例: {selectedWord.example}</p>
-          )}
-
-          {selectedWord.synonyms && selectedWord.synonyms.length > 0 && (
-            <div className="mb-4">
-              <p className="text-xs text-[#8D7B6B] mb-1">近义词:</p>
-              <div className="flex flex-wrap gap-1">
-                {selectedWord.synonyms.map((syn) => (
-                  <span key={syn} className="px-2 py-0.5 bg-[#F5EFE7] text-[#8D7B6B] text-xs rounded">
-                    {syn}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <button
-            onClick={addToVocabulary}
-            className={`w-full py-2 rounded-lg transition-colors ${
-              isInVocabulary
-                ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                : 'bg-[#4A3F35] text-white hover:bg-[#3A2F25]'
-            }`}
-            disabled={isInVocabulary}
-          >
-            {isInVocabulary ? '已收藏' : '☆ 收藏'}
-          </button>
-
-          <audio ref={audioRef} />
+      {showToast && (
+        <div className="fixed bottom-6 right-6 bg-[#8B5E3C] text-white px-4 py-3 rounded-lg shadow-lg toast z-50">
+          🐾 已收进词库
         </div>
-      )}
-
-      {selectedWord && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setSelectedWord(null)}
-        />
       )}
     </div>
   );

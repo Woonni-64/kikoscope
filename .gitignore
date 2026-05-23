@@ -40,36 +40,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Large data files and scripts (not needed for deployment)
-data/
-public/data/
-articles/curated/
-articles/guardian/
-articles/smithsonian/
-quiz_data/
-docs/
-scripts/utils/
-scripts/*.py
-scripts/fetch-*.ts
-scripts/import-*.py
-scripts/import-*.ts
-scripts/fix-*.py
-scripts/fix-*.ts
-scripts/check_*.py
-scripts/build-*.ts
-scripts/generate_*.py
-scripts/generate_*.ts
-scripts/update_*.py
-scripts/update_*.ts
-scripts/tag-*.ts
-scripts/*.js
-!scripts/fetch-articles.js
-public/articles-index.json
-public/articles-slug-map.json
-public/metadata.json
-
-# Backup files (do not commit)
-backup-*
-.git.backup
-*.zip

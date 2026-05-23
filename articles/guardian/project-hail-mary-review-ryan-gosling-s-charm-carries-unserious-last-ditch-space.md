@@ -1,0 +1,20 @@
+---
+title: >-
+  Project Hail Mary review – Ryan Gosling’s charm carries unserious last-ditch
+  space mission
+slug: >-
+  project-hail-mary-review-ryan-gosling-s-charm-carries-unserious-last-ditch-space
+category: space
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>Tale of a brilliant molecular biologist cast into outer space with only a
+  helpful alien for company is a bit silly, but Gosling’s charisma keeps it
+  watchable</p>
+word_count: 582
+translation: ''
+date: ''
+cefr: C2
+---
+<p>This is a movie, adapted from <a href="https://www.theguardian.com/books/2021/jun/11/the-best-recent-science-fiction-and-fantasy-reviews-roundup">Andy Weir’s sci-fi bestseller</a>, about a desperate astronaut mission of the future, named by Nasa after the <a href="https://en.wikipedia.org/wiki/Hail_Mary_pass">“Hail Mary pass” in American football</a>, launched into space in a last-ditch attempt to save Planet Earth, dying because a string of alien microbes are snuffing out the sun.</p> <p>Hunky high school science teacher Dr Ryland Grace, played with seductive, unruffled good humour by Ryan Gosling, wakes up from his induced coma on this spacecraft, with wacky long hair, straggly beard and zero memory of why he is aboard. The rest of the crew are dead, and Grace must now figure out how he got there and how to rescue humanity.</p> <p>Gosling is an effortlessly charming screen player, and he keeps it watchable, though the film itself has moments of dullness and a sort of puppyish silliness, perhaps not surprising given the comedy track-record of directors Phil Lord and Chris Miller. And the final moment before the credits, in a film which had been asking us to take it seriously at some level, feels like a kids’ TV show. Weir wrote The Martian, the basis for <a href="https://www.theguardian.com/film/2015/oct/01/the-martian-review-matt-damon-ridley-scott">Ridley Scott’s movie with Matt Damon</a>, and this has the same cheerful, breezy humour and tonal commitment to unseriousness; this for me meant Project Hail Mary was funny ha-ha and funny peculiar at the same time.</p>       <figure class="element element-video" data-canonical-url="https://www.youtube.com/watch?v=3wGFc00i-C0"                                                                        >  <iframe height="480" width="854" src="https://www.youtube-nocookie.com/embed/3wGFc00i-C0?wmode=opaque&feature=oembed" frameborder="0" allowfullscreen ></iframe> </figure>   <p>The whole thing settles on Dr Grace’s bromance, or humanalienmance, with a friendly spider-shaped alien with stony bodyparts nicknamed “Rocky” who conveniently saves the day, scuttling about the place like ET and whose communication is rendered by Dr Grace’s software into Hulkspeak: “Rocky fix”, “Rocky help” etc. The action is interspersed with steely flashbacks in which we see how Dr Grace, a brilliant molecular biologist forced to take up teaching because the scientific establishment wasn’t ready for his radical ideas, was recruited to Project Hail Mary by the coolly impassive German technocrat Eva Stratt, a typically classy performance from Sandra Hüller.</p> <p>But what is the status of these flashbacks? Is Dr Grace remembering these episodes, piecing together what he’s supposed to be doing and what Eva expects of him? In fact, memory loss and memory retrieval don’t seem to be all that important. Dr Grace just gets on with it and these sequences are simply dotted through the action to vary the setting.</p> <p>Perhaps refreshingly, the film doesn’t aim for the stunned awe and rapture of, say, Christopher Nolan’s Interstellar or even Jon Spaihts’ underrated Passengers, but it does have the classic sci-fi spacecraft tropes: the huge, mysterious architecture with its vertiginous tunnels in which legacy pop music is played to soothe the inhabitants. This is a Hail Mary pass that Gosling just about manages to catch.</p> <p>• Project Hail Mary is out on 19 March in Australia and the UK, and 20 March in the US.</p>

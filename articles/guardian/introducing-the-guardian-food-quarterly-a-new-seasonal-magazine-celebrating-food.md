@@ -1,0 +1,20 @@
+---
+title: >-
+  Introducing the Guardian Food Quarterly - a new seasonal magazine celebrating
+  food and culture 
+slug: >-
+  introducing-the-guardian-food-quarterly-a-new-seasonal-magazine-celebrating-food
+category: Society
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>The Guardian today (Thursday 19 March) announces the launch of the Guardian
+  Food Quarterly, a new seasonal lifestyle magazine celebrating what, how and
+  where we eat. </p> <p>The...
+word_count: 567
+translation: ''
+date: ''
+cefr: C1
+---
+<p>The Guardian today (Thursday 19 March) announces the launch of the Guardian Food Quarterly, a new seasonal lifestyle magazine celebrating what, how and where we eat. </p> <p>The first issue will be available globally this Saturday (21 March) via the <a href="https://support.theguardian.com/uk/subscribe">Guardian Editions app</a>, and as a free supplement with the UK print edition. </p> <p>The Guardian Food Quarterly builds on the Guardian’s rich heritage in food journalism, with more than 100 years of recipes in its archive. This includes the much-loved <a href="https://www.theguardian.com/theguardian/feast">Feast brand</a>, the <a href="https://www.theguardian.com/help/insideguardian/2024/apr/17/introducing-the-feast-app">Feast app</a> (downloaded over half a million times since <a href="https://www.theguardian.com/gnm-press-office/article/2024/jul/10/introducing-feast-the-ultimate-new-cooking-and-recipe-app-from-the-guardian">launch</a>), and the weekly Guardian <a href="https://www.theguardian.com/food/2019/jul/09/sign-up-for-the-feast-newsletter-our-free-guardian-food-email">Feast newsletter</a>.</p> <p>Offering a fresh and immersive take on food, the Guardian Food Quarterly features a new batch of columns and interviews from star chefs, writers, and guests. Alongside vibrant photography, it goes beyond seasonal recipes to explore food trends, travel and culture, and includes curated kitchen essentials from <a href="https://www.theguardian.com/uk/thefilter">the Filter</a>, home to the Guardian’s independent product reviews, recommendations and sustainable shopping ideas. </p> <p>Highlights from the first issue include a masterclass with chef Angela Hartnett in her home kitchen, seasonal recipes from Georgina Hayden, baker Edd Kimber and award-winning author Hetty Lui McKinnon, a column on home cooking from baker Ruby Tandoh, cookbook reviews from Felicity Cloake and chef Ben Lippett testing and rating knives. Readers can also enjoy new fun features like ‘What’s in your fridge?’ and ‘The best thing I ate’. </p> <p><strong>Tim Lusher, head of food, Guardian News &amp; Media, says: </strong></p> <p><em>“It feels like spring has arrived with the Guardian Food Quarterly. It’s bright, fun and feel-good, full of uplifting reads and beautiful photography. I’m delighted that such a talented team of writers and cooks are sharing their joy in everything to do with food and I hope our readers will love it too.”</em></p> <p><strong>[ENDS]</strong></p> <p><strong>About the Guardian </strong></p> <p>Guardian Media Group is one of the world’s largest and most-trusted quality newsbrands, publisher of the Guardian, <a href="http://theguardian.com/">theguardian.com</a> and the Guardian app.</p> <p>Founded over 200 years ago, the Guardian now serves audiences through five editions: Australia, Europe, International, UK and US. With no billionaire owner, the Guardian is renowned for its fearless investigative journalism, holding power to account and amplifying the stories that need to be told. Its independent ownership structure means it is free from political or commercial influence.</p> <p>Today, millions of people worldwide choose the Guardian’s journalism every day and more than two million readers across 180 countries have supported the Guardian’s work.</p> <p>Audiences can listen to the Guardian’s top-rated podcasts, watch its award-winning documentaries and interact with its growing digital portfolio, from a premium live news app to the recipe app Feast.</p>

@@ -1,287 +1,307 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useCallback, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Nav from "@/components/Nav";
 
 interface Document {
   id: string;
   name: string;
   uploadedAt: string;
-  status: string;
+  status: "uploading" | "analyzing" | "completed" | "error";
   analysisId?: string;
-  error?: string;
 }
 
+const ACCEPTED_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "application/pdf",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
+
 export default function ImportPage() {
-  const router = useRouter();
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
-  const [isDragging, setIsDragging] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [dragover, setDragover] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const saved = localStorage.getItem('kikoscope_documents');
-    if (saved) {
-      setDocuments(JSON.parse(saved));
+    let cancelled = false;
+
+    const mergeDocuments = (localDocs: Document[], serverDocs: Document[]) => {
+      const seen = new Set<string>();
+      return [...localDocs, ...serverDocs].filter((doc) => {
+        const key = doc.analysisId || doc.id;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    };
+
+    const loadServerDocuments = async (localDocs: Document[]) => {
+      try {
+        const response = await fetch("/api/analyze-document");
+        if (!response.ok) return;
+        const data = (await response.json()) as { documents?: Document[] };
+        if (cancelled || !data.documents) return;
+        const next = mergeDocuments(localDocs, data.documents);
+        setDocuments(next);
+        localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+      } catch {
+        // Local browser storage still keeps the page usable if the server list is unavailable.
+      }
+    };
+
+    let localDocs: Document[] = [];
+    const savedDocs = localStorage.getItem("kikoscope_documents");
+    if (savedDocs) {
+      try {
+        localDocs = JSON.parse(savedDocs);
+        setDocuments(localDocs);
+      } catch {
+        setDocuments([]);
+      }
     }
+
+    void loadServerDocuments(localDocs);
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
-
-  const saveToLocalStorage = (docs: Document[]) => {
-    localStorage.setItem('kikoscope_documents', JSON.stringify(docs));
-  };
-
-  const getStatusText = (doc: Document) => {
-    switch (doc.status) {
-      case 'uploading':
-        return '上传中...';
-      case 'analyzing':
-        return '分析中...';
-      case 'completed':
-        return '分析完成';
-      case 'error':
-        return doc.error || '分析失败';
-      default:
-        return doc.status;
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'text-green-600';
-      case 'error':
-        return 'text-red-500';
-      case 'uploading':
-      case 'analyzing':
-        return 'text-yellow-600';
-      default:
-        return 'text-gray-500';
-    }
-  };
 
   const handleFileUpload = useCallback(async (files: FileList | null) => {
     if (!files || files.length === 0) return;
 
-    const validFiles = Array.from(files).filter(file => {
-      const ext = file.name.split('.').pop()?.toLowerCase();
-      return ['pdf', 'doc', 'docx', 'txt', 'md'].includes(ext || '');
-    });
-
+    const validFiles = Array.from(files).filter(file => ACCEPTED_TYPES.includes(file.type));
+    
     if (validFiles.length === 0) {
-      alert('只支持 PDF、Word、TXT、Markdown 格式');
+      alert("Kiki 现在能收图片、PDF 和 Word 文件");
       return;
     }
 
-    const tempDocs: Document[] = validFiles.map(file => ({
+    const newDocs: Document[] = validFiles.map((file) => ({
       id: Math.random().toString(36).substr(2, 9),
       name: file.name,
-      uploadedAt: new Date().toLocaleDateString('zh-CN') + ' ' + new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }),
-      status: 'uploading',
+      uploadedAt: new Date().toLocaleString("zh-CN"),
+      status: "uploading",
     }));
 
-    setDocuments(prev => {
-      const updated = [...tempDocs, ...prev];
-      saveToLocalStorage(updated);
-      return updated;
+    setDocuments((prev) => {
+      const next = [...newDocs, ...prev];
+      localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+      return next;
     });
 
-    for (let i = 0; i < validFiles.length; i++) {
-      const file = validFiles[i];
-      const tempDoc = tempDocs[i];
+    for (const doc of newDocs) {
+      const file = validFiles.find(f => f.name === doc.name);
+      if (!file) continue;
+
+      const formData = new FormData();
+      formData.append("file", file);
 
       try {
-        const formData = new FormData();
-        formData.append('file', file);
+        setDocuments((prev) =>
+          prev.map((d): Document =>
+            d.id === doc.id ? { ...d, status: "analyzing" } : d
+          )
+        );
 
-        setDocuments(prev => {
-          const updated = prev.map(doc =>
-            doc.id === tempDoc.id ? { ...doc, status: 'analyzing' } : doc
-          );
-          saveToLocalStorage(updated);
-          return updated;
-        });
-
-        const response = await fetch('/api/analyze-document', {
-          method: 'POST',
+        const response = await fetch("/api/analyze-document", {
+          method: "POST",
           body: formData,
         });
 
-        const data = await response.json();
+        const result = await response.json();
 
-        if (response.ok && data.success) {
-          setDocuments(prev => {
-            const updated = prev.map(doc =>
-              doc.id === tempDoc.id
-                ? { ...doc, id: data.analysisId, analysisId: data.analysisId, status: 'completed' }
-                : doc
+        if (response.ok && result.analysisId) {
+          setDocuments((prev) => {
+            const next: Document[] = prev.map((d) =>
+              d.id === doc.id
+                ? { ...d, status: "completed", analysisId: result.analysisId }
+                : d
             );
-            saveToLocalStorage(updated);
-            return updated;
+            localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+            return next;
           });
-
-          router.push(`/analysis/${data.analysisId}`);
+          
+          router.push(`/article/${result.analysisId}`);
         } else {
-          setDocuments(prev => {
-            const updated = prev.map(doc =>
-              doc.id === tempDoc.id
-                ? { ...doc, status: 'error', error: data.error || '分析失败' }
-                : doc
+          setDocuments((prev) => {
+            const next: Document[] = prev.map((d) =>
+              d.id === doc.id ? { ...d, status: "error" } : d
             );
-            saveToLocalStorage(updated);
-            return updated;
+            localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+            return next;
           });
         }
-      } catch (error) {
-        console.error('Upload error:', error);
-        setDocuments(prev => {
-          const updated = prev.map(doc =>
-            doc.id === tempDoc.id
-              ? { ...doc, status: 'error', error: '网络错误' }
-              : doc
+      } catch {
+        setDocuments((prev) => {
+          const next: Document[] = prev.map((d) =>
+            d.id === doc.id ? { ...d, status: "error" } : d
           );
-          saveToLocalStorage(updated);
-          return updated;
+          localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+          return next;
         });
       }
     }
-
+    
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   }, [router]);
 
-  const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  }, []);
-
-  const handleDragLeave = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-  }, []);
-
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
-    setIsDragging(false);
+    setDragover(false);
     handleFileUpload(e.dataTransfer.files);
   }, [handleFileUpload]);
 
-  const handleDocumentClick = (doc: Document) => {
-    if (doc.status === 'completed' && doc.analysisId) {
-      router.push(`/analysis/${doc.analysisId}`);
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setDragover(true);
+  }, []);
+
+  const handleDragLeave = useCallback(() => {
+    setDragover(false);
+  }, []);
+
+  const handleFileInputChange = useCallback((e: Event) => {
+    const target = e.target as HTMLInputElement;
+    handleFileUpload(target.files);
+    target.value = "";
+  }, [handleFileUpload]);
+
+  const fileInputRef = useCallback((node: HTMLInputElement | null) => {
+    if (node) {
+      node.addEventListener("change", handleFileInputChange);
+      return () => node.removeEventListener("change", handleFileInputChange);
     }
-  };
+  }, [handleFileInputChange]);
 
-  const handleDelete = async (e: React.MouseEvent, doc: Document) => {
-    e.stopPropagation();
-    if (!confirm('确定要删除这个文件吗？')) return;
-
-    try {
-      if (doc.analysisId) {
-        await fetch('/api/delete-document', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ analysisId: doc.analysisId }),
-        });
-      }
-
-      setDocuments(prev => {
-        const updated = prev.filter(d => d.id !== doc.id);
-        saveToLocalStorage(updated);
-        return updated;
-      });
-
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 3000);
-    } catch (error) {
-      console.error('Delete error:', error);
+  const getStatusIcon = (status: Document["status"]) => {
+    switch (status) {
+      case "uploading":
+        return "📤";
+      case "analyzing":
+        return "🔍";
+      case "completed":
+        return "✅";
+      case "error":
+        return "❌";
+      default:
+        return "📄";
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#FEFAF5]">
-      <header className="bg-white border-b border-[#D4C4B0] px-6 py-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button onClick={() => router.push('/')} className="text-[#8D7B6B] hover:text-[#6B5B4F]">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </button>
-            <h1 className="text-xl font-semibold text-[#4A3F35]">交给 Kiki</h1>
-          </div>
-          <span className="text-sm text-[#8D7B6B]">上传文件，Kiki 帮你分析</span>
-        </div>
-      </header>
+    <div className="min-h-screen bg-[#FDFBF7]">
+      <Nav />
+      
+      <main className="mx-auto max-w-4xl px-6 py-12">
+        <section className="text-center mb-12">
+          <h1 className="sf text-3xl font-bold text-[#8B5E3C] mb-2">
+            交给Kiki
+          </h1>
+          <p className="text-[#8D7B6B]">
+            把你的真题交给Kiki，她会帮你整理好
+          </p>
+        </section>
 
-      <main className="max-w-4xl mx-auto px-6 py-8">
-        <div
-          className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all ${
-            isDragging
-              ? 'border-[#C9A96E] bg-[#FDF8EE]'
-              : 'border-[#D4C4B0] hover:border-[#C9A96E] hover:bg-[#FDF8EE]'
-          }`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
-        >
+        <section className="mb-14">
+          <div className="mb-6">
+            <h2 className="sf text-2xl font-bold text-[#8B5E3C] mb-1">文件归档</h2>
+            <p className="text-[#8D7B6B] text-sm">
+              轻轻放在这里就好
+            </p>
+          </div>
+
           <input
             ref={fileInputRef}
             type="file"
-            accept=".pdf,.doc,.docx,.txt,.md"
+            accept="image/*,.pdf,.docx"
             multiple
             className="hidden"
-            onChange={(e) => handleFileUpload(e.target.files)}
+            id="file-upload"
           />
-          <div className="text-6xl mb-4">📄</div>
-          <p className="text-lg text-[#4A3F35] mb-2">拖拽文件到此处，或点击选择文件</p>
-          <p className="text-sm text-[#8D7B6B]">支持 PDF、Word、TXT、Markdown 格式</p>
-        </div>
+          
+          <div
+            onClick={() => document.getElementById("file-upload")?.click()}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            className={`upload-zone cursor-pointer p-12 text-center transition-all ${dragover ? "border-[#8B5E3C] bg-[rgba(139,94,60,0.05)]" : ""}`}
+          >
+            <p className="text-[#3E2723] font-medium mb-2">
+              📷 点击或拖拽，把真题交给Kiki
+            </p>
+            <p className="text-[#8D7B6B] text-sm">
+              支持图片、PDF、Word
+            </p>
+          </div>
+        </section>
 
-        {documents.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-lg font-medium text-[#4A3F35] mb-4">My Documents</h2>
-            <div className="bg-white rounded-xl border border-[#E8DFD4] overflow-hidden">
+        <section>
+          <h2 className="text-xl font-semibold text-[#3E2723] mb-6 flex items-center gap-2">
+            <span>📂</span>
+            Kiki 帮你收着的资料
+          </h2>
+          
+          {documents.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-[#8D7B6B] text-lg">
+                还没有资料，拍份真题交给Kiki吧
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
               {documents.map((doc) => (
                 <div
                   key={doc.id}
-                  className={`px-4 py-3 flex items-center justify-between hover:bg-[#FEFAF5] transition-colors ${
-                    doc.status === 'completed' ? 'cursor-pointer' : 'cursor-default'
-                  } ${documents.indexOf(doc) !== documents.length - 1 ? 'border-b border-[#E8DFD4]' : ''}`}
-                  onClick={() => handleDocumentClick(doc)}
+                  className={`card group p-4 flex items-center justify-between hover:shadow-sm ${
+                    doc.status === "completed" ? "hover:border-[#8B5E3C]" : ""
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-xl">
-                      {doc.name.endsWith('.pdf') ? '📕' : doc.name.endsWith('.doc') || doc.name.endsWith('.docx') ? '📘' : '📄'}
-                    </span>
-                    <div>
-                      <p className="text-[#4A3F35] font-medium">{doc.name}</p>
-                      <p className="text-sm text-[#8D7B6B]">{doc.uploadedAt}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className={`text-sm ${getStatusColor(doc.status)}`}>
-                      {getStatusText(doc)}
-                    </span>
-                    {doc.status !== 'uploading' && doc.status !== 'analyzing' && (
-                      <button
-                        onClick={(e) => handleDelete(e, doc)}
-                        className="text-[#8D7B6B] hover:text-[#C48B7D] transition-colors p-1"
-                        title="删除"
+                    <span className="text-2xl">{getStatusIcon(doc.status)}</span>
+                    {doc.status === "completed" && doc.analysisId ? (
+                      <Link
+                        href={`/article/${doc.analysisId}`}
+                        className="text-[#3E2723] underline-offset-4 transition hover:text-[#8B5E3C] hover:underline"
                       >
-                        ✕
-                      </button>
+                        {doc.name}
+                      </Link>
+                    ) : (
+                      <span className="text-[#3E2723]">{doc.name}</span>
                     )}
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className={`text-sm ${
+                      doc.status === "completed" ? "text-green-600" :
+                      doc.status === "error" ? "text-red-600" :
+                      doc.status === "analyzing" ? "text-blue-600" :
+                      "text-[#8D7B6B]"
+                    }`}>
+                      {doc.status === "completed" && "分析完成"}
+                      {doc.status === "analyzing" && "Kiki 正在整理"}
+                      {doc.status === "uploading" && "正在收好"}
+                      {doc.status === "error" && "这份资料还没收好"}
+                    </span>
+                    <span className="text-[#8D7B6B] text-sm">{doc.uploadedAt}</span>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </section>
       </main>
 
+      <footer className="text-center py-8 text-[#8D7B6B] text-sm">
+        Made with 🐾 by Kikoscope · 一个安静的雅思阅读角落
+      </footer>
+
       {showToast && (
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#4A3F35] text-white px-6 py-3 rounded-lg shadow-lg animate-bounce">
+        <div className="fixed bottom-6 right-6 bg-[#8B5E3C] text-white px-4 py-3 rounded-lg shadow-lg toast z-50">
           📄 已归档，Kiki 帮你收好了
         </div>
       )}

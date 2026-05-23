@@ -1,0 +1,39 @@
+{
+   "title": "A Chronicle of Timekeeping",
+   "source": "Adapted from scientific literature",
+   "summary": "How ancient civilizations measured time based on natural cycles.",
+   "paragraphs": [
+     {
+       "sentences": [
+         {
+           "text": "The calendar systems established by Babylonians were based on natural cycles for agricultural coordination.",
+           "translation": "巴比伦人建立的历法系统基于自然循环，用于农业协调。",
+           "analysis": "主语 The calendar systems，过去分词 established 作定语，谓语 were based on。",
+           "synonyms": ["established → set up", "based on → derived from"]
+         },
+         {
+           "text": "Proof exists, at least 5,000 years ago, and long before the advent of the Roman calendar, that humans began to measure time, introducing calendars to coordinate communal activities, trade, and particularly planting and harvesting.",
+           "translation": "有证据表明，至少在5000年前，远在罗马历法出现之前，人类就开始测量时间，引入历法来协调公共活动、贸易，尤其是种植和收获。",
+           "analysis": "主干 Proof exists... that humans began...；插入语 at least 5,000 years ago...；现在分词 introducing 作结果状语。",
+           "synonyms": ["advent → arrival", "communal → shared"]
+         }
+       ]
+     },
+     {
+       "sentences": [
+         {
+           "text": "They based their calendars on three natural cycles: the solar day, the lunar month, and the solar year.",
+           "translation": "他们将历法建立在三个自然周期之上：太阳日、农历月和太阳年。",
+           "analysis": "主干 They based their calendars on...；冒号后列举三个名词短语。",
+           "synonyms": ["based... on → grounded... in"]
+         },
+         {
+           "text": "Of the three, the moon had greater social impact for those living near the equator, where its waxing and waning was more conspicuous than the passing of the seasons.",
+           "translation": "在这三者中，对于生活在赤道附近的人来说，月亮的社会影响更大，因为那里的月相盈亏比季节更替更为明显。",
+           "analysis": "Of the three 介词短语置于句首；主句 the moon had...；for those... 表示对象；where 引导定语从句修饰 equator。",
+           "synonyms": ["conspicuous → noticeable", "passing → progression"]
+         }
+       ]
+     }
+   ]
+ }

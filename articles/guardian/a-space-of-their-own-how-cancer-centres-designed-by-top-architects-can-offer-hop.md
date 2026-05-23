@@ -1,0 +1,19 @@
+---
+title: >-
+  ‘A space of their own’: how cancer centres designed by top architects can
+  offer hope
+slug: >-
+  a-space-of-their-own-how-cancer-centres-designed-by-top-architects-can-offer-hop
+category: space
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>Exhibition at the V&amp;A Dundee celebrates Maggie’s Centres created by
+  Zaha Hadid, Richard Rogers, Norman Foster and others</p>
+word_count: 575
+translation: ''
+date: ''
+cefr: C2
+---
+<p>Maggie Keswick Jencks received her weekly breast cancer treatment in a windowless neon-lit room in Edinburgh’s Western general hospital. Her husband, the renowned landscape designer Charles, later described it as a kind of “architectural aversion therapy”.</p> <p>It was then, in the early 1990s, that the Scottish artist and garden designer imagined her own blueprint that would allow cancer patients “a space of their own” within the alienating, clinical confines of the hospital estate, one where they might “not lose the joy of living in the fear of dying”.</p> <p>The first Maggie’s Centre opened in Edinburgh in 1996, a year after her death, designed by Richard Murphy and housed in a converted stable block in the Western general grounds.</p>    <p>Three decades on, there are more than 30 of these hospital-adjacent cancer support centres across the UK and overseas, and this legacy of conscious design is celebrated in a free exhibition at the V&amp;A Dundee from Friday.</p> <p>Welcome, colour, joy and proximity to nature are all part of Maggie’s unique design brief, which has since been interpreted by some of the world’s most acclaimed architects, including Zaha Hadid, Richard Rogers, Norman Foster and Benedetta Tagliabue.</p> <p>“Yet the centres all look wildly different,” says the curator Meredith More, “because there are infinite ways to address the brief creatively”.</p>    <p>The exhibition contrasts the inviting glow of the wide, translucent glass facade at Barts, London, with Frank Gehry’s squat, homely design for Maggie’s Dundee, or the Oxford centre, which hovers off the ground like a treehouse, surrounded by saplings.</p> <p>Visitors to the exhibition can hear a background soundscape of interviews with centre users, describing their own impressions. “It’s a soundtrack of people talking about the power of beautiful space,” says More.</p> <p>Scale models of some of the most striking centres crowd on to an eight-metre long kitchen table – a central component of the design brief.</p>    <p>Kirsty Speers, who visited the Dundee centre after her own diagnosis at the age of 34, observes the “subliminal” effect of the table, where she found herself sharing intimacies with strangers, the “warmth and comfort” of the layered wood interior and the “mesmerising” art.</p> <p>But the first thing she noticed was the choice of seating at different heights. The ability to choose a comfortable and accessible chair was vastly more significant after major abdominal surgery. “They realise you need it before you do.”</p> <p>Maggie’s chief executive, Dame Laura Lee – an oncology nurse who treated Maggie, shared her vision and worked with her family to realise it after her death – puts it simply: “These buildings are a statement of care.”</p>    <p>Witnessing how patients behaved in the first centre in Edinburgh reinforced her certainty that architecture really did matter. “They started to tell me their deepest emotional concerns and it struck me that the building facilitated that”.</p> <p>Another tenet of Maggie’s original brief was that these centres should incorporate “zest”.</p> <p>“Even when facing a life-threatening illness or thinking we might die, in the moment we still need hope,” adds Lee. “Even if it’s a distraction, if your eye is taken by a plant in the garden or a piece of art you’re not sure you like, life still has value in that moment.”</p>

@@ -1,0 +1,19 @@
+---
+title: >-
+  Teachers strike at two Greater Manchester primary schools over ‘culture of
+  violence’
+slug: >-
+  teachers-strike-at-two-greater-manchester-primary-schools-over-culture-of-violen
+category: Society
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>NASUWT members at Ravensfield and Lily Lane schools say nine-day stoppage
+  follows ‘almost daily’ attacks by pupils</p>
+word_count: 580
+translation: ''
+date: ''
+cefr: C2
+---
+<p>Teachers at two primary schools in Greater Manchester say they have been driven to strike because of “almost daily” attacks by pupils, leaving parents bewildered by the industrial action.</p> <p>Members of the NASUWT teaching union at Ravensfield and Lily Lane primary schools are taking nine days of strike action, from this week until 22 January, because of what the union called “a culture of violence” involving an increasing number of assaults by pupils against staff and other children.</p> <p>Matt Wrack, the NASUWT’s general secretary, said the strike action was a “declaration of emergency” from the teachers at the two schools.</p> <aside class="element element-rich-link element--thumbnail"> <p> <span>Related: </span><a href="https://www.theguardian.com/education/2025/jul/10/rise-in-school-exclusions-in-england-including-among-children-under-six">Rise in school exclusions in England including among pupils six or younger</a> </p> </aside>  <p>Wrack said: “Not only are school and trust leaders failing in their basic duty of care to provide this environment, but they have gone as far as to intimidate and punish staff who report concerns. This cannot continue.”</p> <p>The union said the violence was causing some pupils to be afraid of attending school. The schools have remained open this week despite the strikes, and parents who spoke to the Guardian expressed surprise at the allegations.</p> <p>At Lily Lane primary in the Manchester suburb of Moston, teachers said they were not being supported to deal with high levels of aggression and that their concerns over pupils with highly complex special needs were being ignored.</p> <p>Outside Lily Lane at the end of the school day on Thursday, one parent said they had been unaware that the school had such severe issues until the news came about the teachers going on strike.</p> <p>Another parent said their child was happy at the school despite hearing that some students were occasionally aggressive.</p> <p>“My son likes it here,” said the parent, who asked not to be named. “We hear about fights sometimes but nothing like what’s been reported, we didn’t know that was happening and we hope it gets sorted out.”</p> <p>Rachel Knight and Jac Casson, NASUWT’s national representatives for Greater Manchester, said the multi-academy trust running the two schools, Changing Lives in Collaboration (CLIC) Trust, was responsible for the “devastating” working conditions.</p> <p>“Leaders have known about strike action for a month but have failed to engage in good faith or to make urgently needed improvements. Our teachers have taken the brave and necessary step of saying: no more,” they said.</p> <p>Jo Ashcroft, CLIC’s chief executive, said the schools would remain open during the strike.</p> <p>Ashcroft said: “The safety and wellbeing of pupils and staff in all our schools is of the very highest priority to us and we work closely with every one of our schools to ensure they maintain the very highest safeguarding standards at all times.</p> <p>“We also support our schools to ensure the needs of all pupils, including those with special educational needs, are fully met.</p> <p>“We completely respect the right of union members to take strike action where they believe it to be necessary. However, it’s disappointing in this case that strike action is taking place so soon after the ballot without adequate opportunity to respond to members’ concerns.”</p>

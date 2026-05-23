@@ -10,14 +10,14 @@
 }
 
 body {
-  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  font-family: Inter, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
   scroll-behavior: smooth;
 }
 
 .sf {
-  font-family: 'Libre Baskerville', serif;
+  font-family: Georgia, 'Times New Roman', serif;
 }
 
 .cu {
@@ -28,7 +28,7 @@ body {
 .btn-primary {
   background: var(--primary);
   color: white;
-  border-radius: 0.8rem;
+  border-radius: 999px;
   padding: 10px 20px;
   font-size: 12px;
   font-weight: 600;
@@ -36,7 +36,7 @@ body {
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background: #6B3A2A;
   transform: scale(0.97);
 }
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
+import { toggleWordbook, isInWordbook } from "@/lib/wordbook";
 
 interface Definition {
   word: string;
@@ -52,18 +53,8 @@ export default function WordDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 检查单词是否已收藏
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = window.localStorage.getItem("vocabulary");
-      if (stored) {
-        const vocabulary = JSON.parse(stored) as Definition[];
-        const favorited = vocabulary.some(
-          (item) => item.word.toLowerCase() === word.toLowerCase()
-        );
-        setIsFavorited(favorited);
-      }
-    }
+    setIsFavorited(isInWordbook(word));
   }, [word]);
 
   // 获取单词定义
@@ -322,28 +313,10 @@ export default function WordDetailPage() {
     fetchAuthenticExamples();
   }, [definition]);
 
-  // 收藏单词
   const handleFavorite = () => {
     if (!definition) return;
-
-    if (typeof window !== "undefined") {
-      const stored = window.localStorage.getItem("vocabulary");
-      const vocabulary = stored ? JSON.parse(stored) as Definition[] : [];
-      
-      if (!isFavorited) {
-        // 收藏单词
-        const updatedVocabulary = [...vocabulary, definition];
-        window.localStorage.setItem("vocabulary", JSON.stringify(updatedVocabulary));
-        setIsFavorited(true);
-      } else {
-        // 取消收藏
-        const updatedVocabulary = vocabulary.filter(
-          (item) => item.word.toLowerCase() !== definition.word.toLowerCase()
-        );
-        window.localStorage.setItem("vocabulary", JSON.stringify(updatedVocabulary));
-        setIsFavorited(false);
-      }
-    }
+    const nowFavorited = toggleWordbook(definition);
+    setIsFavorited(nowFavorited);
   };
 
   // 播放读音
@@ -501,7 +474,7 @@ export default function WordDetailPage() {
             {definition.chineseMeaning && (
               <div className="rounded-md bg-stone-50 p-4">
                 <h3 className="text-sm font-medium text-neutral-500 mb-2">
-                  中文释义
+                  释义
                 </h3>
                 <p className="text-lg leading-7 text-neutral-800">
                   {definition.chineseMeaning}

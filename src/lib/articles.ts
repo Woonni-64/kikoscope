@@ -170,7 +170,7 @@ export function getAllArticleMetas(): ArticleMeta[] {
 export function getArticleBySlug(slug: string) {
   const articles = ensureArticlesDirectory();
   
-  let fileName = `${slug}.md`;
+  const fileName = `${slug}.md`;
   
   if (articles.includes(fileName)) {
     return readArticle(fileName);
