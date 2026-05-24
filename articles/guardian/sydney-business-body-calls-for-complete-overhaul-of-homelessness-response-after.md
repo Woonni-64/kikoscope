@@ -1,0 +1,26 @@
+---
+title: >-
+  Sydney business body calls for complete overhaul of homelessness response
+  after ‘disturbingly lonely and tragic death’
+slug: >-
+  sydney-business-body-calls-for-complete-overhaul-of-homelessness-response-after
+category: business
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p>Bikram Lama’s body lay undiscovered for up to a week in one of city’s
+  busiest parks, prompting business lobby to call for greater welfare
+  monitoring</p><ul><li><p><a
+  href="https://www.theguardian.com/australia-news/live/2026/apr/23/budget-cost-of-living-ndis-cuts-health-insurance-rebate-mark-butler-anthony-albanese-fuel-crisis-labor-coalition-ntwnfb">Follow
+  our Australia news live blog for latest updates</a></p></li><li><p>Get our <a
+  href="https://www.theguardian.com/email-newsletters?CMP=cvau_sfl">breaking
+  news email</a>, <a href="https://app.adjust.com/w4u7jx3">free app</a> or <a
+  href="https://www.theguardian.com/australia-news/series/full-story?CMP=cvau_sfl">daily
+  news podcast</a></p></li></ul>
+word_count: 702
+translation: ''
+date: ''
+cefr: C2
+---
+<p>Sydney’s peak business group has called for the urgent establishment of a safety taskforce to help rough sleepers in the central business district after the disturbing death of a young Nepali man in Hyde Park.</p> <p>Guardian Australia <a href="https://www.theguardian.com/australia-news/ng-interactive/2026/apr/19/bikram-lama-birdman-sydney-st-james-tunnel-homelessness-ntwnfb">revealed this week</a> that Bikram Lama, 32, had died where he was sleeping in bushes near the entrance to St James tunnel, a busy thoroughfare used by thousands of commuters.</p> <p>Lama’s body lay undiscovered for up to a week, police believe, until being found on 7 December in a state of decomposition.</p> <aside class="element element-rich-link element--thumbnail"> <p> <span>Related: </span><a href="https://www.theguardian.com/commentisfree/2026/apr/21/death-bikram-lama-homeless-man-sydney-st-james-tunnel-ntwnfb">The death of Bikram Lama – Sydney’s ‘birdman’ of St James tunnel – has shaken me. What is happening to our city? | Brigid Delaney</a> </p> </aside>  <p>Homelessness groups say the case raises broader systemic issues about the treatment of individuals who came to Australia legally – including to study, like Lama – but had their visas lapse.</p> <p>Non-residents are unable to access fundamental supports, including crisis and social housing, and rely on outreach provided by charities, which are stretched to the limit and not specifically funded to help those without visas.</p> <p>Business Sydney said the death should prompt an overhaul of the way authorities interact with rough sleepers.</p> <p>The group’s executive director, Paul Nicolaou, called for the urgent establishment of a CBD safety and care taskforce to monitor high-risk areas and provide more rapid welfare responses. The taskforce would combine the efforts of government, business, transport authorities and community organisations, he said.</p>  <a class="element element-link" href="https://www.theguardian.com/email-newsletters?CMP=copyembed&amp;CMP=emailbutton" > Sign up for the Breaking News Australia email </a>  <p>“Action is needed to ensure that no one else falls victim to such a disturbingly lonely and tragic death,” Nicolaou said.</p> <p>“It should start with the complete rewriting of the protocol drafted more than 25 years ago to define how government agencies interact with people living in the street.</p> <p>“The protocol is no longer fit for service. The former student’s death is a confronting reminder that even in the heart of a global city, people can fall through the cracks, unseen and unsupported.”</p> <p>Lama had been identified by the New South Wales government and referred to St Vincent’s homeless health service and the City of Sydney.</p> <p>Both organisations had lobbied the state and federal governments to address the significant gap in services available to non-residents, which denies them a housing pathway and leaves them trapped in homelessness.</p> <p>“No matter who you are or how you came to Australia or what happened to you, you’re actually still a human being and your life is valuable,” said the nursing unit manager at the St Vincent’s service, Erin Longbottom. “It made me really sad actually to think that this man … in his eyes he had no way out of the situation he was in.”</p> <p>Nicolaou said the service gap facing non-residents was a “shocking systems failure”.</p> <p>“No one in Sydney should be left without access to basic support regardless of their circumstances,” he said.</p> <p>“When vulnerable individuals, particularly those on temporary visas or without access to government assistance, are excluded from the system, the risks are profound and, as we have seen, can be fatal.”</p> <p>He said a targeted safety net was needed for those locked out of support services including temporary accommodation.</p> <p>“This is not about long-term welfare, it is about basic dignity and public safety,” he said, adding: “Sydney is one of the world’s great cities but incidents such as the unnoticed death of the former international student damage our social fabric and our international reputation.</p> <p>“We cannot allow another person to die alone and unnoticed on our streets.”</p>

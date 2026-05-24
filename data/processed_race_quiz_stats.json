@@ -1,0 +1,17 @@
+{
+  "total_files_processed": 27933,
+  "successful_articles": 27931,
+  "total_quiz_questions": 97687,
+  "failed_files": [
+    "data/RACE/train/high/15946.txt",
+    "data/RACE/train/high/16528.txt"
+  ],
+  "articles_by_difficulty": {
+    "RACE-Middle": 7139,
+    "RACE-High": 20792
+  },
+  "questions_by_difficulty": {
+    "RACE-Middle": 28293,
+    "RACE-High": 69394
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四级考试 - 进行中</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="exam-header">
+            <div class="exam-info">
+                <h1>四级考试</h1>
+                <div class="exam-meta">
+                    <span id="examId"></span>
+                    <span id="timer">时间: <span id="timeLeft">120:00</span></span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+        </header>
+
+        <main class="exam-content">
+            <div class="exam-sections" style="display: block; height: 100vh; overflow-y: scroll;">
+                <!-- 选词填空 -->
+                <section id="wordFilling" class="exam-section">
+                    <h2>选词填空</h2>
+                    <div class="question-content">
+                        <p id="wf-passage" class="passage"></p>
+                        <div id="wf-options" class="options-grid"></div>
+                    </div>
+                </section>
+
+                <!-- 段落匹配 -->
+                <section id="paragraphMatching" class="exam-section">
+                    <h2>段落匹配</h2>
+                    <div class="question-content">
+                        <div id="pm-paragraphs" class="paragraphs"></div>
+                        <div id="pm-questions" class="matching-questions"></div>
+                    </div>
+                </section>
+
+                <!-- 仔细阅读 -->
+                <section id="readingComprehension" class="exam-section">
+                    <h2>仔细阅读</h2>
+                    <div class="question-content">
+                        <p id="rc-passage" class="passage"></p>
+                        <div id="rc-questions" class="reading-questions"></div>
+                    </div>
+                </section>
+
+                <!-- 翻译 -->
+                <section id="translation" class="exam-section">
+                    <h2>翻译</h2>
+                    <div class="question-content">
+                        <div class="translation-content">
+                            <h3>中文原文：</h3>
+                            <p id="tr-chinese" class="chinese-text"></p>
+                            <h3>英文翻译：</h3>
+                            <textarea id="tr-answer" class="translation-textarea" placeholder="请在此处输入你的英文翻译..."></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 写作 -->
+                <section id="writing" class="exam-section">
+                    <h2>写作</h2>
+                    <div class="question-content">
+                        <div class="writing-content">
+                            <h3>写作题目：</h3>
+                            <p id="wr-topic" class="writing-topic"></p>
+                            <h3>写作要求：</h3>
+                            <p id="wr-requirements" class="writing-requirements"></p>
+                            <h3>你的作文：</h3>
+                            <textarea id="wr-answer" class="writing-textarea" placeholder="请在此处输入你的作文..."></textarea>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="exam-controls">
+                <button id="submitExam" class="btn btn-primary" onclick="submitExam()">提交答案</button>
+                <button id="saveProgress" class="btn btn-secondary" onclick="saveProgress(); showSaveConfirmation();">保存进度</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="exam.js"></script>
+</body>
+</html> 

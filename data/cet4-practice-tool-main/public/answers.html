@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查看答案</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .answer-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f7fafc;
+        }
+        
+        .answer-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .answer-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .answer-item.correct {
+            border-left: 4px solid #48bb78;
+            background: #f0fff4;
+        }
+        
+        .answer-item.incorrect {
+            border-left: 4px solid #f56565;
+            background: #fff5f5;
+        }
+        
+        .answer-item.partial {
+            border-left: 4px solid #ed8936;
+            background: #fffaf0;
+        }
+        
+        .answer-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .user-answer, .correct-answer {
+            padding: 10px;
+            border-radius: 5px;
+            background: #f7fafc;
+        }
+        
+        .user-answer h4, .correct-answer h4 {
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        
+        .user-answer.correct {
+            background: #f0fff4;
+            border: 1px solid #48bb78;
+        }
+        
+        .user-answer.incorrect {
+            background: #fff5f5;
+            border: 1px solid #f56565;
+        }
+        
+        .correct-answer {
+            background: #f0fff4;
+            border: 1px solid #48bb78;
+        }
+        
+        .answer-label {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .label-correct {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .label-incorrect {
+            background: #f56565;
+            color: white;
+        }
+        
+        .label-partial {
+            background: #ed8936;
+            color: white;
+        }
+        
+        .translation-reference {
+            background: #f0fff4;
+            border: 1px solid #48bb78;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .writing-feedback {
+            background: #f0f4ff;
+            border: 1px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .back-button {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>答案详情</h1>
+            <button id="backToResult" class="btn btn-outline back-button">返回结果页</button>
+        </header>
+
+        <main class="answer-content">
+            <!-- 选词填空答案 -->
+            <section id="wordFillingAnswers" class="answer-section">
+                <h2>选词填空</h2>
+                <div id="wf-answers-container"></div>
+            </section>
+
+            <!-- 段落匹配答案 -->
+            <section id="paragraphMatchingAnswers" class="answer-section">
+                <h2>段落匹配</h2>
+                <div id="pm-answers-container"></div>
+            </section>
+
+            <!-- 仔细阅读答案 -->
+            <section id="readingComprehensionAnswers" class="answer-section">
+                <h2>仔细阅读</h2>
+                <div id="rc-answers-container"></div>
+            </section>
+
+            <!-- 翻译答案 -->
+            <section id="translationAnswers" class="answer-section">
+                <h2>翻译</h2>
+                <div id="tr-answers-container"></div>
+            </section>
+
+            <!-- 写作答案 -->
+            <section id="writingAnswers" class="answer-section">
+                <h2>写作</h2>
+                <div id="wr-answers-container"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="answers.js"></script>
+</body>
+</html> 

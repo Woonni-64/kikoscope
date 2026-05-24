@@ -1,0 +1,111 @@
+{
+  "id": "analysis_1779529600986_gggcnjk6q",
+  "fileName": "polar-bears-upload.pdf",
+  "analyzedAt": "2026/5/23 17:46:40",
+  "extractedText": "Public libraries are no longer quiet rooms filled only with printed books. In many modern cities, libraries now provide digital catalogues, online lectures, language learning platforms, and shared study spaces for local residents. These changes make reading more convenient and more inclusive.\n\nStudents can borrow e-books after school, older readers can join online courses, and busy workers can reserve seats before they arrive. However, technology should not replace the human value of libraries. A good library still needs patient librarians, reliable public services, and a welcoming atmosphere where people feel encouraged to learn.",
+  "quizRaw": "",
+  "title": "polar-bears-upload",
+  "category": "Technology",
+  "vocabulary": [
+    {
+      "word": "comprehensive",
+      "phonetic": "/ˌkɒmprɪˈhensɪv/",
+      "pos": "adjective",
+      "chineseMeaning": "全面的，综合的",
+      "definition": "covering all aspects of a subject",
+      "example": "The report provides a comprehensive analysis of the market."
+    },
+    {
+      "word": "substantial",
+      "phonetic": "/səbˈstænʃl/",
+      "pos": "adjective",
+      "chineseMeaning": "大量的，实质的",
+      "definition": "large in size, amount, or degree",
+      "example": "There has been a substantial increase in sales."
+    },
+    {
+      "word": "controversy",
+      "phonetic": "/ˈkɒntrəvɜːsi/",
+      "pos": "noun",
+      "chineseMeaning": "争议，争论",
+      "definition": "a disagreement, typically one that is public",
+      "example": "The decision caused considerable controversy."
+    },
+    {
+      "word": "phenomenon",
+      "phonetic": "/fɪˈnɒmɪnən/",
+      "pos": "noun",
+      "chineseMeaning": "现象",
+      "definition": "a fact or situation that is observed to exist",
+      "example": "This natural phenomenon occurs every winter."
+    },
+    {
+      "word": "perspective",
+      "phonetic": "/pəˈspektɪv/",
+      "pos": "noun",
+      "chineseMeaning": "观点，视角",
+      "definition": "a particular way of considering something",
+      "example": "Try to see things from a different perspective."
+    }
+  ],
+  "sentences": [
+    {
+      "sentence": "Public libraries are no longer quiet rooms filled only with printed books.",
+      "translation": "",
+      "analysis": "",
+      "clauses": []
+    },
+    {
+      "sentence": "In many modern cities, libraries now provide digital catalogues, online lectures, language learning platforms, and shared study spaces for local residents.",
+      "translation": "",
+      "analysis": "",
+      "clauses": []
+    },
+    {
+      "sentence": "These changes make reading more convenient and more inclusive.",
+      "translation": "",
+      "analysis": "",
+      "clauses": []
+    },
+    {
+      "sentence": "Students can borrow e-books after school, older readers can join online courses, and busy workers can reserve seats before they arrive.",
+      "translation": "",
+      "analysis": "",
+      "clauses": []
+    },
+    {
+      "sentence": "However, technology should not replace the human value of libraries.",
+      "translation": "",
+      "analysis": "",
+      "clauses": []
+    },
+    {
+      "sentence": "A good library still needs patient librarians, reliable public services, and a welcoming atmosphere where people feel encouraged to learn.",
+      "translation": "",
+      "analysis": "",
+      "clauses": []
+    }
+  ],
+  "questions": [
+    {
+      "type": "multiple-choice",
+      "question": "What do modern libraries provide according to the passage?",
+      "options": [
+        "Only printed books",
+        "Digital catalogues and online lectures",
+        "Coffee shops",
+        "Gym facilities"
+      ],
+      "answer": "B",
+      "explanation": "根据文章第二段，现代图书馆提供数字目录、在线讲座、语言学习平台和共享自习空间。选项B正确。",
+      "reference": "第二段第一句"
+    },
+    {
+      "type": "true-false",
+      "question": "Public libraries today are still only quiet rooms filled with printed books.",
+      "answer": "False",
+      "explanation": "文章第一段明确指出公共图书馆不再只是摆满纸质书的安静房间。",
+      "reference": "第一段第一句"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+---
+title: Injecting humour into science is risky
+slug: injecting-humour-into-science-is-risky
+category: Science & Technology
+difficulty: Short Read
+source: The Guardian
+license: Non-commercial use only
+summary: >-
+  <p><strong>Roger Downie</strong> notes that jokes can be lost in translation,
+  while <strong>Tim Jones</strong> remembers a feeble attempt at humour, and
+  <strong>Denis McCullough </strong>recalls a few physics gags</p>
+word_count: 490
+translation: ''
+date: ''
+cefr: B2
+---
+<p>Helen Pilcher bemoans the lack of humour in most science writing, but does not appear to consider why this is (<a href="https://www.theguardian.com/commentisfree/2026/apr/04/science-comedy-serious-funny">It’s official: scientists aren’t funny. But it doesn’t have to be this way, 4 April</a>). When I wrote my first scientific paper many years ago, I included some humorous remarks. A referee gave me some wise advice. We scientists whose first language is English are lucky that it has become the international language of science. But this confers some responsibility. We need to make our writing as clear as possible, so that scientists whose native language isn’t English can understand fully what we have written.</p> <p>Jokes are notoriously difficult to translate and can date rapidly, so are best avoided in scientific papers. Lectures and other presentations to the general public are a different matter, and can allow scientists free rein to exercise their funny bones.<br><strong>Roger Downie</strong><br><em>Glasgow</em></p> <p>• I made only one feeble attempt at humour in over 50 years of writing research papers. In the paper <a href="https://inspirehep.net/literature/214367">Search for a Three Loop Finite Chiral Theory</a>, which I co-authored with Andrew Parkes, a complicated calculation resulted in the number 5/42 for a coupling constant. We wrote that “in spite of the 42 [this model] is presumably not the answer to everything”, with a reference to the <a href="https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#The_Answer_to_the_Ultimate_Question_of_Life,_the_Universe,_and_Everything_is_42">Hitchhiker’s Guide to the Galaxy</a>. This pessimism turned out to be accurate.<br><strong>Tim Jones</strong><br><em>Hoylake, Merseyside</em></p> <p>• I taught physics up to A-level for 35 years – it’s not exactly brimming with opportunities for humour. One that comes to mind is, when a heavy nucleus disintegrates, the resulting particles are called fission fragments – or fish ’n’ chips. Then there are the silly units using SI prefixes, for example: <br>10<sup>-6</sup> phones = 1&nbsp;microphone; 10<sup>-9</sup> goats = 1&nbsp;nanogoat; 10<sup>-12</sup> boos = 1 picoboo.<br><strong>Denis McCullough</strong><br><em>Comber, County Down</em></p> <p><strong><em>• Have an opinion on anything you’ve read in the Guardian today? Please </em></strong><a href="mailto:guardian.letters@theguardian.com?body=Please%20include%20your%20name,%20full%20postal%20address%20and%20phone%20number%20with%20your%20letter%20below.%20Letters%20are%20usually%20published%20with%20the%20author%27s%20name%20and%20city/town/village.%20The%20rest%20of%20the%20information%20is%20for%20verification%20only%20and%20to%20contact%20you%20where%20necessary."><strong><em>email</em></strong></a><strong><em> us your letter and it will be considered for publication in our </em></strong><a href="https://www.theguardian.com/tone/letters"><strong><em>letters</em></strong></a><strong><em> section.</em></strong></p>
