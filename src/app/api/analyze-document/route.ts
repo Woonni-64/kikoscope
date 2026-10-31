@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { analyzeDocument, ieltsExtractionPrompt, splitSentences } from '@/lib/analyze-text';
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
 import { parseDocument } from '@/lib/document-parser';
 
 interface VocabularyItem {
@@ -41,67 +44,6 @@ interface AnalysisResult {
   sentences: SentenceAnalysis[];
   questions: Question[];
 }
-
-const mockVocabulary: VocabularyItem[] = [
-  {
-    word: "comprehensive",
-    phonetic: "/ˌkɒmprɪˈhensɪv/",
-    pos: "adjective",
-    chineseMeaning: "全面的，综合的",
-    definition: "covering all aspects of a subject",
-    example: "The report provides a comprehensive analysis of the market."
-  },
-  {
-    word: "substantial",
-    phonetic: "/səbˈstænʃl/",
-    pos: "adjective",
-    chineseMeaning: "大量的，实质的",
-    definition: "large in size, amount, or degree",
-    example: "There has been a substantial increase in sales."
-  },
-  {
-    word: "controversy",
-    phonetic: "/ˈkɒntrəvɜːsi/",
-    pos: "noun",
-    chineseMeaning: "争议，争论",
-    definition: "a disagreement, typically one that is public",
-    example: "The decision caused considerable controversy."
-  },
-  {
-    word: "phenomenon",
-    phonetic: "/fɪˈnɒmɪnən/",
-    pos: "noun",
-    chineseMeaning: "现象",
-    definition: "a fact or situation that is observed to exist",
-    example: "This natural phenomenon occurs every winter."
-  },
-  {
-    word: "perspective",
-    phonetic: "/pəˈspektɪv/",
-    pos: "noun",
-    chineseMeaning: "观点，视角",
-    definition: "a particular way of considering something",
-    example: "Try to see things from a different perspective."
-  },
-];
-
-const mockQuestions: Question[] = [
-  {
-    type: "multiple-choice",
-    question: "What do modern libraries provide according to the passage?",
-    options: ["Only printed books", "Digital catalogues and online lectures", "Coffee shops", "Gym facilities"],
-    answer: "B",
-    explanation: "根据文章第二段，现代图书馆提供数字目录、在线讲座、语言学习平台和共享自习空间。选项B正确。",
-    reference: "第二段第一句"
-  },
-  {
-    type: "true-false",
-    question: "Public libraries today are still only quiet rooms filled with printed books.",
-    answer: "False",
-    explanation: "文章第一段明确指出公共图书馆不再只是摆满纸质书的安静房间。",
-    reference: "第一段第一句"
-  }
-];
 
 type SplitAnalysis = {
   titleText: string;
@@ -185,6 +127,7 @@ async function splitWithDeepSeek(rawText: string): Promise<SplitAnalysis> {
 
   try {
     const response = await fetch("https://api.deepseek.com/chat/completions", {
+      signal: AbortSignal.timeout(25000),
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -209,41 +152,35 @@ async function splitWithDeepSeek(rawText: string): Promise<SplitAnalysis> {
   }
 }
 
-async function analyzeVocabulary(text: string): Promise<VocabularyItem[]> {
-  void text;
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return mockVocabulary;
-}
-
-async function extractQuestions(text: string): Promise<Question[]> {
-  void text;
-  await new Promise(resolve => setTimeout(resolve, 500));
-  return mockQuestions;
-}
-
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    const file = formData.get("file") as File;
+    const file = formData.get("file");
 
-    if (!file) {
+    if (!(file instanceof File)) {
       return NextResponse.json({ error: "请选择要上传的文件" }, { status: 400 });
     }
 
+    if (file.size > 4 * 1024 * 1024) return NextResponse.json({ error: "文件超过4MB，请分成较小的文件或粘贴原文。" }, { status: 413 });
+    const originalName = formData.get("originalName");
+    const fileName = typeof originalName === "string" ? originalName.slice(0, 255) : file.name;
     const parsedText = await parseDocument(file);
+    if (!parsedText.trim() || parsedText.length > 250000) return NextResponse.json({ error: "没有可读正文，或文本过长，请分段上传。" }, { status: 422 });
     const split = await splitWithDeepSeek(parsedText);
     const extractedText = split.articleText;
     const quizRaw = split.questionText;
-    const vocabulary = await analyzeVocabulary(extractedText || quizRaw);
+    if (!extractedText.trim() && !quizRaw.trim()) return NextResponse.json({ error: "没有识别到正文或题目，请换清晰图片或粘贴原文。" }, { status: 422 });
+    // Do not return fixed demo vocabulary or unrelated library questions.
+    const vocabulary: VocabularyItem[] = [];
     const sentences = buildSentenceAnalyses(extractedText);
-    const questions = await extractQuestions(quizRaw || extractedText);
-    const title = extractTitle(split.titleText, extractedText, file.name);
+    const questions: Question[] = [];
+    const title = extractTitle(split.titleText, extractedText, fileName);
     const category = inferCategory(`${extractedText}\n${quizRaw}`);
 
     const analysisId = generateAnalysisId();
     const result: AnalysisResult = {
       id: analysisId,
-      fileName: file.name,
+      fileName,
       analyzedAt: new Date().toLocaleString("zh-CN"),
       extractedText,
       quizRaw,
@@ -254,25 +191,28 @@ export async function POST(request: NextRequest) {
       questions
     };
 
-    const analysisDir = path.join(process.cwd(), "data", "analyses");
-    if (!fs.existsSync(analysisDir)) {
-      fs.mkdirSync(analysisDir, { recursive: true });
+    let storageMode: "browser" | "server" = "browser";
+    if (!process.env.VERCEL) {
+      try {
+        const analysisDir = path.join(process.cwd(), "data", "analyses");
+        fs.mkdirSync(analysisDir, { recursive: true });
+        fs.writeFileSync(path.join(analysisDir, `${analysisId}.json`), JSON.stringify(result, null, 2), "utf-8");
+        writeCuratedArticle(result);
+        storageMode = "server";
+      } catch { console.warn("Server storage unavailable; returning analysis for browser storage."); }
     }
-
-    const filePath = path.join(analysisDir, `${analysisId}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(result, null, 2), 'utf-8');
-    writeCuratedArticle(result);
-
-    return NextResponse.json({ success: true, analysisId, slug: analysisId });
+    return NextResponse.json({ success: true, analysisId, slug: analysisId, analysis: result, storageMode,
+      warning: "原题已保留，但未自动生成答案或词汇清单；可在精读页点击单词查词。" });
   } catch (error) {
     console.error("Analysis error:", error);
-    return NextResponse.json({ error: String(error) }, { status: 500 });
+    return NextResponse.json({ error: error instanceof Error && !/api.?key|token|authorization/i.test(error.message) ? error.message.slice(0, 400) : "解析服务暂时不可用，请稍后重试。" }, { status: 500 });
   }
 }
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
+  if (id && !/^analysis_[A-Za-z0-9_-]+$/.test(id)) return NextResponse.json({ error: "无效的资料编号" }, { status: 400 });
 
   if (!id) {
     try {
@@ -297,7 +237,7 @@ export async function GET(request: NextRequest) {
         })
         .sort((a, b) => b.uploadedAt.localeCompare(a.uploadedAt));
 
-      return NextResponse.json({ documents });
+      return NextResponse.json({ documents }, { headers: { "Cache-Control": "no-store" } });
     } catch (error) {
       return NextResponse.json({ error: String(error) }, { status: 500 });
     }
@@ -313,7 +253,7 @@ export async function GET(request: NextRequest) {
     const data = fs.readFileSync(filePath, 'utf-8');
     const result = JSON.parse(data) as AnalysisResult;
     
-    return NextResponse.json(result);
+    return NextResponse.json(result, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     return NextResponse.json({ error: String(error) }, { status: 500 });
   }
