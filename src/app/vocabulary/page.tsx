@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { createVocabularyDocx, createVocabularyPdf, downloadBlob } from "@/lib/vocabulary-export";
 import Nav from "@/components/Nav";
 import { getWordbook, type WordEntry } from "@/lib/wordbook";
 
@@ -9,16 +10,12 @@ function getSource(word: WordEntry) {
   return word.fromArticle || word.source || "手动导入";
 }
 
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
 export default function VocabularyPage() {
   const [words, setWords] = useState<WordEntry[]>([]);
+  const [download, setDownload] = useState<{url:string;name:string} | null>(null);
+  useEffect(() => () => { if (download) URL.revokeObjectURL(download.url); }, [download]);
+  const [exporting, setExporting] = useState("");
+  const [exportMessage, setExportMessage] = useState("");
   const [sourceFilter, setSourceFilter] = useState("all");
 
   useEffect(() => {
@@ -33,60 +30,16 @@ export default function VocabularyPage() {
     return words.filter((word) => sourceFilter === "all" || getSource(word) === sourceFilter);
   }, [sourceFilter, words]);
 
-  const buildPrintableHtml = () => {
-    const rows = filteredWords
-      .map((word) => {
-        return `<tr>
-          <td>${escapeHtml(word.word)}</td>
-          <td>${escapeHtml(word.phonetic || "")}</td>
-          <td>${escapeHtml(word.chineseMeaning || "")}</td>
-          <td>${escapeHtml(getSource(word))}</td>
-        </tr>`;
-      })
-      .join("");
-
-    return `<!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8" />
-          <title>Kikoscope 我的词库</title>
-          <style>
-            body { font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; color: #3E2723; padding: 32px; background: #FDFBF7; }
-            h1 { font-family: Georgia, serif; color: #8B5E3C; }
-            table { width: 100%; border-collapse: collapse; background: #FFFFFF; }
-            th, td { border-bottom: 1px solid #EEDDCC; padding: 12px; text-align: left; vertical-align: top; font-size: 13px; }
-            th { color: #8B5E3C; background: #FDFBF7; }
-          </style>
-        </head>
-        <body>
-          <h1>Kikoscope 我的词库</h1>
-          <table>
-            <thead><tr><th>单词</th><th>音标</th><th>释义</th><th>来自</th></tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
-        </body>
-      </html>`;
-  };
-
-  const exportPdf = () => {
-    const printable = window.open("", "_blank", "width=900,height=700");
-    if (!printable) return;
-    printable.document.write(buildPrintableHtml());
-    printable.document.close();
-    printable.focus();
-    printable.print();
-  };
-
-  const exportWord = () => {
-    const blob = new Blob([buildPrintableHtml()], {
-      type: "application/msword;charset=utf-8",
-    });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = "kikoscope-vocabulary.doc";
-    anchor.click();
-    URL.revokeObjectURL(url);
+  const exportFile = async (format: "pdf" | "docx") => {
+    if (exporting) return;
+    setExporting(format); setExportMessage("");
+    try {
+      const blob = format === "pdf" ? await createVocabularyPdf(filteredWords) : await createVocabularyDocx(filteredWords);
+      setDownload({url: URL.createObjectURL(blob), name: `kikoscope-vocabulary.${format}`});
+      downloadBlob(blob, `kikoscope-vocabulary.${format}`);
+      setExportMessage("文件已生成并发起下载；请查看浏览器下载列表。");
+    } catch { setExportMessage("导出失败，请稍后重试。词库数据仍然保留。"); }
+    finally { setExporting(""); }
   };
 
   return (
@@ -103,22 +56,24 @@ export default function VocabularyPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={exportPdf}
-              disabled={filteredWords.length === 0}
+              onClick={() => void exportFile("pdf")}
+              disabled={filteredWords.length === 0 || !!exporting}
               className="rounded-full bg-[#8B5E3C] px-5 py-2 text-sm font-medium text-white transition hover:bg-[#6D4A2F] disabled:cursor-not-allowed disabled:opacity-50"
             >
-              📄 导出 PDF
+              {exporting === "pdf" ? "正在生成 PDF…" : "导出 PDF"}
             </button>
             <button
-              onClick={exportWord}
-              disabled={filteredWords.length === 0}
+              onClick={() => void exportFile("docx")}
+              disabled={filteredWords.length === 0 || !!exporting}
               className="rounded-full bg-[#EEDDCC] px-5 py-2 text-sm font-medium text-[#8B5E3C] transition hover:bg-[#E5D5C0] disabled:cursor-not-allowed disabled:opacity-50"
             >
-              📝 导出 Word
+              {exporting === "docx" ? "正在生成 Word…" : "导出 Word（DOCX）"}
             </button>
           </div>
         </section>
 
+        {download && <a className="mb-3 inline-block text-[#8B5E3C] underline" href={download.url} download={download.name}>下载刚生成的文件</a>}
+        {exportMessage && <p role="status" className="mb-4 text-sm text-[#8B5E3C]">{exportMessage}</p>}
         <section className="mb-6">
           <select
             value={sourceFilter}
