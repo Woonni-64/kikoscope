@@ -79,6 +79,16 @@ export async function parseDocument(file: File) {
     return readMarkdown(file);
   }
 
+  if (extension === ".docx") {
+    try {
+      const { extractRawText } = await import("mammoth");
+      const result = await extractRawText({ buffer: Buffer.from(await file.arrayBuffer()) });
+      const text = cleanText(result.value);
+      if (!text) throw new Error("empty");
+      return text;
+    } catch { throw new Error("Word 文件无法读取，请确认是包含英文正文的有效 DOCX 文件。"); }
+  }
+
   const { tempDir, tempPath, bytes } = await writeTempFile(file);
 
   try {
