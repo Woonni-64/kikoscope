@@ -40,6 +40,7 @@ async function writeTempFile(file: File) {
 }
 
 async function parseWithPython(tempPath: string) {
+  if (process.env.VERCEL) throw new Error("线上环境不提供 Python 文件识别，请用图片识别或粘贴原文。");
   const scriptPath = path.join(process.cwd(), "scripts", "parse_document.py");
   const { stdout } = await execFileAsync("python3", [scriptPath, tempPath], {
     maxBuffer: 1024 * 1024 * 20,
@@ -50,10 +51,10 @@ async function parseWithPython(tempPath: string) {
 
 async function parseWithGeminiOcr(file: File, bytes: Buffer) {
   const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) return "";
+  if (!apiKey) throw new Error("服务端图片识别尚未配置。请通过上传页的浏览器识别，或粘贴英文原文。");
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const model = genAI.getGenerativeModel({ model: process.env.GEMINI_OCR_MODEL || "gemini-2.5-flash" });
   const result = await model.generateContent([
     "请精准提取并还原以下图片中的英文文本内容，保持原有的段落和句子结构，不要总结或翻译。",
     {
@@ -74,7 +75,7 @@ async function readMarkdown(file: File) {
 export async function parseDocument(file: File) {
   const extension = getExtension(file);
 
-  if (markdownExtensions.has(extension)) {
+  if (markdownExtensions.has(extension) || extension === ".txt") {
     return readMarkdown(file);
   }
 
@@ -82,9 +83,18 @@ export async function parseDocument(file: File) {
 
   try {
     if (imageExtensions.has(extension)) {
+      if (process.env.VERCEL) {
+        try {
+          const text = await parseWithGeminiOcr(file, bytes);
+          if (!text) throw new Error("图片未识别到正文");
+          return text;
+        } catch { throw new Error("服务端图片识别不可用，请从上传页使用浏览器识别，或粘贴英文原文。"); }
+      }
       const geminiText = await parseWithGeminiOcr(file, bytes).catch(() => "");
       if (geminiText) return geminiText;
-      return await parseWithPython(tempPath);
+      const localText = await parseWithPython(tempPath);
+      if (!localText) throw new Error("没有识别到图片文字，请使用清晰图片或粘贴原文。");
+      return localText;
     }
 
     const pythonText = await parseWithPython(tempPath).catch(() => "");
@@ -95,8 +105,7 @@ export async function parseDocument(file: File) {
       if (geminiText) return geminiText;
     }
 
-    const fallbackText = await file.text().catch(() => "");
-    return cleanText(fallbackText);
+    throw new Error("未能读取这个文件。请先将 PDF 或 Word 中的英文正文复制到粘贴原文区域，或上传清晰图片。");
   } finally {
     await fs.rm(tempDir, { recursive: true, force: true }).catch(() => {});
   }
