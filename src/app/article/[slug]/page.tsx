@@ -2,10 +2,11 @@
 
 import { use, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 import Nav from "@/components/Nav";
 import { loadAnalysis } from "@/lib/analysis-client";
 import SpeakerIcon from "@/components/SpeakerIcon";
-import { addToWordbook, isInWordbook, removeFromWordbook } from "@/lib/wordbook";
+import { addToWordbook, getWordbook, isInWordbook, removeFromWordbook } from "@/lib/wordbook";
 
 type VocabularyItem = {
   word: string;
@@ -67,7 +68,9 @@ function splitParagraphIntoSentences(paragraph: string) {
 function buildParagraphs(article: AnalysisResult | null) {
   if (!article) return [];
 
-  const source = article.extractedText || article.sentences.map((item) => item.sentence).join("\n");
+  const sourceLines = (article.extractedText || article.sentences.map((item) => item.sentence).join("\n")).split("\n");
+  if (sourceLines[0]?.trim().replace(/^#+\s*/, "") === article.title?.trim()) sourceLines.shift();
+  const source = sourceLines.join("\n");
   let globalIndex = 0;
 
   return source
@@ -122,6 +125,13 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         const savedDetailMap: Record<string, VocabularyItem> = {};
         const savedSet = new Set<string>();
 
+        data.vocabulary ||= [];
+        const collected = getWordbook().filter(word => word.articleId === slug || word.articleIds?.includes(slug) || (!word.articleId && !word.articleIds?.length && (word.fromArticle === data.fileName || word.fromArticle === data.title)));
+        for (const word of collected) {
+          const key = normalizeWord(word.word);
+          savedSet.add(key);
+          savedDetailMap[key] = { word: word.word, phonetic: word.phonetic, pos: word.pos, chineseMeaning: word.chineseMeaning || "", definition: word.meaning, example: "", audioUrl: word.audioUrl };
+        }
         data.vocabulary.forEach((word) => {
           const key = normalizeWord(word.word);
           if (isInWordbook(word.word)) {
@@ -247,7 +257,9 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
       chineseMeaning: word.chineseMeaning,
       synonyms: [],
       source: "精读收藏",
-      fromArticle: article?.fileName,
+      fromArticle: article?.title || article?.fileName,
+      articleId: slug,
+      audioUrl: word.audioUrl,
     });
 
     setSavedWords((prev) => new Set([...prev, key]));
@@ -508,7 +520,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                                   <button type="button" className="mt-2 underline" onClick={() => void analyzeGrammar(block)}>重试解析</button>
                                 </div>
                               ) : (
-                                <p>{grammarAnalyses[block.globalIndex]}</p>
+                                <div className="space-y-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5"><ReactMarkdown>{grammarAnalyses[block.globalIndex]}</ReactMarkdown></div>
                               )}
                             </div>
                           )}
