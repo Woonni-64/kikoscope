@@ -2,6 +2,7 @@
 
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
+import { loadAnalysis } from "@/lib/analysis-client";
 import Nav from "@/components/Nav";
 import { addToWordbook, isInWordbook } from "@/lib/wordbook";
 
@@ -35,6 +36,7 @@ type AnalysisResult = {
 
 export default function ArticleQuizPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
+  const [error, setError] = useState("");
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [savedWords, setSavedWords] = useState<Set<string>>(new Set());
@@ -42,12 +44,11 @@ export default function ArticleQuizPage({ params }: { params: Promise<{ slug: st
 
   useEffect(() => {
     const loadQuiz = async () => {
-      const response = await fetch(`/api/analyze-document?id=${slug}`);
-      if (response.ok) {
-        const data = (await response.json()) as AnalysisResult;
+      try {
+        const data = await loadAnalysis<AnalysisResult>(slug);
         setAnalysis(data);
         setSavedWords(new Set(data.vocabulary.filter((word) => isInWordbook(word.word)).map((word) => word.word.toLowerCase())));
-      }
+      } catch (error) { setError(error instanceof Error ? error.message : "读取练习失败"); }
     };
 
     loadQuiz();
@@ -75,7 +76,7 @@ export default function ArticleQuizPage({ params }: { params: Promise<{ slug: st
     return (
       <div className="min-h-screen bg-[#FDFBF7]">
         <Nav />
-        <main className="mx-auto max-w-3xl px-6 py-12 text-center text-[#8D7B6B]">Kiki 正在铺开练习纸...</main>
+        <main className="mx-auto max-w-3xl px-6 py-12 text-center text-[#8D7B6B]">{error || "Kiki 正在铺开练习纸..."}</main>
       </div>
     );
   }
@@ -91,6 +92,8 @@ export default function ArticleQuizPage({ params }: { params: Promise<{ slug: st
           <h1 className="sf text-3xl font-bold text-[#8B5E3C] mb-2">练一练</h1>
           <p className="text-[#8D7B6B]">{analysis.title || analysis.fileName}</p>
         </section>
+
+        {analysis.questions.length === 0 && <section className="mb-6 rounded-2xl border border-[#EEDDCC] p-5"><p>尚未生成可评分的题目，以下是识别出的原题，不包含自动答案。</p><pre className="mt-3 whitespace-pre-wrap text-sm">{analysis.quizRaw || "这份资料没有识别到题目，可以先返回文章精读。"}</pre></section>}
 
         <details className="mb-6 rounded-2xl border border-[#EEDDCC] bg-white p-5">
           <summary className="cursor-pointer text-sm font-medium text-[#8B5E3C]">
