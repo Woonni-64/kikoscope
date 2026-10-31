@@ -3,6 +3,7 @@
 import { use, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import { loadAnalysis } from "@/lib/analysis-client";
 import SpeakerIcon from "@/components/SpeakerIcon";
 import { addToWordbook, isInWordbook, removeFromWordbook } from "@/lib/wordbook";
 
@@ -105,6 +106,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
   const [expandedGrammar, setExpandedGrammar] = useState<Set<number>>(new Set());
   const [translations, setTranslations] = useState<Record<number, string>>({});
   const [grammarAnalyses, setGrammarAnalyses] = useState<Record<number, string>>({});
+  const [grammarErrors, setGrammarErrors] = useState<Record<number, string>>({});
   const [translatingSentences, setTranslatingSentences] = useState<Set<number>>(new Set());
   const [analyzingGrammar, setAnalyzingGrammar] = useState<Set<number>>(new Set());
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -116,9 +118,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
   useEffect(() => {
     const loadArticle = async () => {
       try {
-        const response = await fetch(`/api/analyze-document?id=${slug}`);
-        if (!response.ok) throw new Error("这篇文章还没找到");
-        const data = (await response.json()) as AnalysisResult;
+        const data = await loadAnalysis<AnalysisResult>(slug);
         const savedDetailMap: Record<string, VocabularyItem> = {};
         const savedSet = new Set<string>();
 
@@ -328,16 +328,22 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
   };
 
   const analyzeGrammar = async (block: SentenceBlock) => {
+    if (analyzingGrammar.has(block.globalIndex)) return;
+    setGrammarErrors((prev) => ({ ...prev, [block.globalIndex]: "" }));
     setAnalyzingGrammar((prev) => new Set([...prev, block.globalIndex]));
     try {
       const response = await fetch(`/api/grammar-analysis?q=${encodeURIComponent(block.sentence)}`);
-      const data = (await response.json()) as { analysis?: string };
+      const data = (await response.json()) as { analysis?: string; error?: string };
+      if (!response.ok || !data.analysis?.trim()) {
+        throw new Error(data.error || "AI 没有返回解析内容，请重试。");
+      }
+      const analysis = data.analysis;
       setGrammarAnalyses((prev) => ({
         ...prev,
-        [block.globalIndex]: data.analysis || "这句的语法暂时没分析出来",
+        [block.globalIndex]: analysis,
       }));
-    } catch {
-      setGrammarAnalyses((prev) => ({ ...prev, [block.globalIndex]: "这句的语法暂时没分析出来" }));
+    } catch (error) {
+      setGrammarErrors((prev) => ({ ...prev, [block.globalIndex]: error instanceof Error ? error.message : "连接失败，请重试。" }));
     } finally {
       setAnalyzingGrammar((prev) => {
         const next = new Set(prev);
@@ -494,10 +500,15 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
 
                           {grammarOpen && (
                             <div className="mt-3 whitespace-pre-wrap rounded-xl bg-[#FDFBF7] p-4 text-sm leading-7 text-[#3E2723]">
-                              {analyzingGrammar.has(block.globalIndex) && !grammarAnalyses[block.globalIndex] ? (
+                              {analyzingGrammar.has(block.globalIndex) ? (
                                 <p className="text-[#8D7B6B]">Kiki 正在拆开这句话...</p>
+                              ) : grammarErrors[block.globalIndex] ? (
+                                <div role="alert">
+                                  <p>{grammarErrors[block.globalIndex]}</p>
+                                  <button type="button" className="mt-2 underline" onClick={() => void analyzeGrammar(block)}>重试解析</button>
+                                </div>
                               ) : (
-                                <p>{grammarAnalyses[block.globalIndex] || "这句的语法暂时没分析出来"}</p>
+                                <p>{grammarAnalyses[block.globalIndex]}</p>
                               )}
                             </div>
                           )}

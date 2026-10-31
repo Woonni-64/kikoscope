@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { saveAnalysis, removeCachedAnalysis, downloadAnalysisBackup } from "@/lib/analysis-client";
+import { recognizeImage } from "@/lib/image-ocr";
 import Nav from "@/components/Nav";
 
 interface Document {
@@ -11,6 +13,8 @@ interface Document {
   uploadedAt: string;
   status: "uploading" | "analyzing" | "completed" | "error";
   analysisId?: string;
+  errorMessage?: string;
+  storageMode?: "browser" | "server";
 }
 
 const ACCEPTED_TYPES = [
@@ -25,7 +29,7 @@ const ACCEPTED_TYPES = [
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 ];
 
-const ACCEPTED_EXTENSIONS = [".md", ".markdown"];
+const ACCEPTED_EXTENSIONS = [".md", ".markdown", ".txt", ".png", ".jpg", ".jpeg", ".webp", ".pdf", ".docx", ".pptx", ".xlsx"];
 
 export default function ImportPage() {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -35,6 +39,7 @@ export default function ImportPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [pendingDeleteDoc, setPendingDeleteDoc] = useState<Document | null>(null);
   const router = useRouter();
+  const [pastedText, setPastedText] = useState("");
 
   const showTemporaryToast = useCallback((message: string) => {
     setToastMessage(message);
@@ -55,15 +60,17 @@ export default function ImportPage() {
       });
     };
 
-    const loadServerDocuments = async (localDocs: Document[]) => {
+    const loadServerDocuments = async () => {
       try {
         const response = await fetch("/api/analyze-document");
         if (!response.ok) return;
         const data = (await response.json()) as { documents?: Document[] };
         if (cancelled || !data.documents) return;
-        const next = mergeDocuments(localDocs, data.documents);
-        setDocuments(next);
-        localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+        setDocuments(current => {
+          const next = mergeDocuments(current, data.documents || []);
+          localStorage.setItem("kikoscope_documents", JSON.stringify(next));
+          return next;
+        });
       } catch {
         // Local browser storage still keeps the page usable if the server list is unavailable.
       }
@@ -80,7 +87,7 @@ export default function ImportPage() {
       }
     }
 
-    void loadServerDocuments(localDocs);
+    void loadServerDocuments();
 
     return () => {
       cancelled = true;
@@ -113,14 +120,23 @@ export default function ImportPage() {
       return next;
     });
 
-    for (const doc of newDocs) {
-      const file = validFiles.find(f => f.name === doc.name);
+    let completedCount = 0;
+    for (const [index, doc] of newDocs.entries()) {
+      const file = validFiles[index];
       if (!file) continue;
 
-      const formData = new FormData();
-      formData.append("file", file);
-
       try {
+        const formData = new FormData();
+        const isImage = /\.(png|jpe?g|webp)$/i.test(file.name) || file.type.startsWith("image/");
+        if (isImage) {
+          setDocuments(prev => prev.map(d => d.id === doc.id ? { ...d, status: "analyzing" } : d));
+          const text = await recognizeImage(file);
+          formData.append("file", new File([text], "recognized.txt", { type: "text/plain" }));
+          formData.append("originalName", file.name);
+        } else {
+          if (file.size > 4 * 1024 * 1024) throw new Error("文件超过4MB，请分成较小的文件或粘贴原文。");
+          formData.append("file", file);
+        }
         setDocuments((prev) =>
           prev.map((d): Document =>
             d.id === doc.id ? { ...d, status: "analyzing" } : d
@@ -132,33 +148,27 @@ export default function ImportPage() {
           body: formData,
         });
 
-        const result = await response.json();
+        const result = await response.json().catch(() => ({ error: `服务器返回非JSON响应（HTTP ${response.status}），请稍后重试或缩小文件。` }));
 
-        if (response.ok && result.analysisId) {
+        if (response.ok && result.analysisId && result.analysis) {
+          saveAnalysis(result.analysis);
+          completedCount++;
           setDocuments((prev) => {
             const next: Document[] = prev.map((d) =>
               d.id === doc.id
-                ? { ...d, status: "completed", analysisId: result.analysisId }
+                ? { ...d, status: "completed", analysisId: result.analysisId, storageMode: result.storageMode }
                 : d
             );
             localStorage.setItem("kikoscope_documents", JSON.stringify(next));
             return next;
           });
           
-          router.push(`/article/${result.analysisId}`);
-        } else {
-          setDocuments((prev) => {
-            const next: Document[] = prev.map((d) =>
-              d.id === doc.id ? { ...d, status: "error" } : d
-            );
-            localStorage.setItem("kikoscope_documents", JSON.stringify(next));
-            return next;
-          });
-        }
-      } catch {
+          if (newDocs.length === 1) router.push(`/article/${result.analysisId}`);
+        } else { throw new Error(result.error || `解析失败（HTTP ${response.status}）`); }
+      } catch (error) {
         setDocuments((prev) => {
           const next: Document[] = prev.map((d) =>
-            d.id === doc.id ? { ...d, status: "error" } : d
+            d.id === doc.id ? { ...d, status: "error", errorMessage: error instanceof Error ? error.message : "解析失败，请重试" } : d
           );
           localStorage.setItem("kikoscope_documents", JSON.stringify(next));
           return next;
@@ -166,7 +176,7 @@ export default function ImportPage() {
       }
     }
     
-    showTemporaryToast("📄 已归档，Kiki 帮你收好了");
+    showTemporaryToast(completedCount === newDocs.length ? "资料已整理好" : `成功 ${completedCount} 份，失败 ${newDocs.length - completedCount} 份，请查看具体原因`);
   }, [router, showTemporaryToast]);
 
   const openDeleteModal = useCallback((doc: Document) => {
@@ -185,18 +195,15 @@ export default function ImportPage() {
     const id = pendingDeleteDoc.analysisId || pendingDeleteDoc.id;
 
     try {
-      const response = await fetch("/api/delete-document", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ analysisId: id }),
-      });
-
-      if (!response.ok) {
-        throw new Error("delete failed");
+      if (pendingDeleteDoc.storageMode !== "browser") {
+        const response = await fetch("/api/delete-document", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ analysisId: id }),
+        });
+        if (!response.ok) throw new Error("delete failed");
       }
-
+      removeCachedAnalysis(id);
       setDocuments((prev) => {
         const next = prev.filter((item) => (item.analysisId || item.id) !== id);
         localStorage.setItem("kikoscope_documents", JSON.stringify(next));
@@ -299,6 +306,18 @@ export default function ImportPage() {
           </div>
         </section>
 
+        <section className="mb-10 rounded-2xl border border-[#EEDDCC] p-5">
+          <h2 className="mb-2 text-lg text-[#8B5E3C]">也可以粘贴英文原文</h2>
+          <p className="mb-3 text-sm text-[#8D7B6B]">图片在当前浏览器识别，首次使用需要下载英文识别资源。新解析结果保存在这个浏览器，不会自动跨设备同步；请及时备份。</p>
+          <textarea aria-label="英文原文" className="w-full rounded border border-[#EEDDCC] bg-white p-3" rows={5} value={pastedText} onChange={e => setPastedText(e.target.value)} />
+          <button className="mt-3 rounded bg-[#8B5E3C] px-4 py-2 text-white disabled:opacity-50" disabled={!pastedText.trim()} onClick={() => {
+            const transfer = new DataTransfer();
+            transfer.items.add(new File([pastedText], "粘贴原文.txt", { type: "text/plain" }));
+            void handleFileUpload(transfer.files);
+          }}>整理原文</button>
+          <button className="ml-3 text-sm text-[#8B5E3C] underline" onClick={downloadAnalysisBackup}>备份本机解析结果</button>
+        </section>
+
         <section>
           <h2 className="text-xl font-semibold text-[#3E2723] mb-6 flex items-center gap-2">
             <span>📂</span>
@@ -345,6 +364,7 @@ export default function ImportPage() {
                       {doc.status === "uploading" && "正在收好"}
                       {doc.status === "error" && "这份资料还没收好"}
                     </span>
+                    {doc.errorMessage && <span role="alert" className="max-w-md text-sm text-red-600">{doc.errorMessage}</span>}
                     <span className="text-[#8D7B6B] text-sm">{doc.uploadedAt}</span>
                     <button
                       type="button"

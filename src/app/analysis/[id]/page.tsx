@@ -2,6 +2,7 @@
 
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
+import { loadAnalysis } from "@/lib/analysis-client";
 import Nav from "@/components/Nav";
 
 interface VocabularyItem {
@@ -51,11 +52,7 @@ export default function AnalysisResultPage({ params }: { params: Promise<{ id: s
   useEffect(() => {
     const fetchAnalysis = async () => {
       try {
-        const response = await fetch(`/api/analyze-document?id=${id}`);
-        if (!response.ok) {
-          throw new Error("获取分析结果失败");
-        }
-        const data = await response.json();
+        const data = await loadAnalysis<AnalysisResult>(id);
         setAnalysis(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "未知错误");
