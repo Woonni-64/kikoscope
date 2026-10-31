@@ -21,12 +21,9 @@ const questionStartPattern =
   /(^|\n)\s*(Questions?\s+\d+(?:[-–]\d+)?|QUESTIONS?\s+\d+(?:[-–]\d+)?|Questions?\b|QUESTIONS?\b|Do the following statements agree|Choose the correct letter|Complete the summary|Complete the notes|Complete the sentences|TRUE\s*\/\s*FALSE\s*\/\s*NOT\s+GIVEN|YES\s*\/\s*NO\s*\/\s*NOT\s+GIVEN|Summary Completion|Multiple Choice|Matching headings|Matching information|\d+\.\s+)/i;
 
 export function splitSentences(text: string) {
-  return text
-    .replace(/\r\n/g, "\n")
-    .split(/\n+/)
-    .flatMap((paragraph) => paragraph.match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g) ?? [])
-    .map((sentence) => sentence.trim())
-    .filter(Boolean);
+  const continuous = text.replace(/\r\n/g, "\n").replace(/([A-Za-z])-\n(?=[a-z])/g, "$1").replace(/\s*\n\s*/g, " ");
+  return (continuous.match(/[^.!?]+[.!?]+(?:["')\]]+)?|[^.!?]+$/g) ?? [])
+    .map(sentence => sentence.trim()).filter(Boolean);
 }
 
 function cleanArticleText(text: string) {
@@ -58,6 +55,7 @@ function extractSimpleAnalysis(text: string) {
 
 export function analyzeDocument(result: string): AnalyzeDocumentResult {
   const normalized = result.replace(/\r\n/g, "\n").trim();
+  let titleText = "";
   const titleMatch = normalized.match(/---TITLE---\n([\s\S]*?)\n---ARTICLE---/);
   const articleMatch = normalized.match(/---ARTICLE---\n([\s\S]*?)\n---QUESTIONS---/);
   const questionsMatch = normalized.match(/---QUESTIONS---\n([\s\S]*)/);
@@ -71,10 +69,24 @@ export function analyzeDocument(result: string): AnalyzeDocumentResult {
     questionText = simple.questionText;
   }
 
+  titleText = titleMatch?.[1]?.trim() || "";
+  const lines = articleText.split("\n");
+  const first = lines.findIndex(line => line.trim());
+  const firstLine = lines[first]?.trim().replace(/^#+\s*/, "") || "";
+  // A short standalone heading followed by prose is a title, not a sentence.
+  const headingBoundary = lines[first + 1]?.trim() === "" || /^#+\s/.test(lines[first] || "") || firstLine.split(/\s+/).filter(w => /^[A-Z]/.test(w)).length / Math.max(1, firstLine.split(/\s+/).length) > 0.6;
+  if (!titleText && headingBoundary && firstLine && firstLine.length <= 120 && !/[.!?:;]$/.test(firstLine) && lines.slice(first + 1).some(line => /[.!?]/.test(line))) {
+    titleText = firstLine;
+    lines.splice(first, 1);
+    articleText = lines.join("\n");
+  } else if (titleText && firstLine.toLowerCase() === titleText.toLowerCase()) {
+    lines.splice(first, 1);
+    articleText = lines.join("\n");
+  }
   articleText = splitSentences(cleanArticleText(articleText)).join("\n");
 
   return {
-    titleText: titleMatch?.[1]?.trim() || "",
+    titleText,
     articleText,
     questionText,
     sentences: splitSentences(articleText),
