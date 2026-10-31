@@ -9,4 +9,5 @@ try {
   }
   if (!ready) throw new Error('Server did not start: ' + serverError);
   await import('./upload-repair.mjs');
+  await import('./reading-flow.mjs');
 } finally { server.kill('SIGTERM'); }

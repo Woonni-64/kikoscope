@@ -10,6 +10,8 @@ export interface WordEntry {
    source?: string;
    addedAt?: number;
    fromArticle?: string;
+   articleId?: string;
+   articleIds?: string[];
 }
 
 const STORAGE_KEY = "vocabulary";
@@ -75,8 +77,16 @@ export function isInWordbook(word: string): boolean {
 }
 
 export function addToWordbook(entry: WordEntry): boolean {
-  if (isInWordbook(entry.word)) return false;
   const list = getWordbook();
+  const existing = list.find(w => w.word.toLowerCase() === entry.word.toLowerCase());
+  if (existing) {
+    if (entry.articleId) {
+      existing.articleIds = [...new Set([...(existing.articleIds || []), ...(existing.articleId ? [existing.articleId] : []), entry.articleId])];
+      existing.audioUrl ||= entry.audioUrl;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+    return false;
+  }
   const savedEntry = { ...entry, addedAt: Date.now() };
   list.unshift(savedEntry);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
