@@ -15,10 +15,10 @@ export const ieltsExtractionPrompt = `你是一个专业的雅思真题内容提
 [题目内容]`;
 
 const nonArticleLinePattern =
-  /\b(Passage\s+\d+|You should spend|Questions?\s+\d|Questions?\b|Page\s+\d+|第\s*\d+\s*页|TRUE\s*\/\s*FALSE|YES\s*\/\s*NO|NOT\s+GIVEN|Choose the correct|Complete the|Do the following statements agree)\b/i;
+  /^\s*(?:Reading\s+Passage\s+\d+\b|Passage\s+\d+\b|You should spend\b|Questions?\s+\d+\b|Questions?\s*[:：]?\s*$|Page\s+\d+(?:\s+of\s+\d+)?\s*$|第\s*\d+\s*页\s*$|TRUE\s*\/\s*FALSE|YES\s*\/\s*NO|NOT\s+GIVEN\s*$|Choose the correct\b|Complete the\b|Do the following statements agree\b)/i;
 
 const questionStartPattern =
-  /(^|\n)\s*(Questions?\s+\d+(?:[-–]\d+)?|QUESTIONS?\s+\d+(?:[-–]\d+)?|Questions?\b|QUESTIONS?\b|Do the following statements agree|Choose the correct letter|Complete the summary|Complete the notes|Complete the sentences|TRUE\s*\/\s*FALSE\s*\/\s*NOT\s+GIVEN|YES\s*\/\s*NO\s*\/\s*NOT\s+GIVEN|Summary Completion|Multiple Choice|Matching headings|Matching information|\d+\.\s+)/i;
+  /(^|\n)\s*(Questions?\s+\d+(?:[-–]\d+)?|Questions?\s*[:：]?(?=\n|$)|Do the following statements agree|Choose the correct letter|Complete the summary|Complete the notes|Complete the sentences|TRUE\s*\/\s*FALSE\s*\/\s*NOT\s+GIVEN|YES\s*\/\s*NO\s*\/\s*NOT\s+GIVEN|Summary Completion|Multiple Choice|Matching headings|Matching information|\d+\.\s+)/i;
 
 export function splitSentences(text: string) {
   const continuous = text.replace(/\r\n/g, "\n").replace(/([A-Za-z])-\n(?=[a-z])/g, "$1").replace(/\s*\n\s*/g, " ");
