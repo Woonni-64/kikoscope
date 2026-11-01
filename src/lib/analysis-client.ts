@@ -63,11 +63,24 @@ export function restoreAnalysisBackup(text: string) {
     if (key === "vocabulary" || key === "flashcard-imported-ielts") {
       if (!Array.isArray(incoming) || !Array.isArray(current)) throw new Error("备份词库格式无效。");
       const merged = [...current];
-      const words = new Set(current.map((w: {word?:string;english?:string}) => (w.word || w.english || "").toLowerCase()));
+      const words = new Map(current.map((w: {word?:string;english?:string}, index: number) => [(w.word || w.english || "").trim().toLowerCase(), index]));
       for (const word of incoming) {
         const name = word?.word || word?.english;
         if (typeof name !== "string" || !name.trim()) throw new Error("备份包含无效单词。");
-        if (!words.has(name.toLowerCase())) { merged.push(word); words.add(name.toLowerCase()); if (key === "vocabulary") newWords++; }
+        const normalized = name.trim().toLowerCase();
+        const existingIndex = words.get(normalized);
+        if (existingIndex === undefined) {
+          words.set(normalized, merged.length); merged.push(word);
+          if (key === "vocabulary") newWords++;
+        } else if (key === "vocabulary") {
+          // Merge references, not definitions: a restore must preserve current edits.
+          const existing = merged[existingIndex];
+          const articleIds = [...new Set([
+            existing.articleId, ...(Array.isArray(existing.articleIds) ? existing.articleIds : []),
+            word.articleId, ...(Array.isArray(word.articleIds) ? word.articleIds : []),
+          ].filter((id): id is string => typeof id === "string" && !!id.trim()))];
+          merged[existingIndex] = { ...existing, ...(articleIds.length ? { articleIds } : {}) };
+        }
       }
       pending.set(key, JSON.stringify(merged));
     } else if (key.includes("progress")) {
