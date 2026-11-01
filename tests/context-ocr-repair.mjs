@@ -42,6 +42,9 @@ for(const body of [{word:'harvest',sentence:'No such word.'},{word:'x'.repeat(81
 assert.equal((await define({word:'harvest',sentence},()=>{},{})).status,503);
 for(const status of [401,429,500]){result=await define({word:'harvest',sentence},async()=>new Response('secret',{status}));assert.equal(result.body.definition,undefined);assert.ok(!JSON.stringify(result.body).includes(fakeKey));}
 result=await define({word:'harvest',sentence},async()=>output('{"pos":"noun"}'));assert.equal(result.status,502);assert.equal(result.body.definition,undefined);
+let requests=0;
+result=await define({word:'harvest',sentence},async(url)=>{requests++;if(requests===1)return new Response('',{status:429});assert.ok(url.includes('gemini-2.5-flash-lite'));return output(JSON.stringify({pos:'noun',chineseMeaning:'收获',definition:'Gathering ripe crops.'}));});
+assert.equal(result.status,200);assert.equal(requests,2);
 // Exercise image orientation/flattening/encoding with real fixtures, not mock bytes.
 for (const ext of ['png','jpg']) {
  const input=sharp({create:{width:2500,height:3000,channels:4,background:{r:255,g:255,b:255,alpha:0.5}}});
