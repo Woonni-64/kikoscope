@@ -19,10 +19,10 @@ export async function POST(request: Request) {
     for (let attempt = 0; attempt < 2; attempt++) {
       response = await fetch(key ? `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent` : "https://api.deepseek.com/chat/completions", {
       method:"POST", headers:key ? {"Content-Type":"application/json","x-goog-api-key":key} : {"Content-Type":"application/json",Authorization:`Bearer ${deepseekKey}`}, signal:AbortSignal.timeout(key ? 20000 : 45000),
-      body:JSON.stringify(key ? { systemInstruction:{parts:[{text:system}]}, contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{temperature:0.1,maxOutputTokens:4096,responseMimeType:"application/json",thinkingConfig:{thinkingBudget:0}} } : {model:process.env.DEEPSEEK_GRAMMAR_MODEL || "deepseek-chat",messages:[{role:"system",content:system},{role:"user",content:prompt}],temperature:0.1,response_format:{type:"json_object"}}),
+      body:JSON.stringify(key ? { systemInstruction:{parts:[{text:system}]}, contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{temperature:0.1,maxOutputTokens:4096,responseMimeType:"application/json",thinkingConfig:model.startsWith("gemini-2.5")?{thinkingBudget:0}:{thinkingLevel:"minimal"}} } : {model:process.env.DEEPSEEK_GRAMMAR_MODEL || "deepseek-chat",messages:[{role:"system",content:system},{role:"user",content:prompt}],temperature:0.1,response_format:{type:"json_object"}}),
     });
-      if (attempt === 0 && key && [429, 500, 502, 503].includes(response.status)) {
-        model = process.env.GEMINI_QUIZ_FALLBACK_MODEL || "gemini-2.5-flash-lite";
+      if (attempt === 0 && key && [404, 429, 500, 502, 503].includes(response.status)) {
+        model = process.env.GEMINI_QUIZ_FALLBACK_MODEL || "gemini-3.5-flash-lite";
         continue;
       }
       break;
