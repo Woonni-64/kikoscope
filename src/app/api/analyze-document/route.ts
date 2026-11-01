@@ -6,6 +6,7 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 
 import { parseDocument } from '@/lib/document-parser';
+import { RecognitionError } from '@/lib/document-recognition';
 
 interface VocabularyItem {
   word: string;
@@ -204,7 +205,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, analysisId, slug: analysisId, analysis: result, storageMode,
       warning: "原题已保留，但未自动生成答案或词汇清单；可在精读页点击单词查词。" });
   } catch (error) {
-    console.error("Analysis error:", error);
+    if (error instanceof RecognitionError) {
+      console.warn("Document recognition failed:", error.code);
+      return NextResponse.json({ error: error.message, code: error.code }, { status: error.status });
+    }
+    console.error("Analysis failed:", error instanceof Error ? error.name : "UnknownError");
     return NextResponse.json({ error: error instanceof Error && !/api.?key|token|authorization/i.test(error.message) ? error.message.slice(0, 400) : "解析服务暂时不可用，请稍后重试。" }, { status: 500 });
   }
 }

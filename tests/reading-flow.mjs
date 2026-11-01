@@ -30,6 +30,13 @@ const wb=load('src/lib/wordbook.ts',{localStorage:storage,window:{},process:{env
 wb.addToWordbook({word:'shared',phonetic:'',pos:'noun',meaning:'x',synonyms:[],articleId:'analysis_A'});
 assert.equal(wb.addToWordbook({word:'SHARED',articleId:'analysis_B'}),false);
 assert.equal(wb.getWordbook().filter(w=>w.word.toLowerCase()==='shared').length,1);assert.deepEqual(Array.from(wb.getWordbook().find(w=>w.word==='shared').articleIds),['analysis_A','analysis_B']);
+const mergeBackup = {...backup, learningData:{vocabulary:JSON.stringify([{word:'SHARED',meaning:'must not overwrite',articleId:'analysis_C',articleIds:['analysis_D','analysis_A']}])}};
+assert.equal(client.restoreAnalysisBackup(JSON.stringify(mergeBackup)).words,0);
+let shared=JSON.parse(values.get('vocabulary')).find(w=>w.word==='shared');
+assert.equal(shared.meaning,'x');assert.deepEqual(shared.articleIds,['analysis_A','analysis_B','analysis_C','analysis_D']);
+const beforeRepeat=values.get('vocabulary');client.restoreAnalysisBackup(JSON.stringify(mergeBackup));assert.equal(values.get('vocabulary'),beforeRepeat);
+assert.equal(wb.updateWordDefinition('SHARED',{meaning:'correct meaning',chineseMeaning:'正确词义',pos:'noun'}),true);
+shared=wb.getWordbook().find(w=>w.word==='shared');assert.equal(shared.meaning,'correct meaning');assert.equal(shared.articleIds.length,4);
 const base='http://127.0.0.1:3101';
 const docx=await Packer.toBuffer(new Document({sections:[{children:[new Paragraph('Urban Green Spaces'),new Paragraph('Cities tend to be hotter than nearby rural areas. Greenery releases moisture into the air.')]}]}));
 const form=new FormData();form.set('file',new File([docx],'roundtrip.docx',{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}));

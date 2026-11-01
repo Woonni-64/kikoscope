@@ -1,12 +1,12 @@
 "use client";
 
-import { use, useEffect, useMemo, useState } from "react";
+import { use, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Nav from "@/components/Nav";
 import { loadAnalysis } from "@/lib/analysis-client";
 import SpeakerIcon from "@/components/SpeakerIcon";
-import { addToWordbook, getWordbook, isInWordbook, removeFromWordbook } from "@/lib/wordbook";
+import { addToWordbook, getWordbook, isInWordbook, removeFromWordbook, updateWordDefinition } from "@/lib/wordbook";
 
 type VocabularyItem = {
   word: string;
@@ -16,6 +16,9 @@ type VocabularyItem = {
   definition: string;
   example: string;
   audioUrl?: string;
+  lookupPending?: boolean;
+  lookupError?: boolean;
+  source?: string;
 };
 
 type SentenceAnalysis = {
@@ -34,19 +37,6 @@ type AnalysisResult = {
   extractedText: string;
   vocabulary: VocabularyItem[];
   sentences: SentenceAnalysis[];
-};
-
-type DictionaryEntry = {
-  word?: string;
-  phonetic?: string;
-  phonetics?: { text?: string; audio?: string }[];
-  meanings?: {
-    partOfSpeech?: string;
-    definitions?: {
-      definition?: string;
-      example?: string;
-    }[];
-  }[];
 };
 
 type SentenceBlock = {
@@ -104,6 +94,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
   const [error, setError] = useState("");
   const [savedWords, setSavedWords] = useState<Set<string>>(new Set());
   const [savedWordDetails, setSavedWordDetails] = useState<Record<string, VocabularyItem>>({});
+  const lookupRequest = useRef(0);
   const [selectedWord, setSelectedWord] = useState<VocabularyItem | null>(null);
   const [expandedTranslations, setExpandedTranslations] = useState<Set<number>>(new Set());
   const [expandedGrammar, setExpandedGrammar] = useState<Set<number>>(new Set());
@@ -181,73 +172,26 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
   const paragraphs = useMemo(() => buildParagraphs(article), [article]);
   const flatSentences = useMemo(() => paragraphs.flatMap((paragraph) => paragraph.sentences), [paragraphs]);
 
-  const fetchChineseMeaning = async (text: string) => {
-    try {
-      const response = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|zh`,
-      );
-      const data = (await response.json()) as { responseData?: { translatedText?: string } };
-      return data.responseData?.translatedText || "";
-    } catch {
-      return "";
-    }
-  };
-
-  const lookupWord = async (rawWord: string) => {
+  const lookupWord = async (rawWord: string, sentence: string) => {
     const word = normalizeWord(rawWord);
     if (!word) return;
-
-    const localWord = article?.vocabulary.find((item) => normalizeWord(item.word) === word);
-    if (localWord) {
-      setSelectedWord(localWord);
-      return;
-    }
-
-    setSelectedWord({
-      word,
-      phonetic: "",
-      pos: "",
-      chineseMeaning: "Kiki 正在查这个词...",
-      definition: "",
-      example: "",
-      audioUrl: "",
-    });
-
+    const requestId = ++lookupRequest.current;
+    setSelectedWord({ word, phonetic: "", pos: "", chineseMeaning: "正在按原句查词…", definition: "", example: sentence, lookupPending: true });
     try {
-      const [dictionaryResponse, chineseMeaning] = await Promise.all([
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`),
-        fetchChineseMeaning(word),
-      ]);
-      const entries = (await dictionaryResponse.json()) as DictionaryEntry[];
-      const entry = entries[0];
-      const meaning = entry?.meanings?.[0];
-      const definition = meaning?.definitions?.[0];
-      const phonetic = entry?.phonetic || entry?.phonetics?.find((item) => item.text)?.text || "";
-      const audioUrl = entry?.phonetics?.find((item) => item.audio)?.audio || "";
-
-      setSelectedWord({
-        word: entry?.word || word,
-        phonetic,
-        pos: meaning?.partOfSpeech || "",
-        chineseMeaning: chineseMeaning || "暂时没有查到中文释义",
-        definition: definition?.definition || "No English definition found.",
-        example: definition?.example || "",
-        audioUrl,
+      const response = await fetch("/api/context-definition", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ word, sentence }), signal: AbortSignal.timeout(26000),
       });
-    } catch {
-      setSelectedWord({
-        word,
-        phonetic: "",
-        pos: "",
-        chineseMeaning: "暂时没有查到中文释义",
-        definition: "No English definition found.",
-        example: "",
-        audioUrl: "",
-      });
+      const result = await response.json();
+      if (!response.ok || !result.definition || !result.chineseMeaning) throw new Error(result.error || "未能按原句选义，请重试。");
+      if (lookupRequest.current === requestId) setSelectedWord({ ...result, word, example: sentence });
+    } catch (error) {
+      if (lookupRequest.current === requestId) setSelectedWord({ word, phonetic: "", pos: "", chineseMeaning: error instanceof Error ? error.message : "查词失败，请重试。", definition: "", example: sentence, lookupError: true });
     }
   };
 
   const collectWord = (word: VocabularyItem) => {
+    if (word.lookupPending || word.lookupError) return;
     const key = normalizeWord(word.word);
     const added = addToWordbook({
       word: word.word,
@@ -313,7 +257,9 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
   const focusWord = (word: VocabularyItem) => {
     const key = normalizeWord(word.word);
     setHighlightedWord(key);
-    setSelectedWord(word);
+    const sentence = flatSentences.find(block => block.sentence.toLowerCase().split(/[^a-z’-]+/).includes(key))?.sentence;
+    if (sentence) void lookupWord(word.word, sentence);
+    else { lookupRequest.current++; setSelectedWord(word); }
     const target = document.querySelector(`[data-word="${key}"]`);
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
     setTimeout(() => setHighlightedWord(""), 1800);
@@ -397,7 +343,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         <span
           key={`${part}-${index}`}
           data-word={key}
-          onClick={() => void lookupWord(part)}
+          onClick={() => void lookupWord(part, sentence)}
           className={`cursor-pointer rounded px-0.5 transition hover:bg-[#F0E8D8] hover:text-[#8B5E3C] ${
             highlightedWord === key ? "bg-[#EEDDCC] text-[#8B5E3C]" : ""
           }`}
@@ -605,7 +551,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
       {selectedWord && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center bg-black/20 px-6 pt-24"
-          onClick={() => setSelectedWord(null)}
+          onClick={() => { lookupRequest.current++; setSelectedWord(null); }}
         >
           <section
             className="w-80 rounded-2xl border border-[#EEDDCC] bg-white p-5 shadow-xl"
@@ -620,6 +566,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                 <button
                   type="button"
                   aria-label={savedWords.has(normalizeWord(selectedWord.word)) ? "取消收藏" : "收藏单词"}
+                  disabled={selectedWord.lookupPending || selectedWord.lookupError}
                   onClick={() => toggleWordCollection(selectedWord)}
                   className={`text-lg leading-none transition hover:scale-110 ${
                     savedWords.has(normalizeWord(selectedWord.word)) ? "text-[#D4A017]" : "text-[#8D7B6B]"
@@ -627,7 +574,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
                 >
                   {savedWords.has(normalizeWord(selectedWord.word)) ? "★" : "☆"}
                 </button>
-                <button onClick={() => setSelectedWord(null)} className="text-[#8D7B6B] hover:text-[#8B5E3C]">×</button>
+                <button onClick={() => { lookupRequest.current++; setSelectedWord(null); }} className="text-[#8D7B6B] hover:text-[#8B5E3C]">×</button>
               </div>
             </div>
 
@@ -640,6 +587,14 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
               发音
             </button>
 
+            {selectedWord.source === "context" && <p className="mb-2 text-xs text-[#8B5E3C]">按文章原句选义</p>}
+            {selectedWord.source === "context" && savedWords.has(normalizeWord(selectedWord.word)) && <button className="mb-2 block text-sm underline" onClick={() => {
+              if (updateWordDefinition(selectedWord.word, { meaning: selectedWord.definition, chineseMeaning: selectedWord.chineseMeaning, pos: selectedWord.pos })) {
+                setSavedWordDetails(prev => ({ ...prev, [normalizeWord(selectedWord.word)]: selectedWord }));
+                setShowToast(true); setTimeout(() => setShowToast(false), 3000);
+              }
+            }}>更新已收藏词义</button>}
+            {selectedWord.lookupError && <button className="mb-2 text-sm underline" onClick={() => void lookupWord(selectedWord.word, selectedWord.example)}>重试语境查词</button>}
             <p className="mb-2 text-sm text-[#8D7B6B]">{selectedWord.pos || "词性暂缺"}</p>
             <p className="font-medium text-[#3E2723]">{selectedWord.chineseMeaning || "中文释义暂缺"}</p>
             <p className="mt-2 text-sm leading-6 text-[#8D7B6B]">{selectedWord.definition || "英文释义暂缺"}</p>
@@ -650,7 +605,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
             )}
             <div className="mt-4 text-right">
               <button
-                onClick={() => setSelectedWord(null)}
+                onClick={() => { lookupRequest.current++; setSelectedWord(null); }}
                 className="rounded-full border border-[#EEDDCC] px-5 py-2 text-sm font-medium text-[#8B5E3C] transition hover:border-[#8B5E3C]"
               >
                 关闭

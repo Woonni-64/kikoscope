@@ -94,6 +94,17 @@ export function addToWordbook(entry: WordEntry): boolean {
   return true;
 }
 
+/** Explicit user action: update definitions without losing sources or review identity. */
+export function updateWordDefinition(word: string, definition: Pick<WordEntry, "meaning" | "chineseMeaning" | "pos">): boolean {
+  const list = getWordbook();
+  const existing = list.find(entry => entry.word.toLowerCase() === word.toLowerCase());
+  if (!existing) return false;
+  Object.assign(existing, definition);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  void saveToSupabase(existing);
+  return true;
+}
+
 export function removeFromWordbook(word: string): void {
   const list = getWordbook().filter(
     (w) => w.word.toLowerCase() !== word.toLowerCase()
