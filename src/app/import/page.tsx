@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { saveAnalysis, removeCachedAnalysis, downloadAnalysisBackup, restoreAnalysisBackup } from "@/lib/analysis-client";
+import { saveAnalysis, removeCachedAnalysis } from "@/lib/analysis-client";
 import { recognizeImage } from "@/lib/image-ocr";
 import Nav from "@/components/Nav";
 
@@ -37,8 +37,6 @@ export default function ImportPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [pendingDeleteDoc, setPendingDeleteDoc] = useState<Document | null>(null);
   const router = useRouter();
-  const [backupText, setBackupText] = useState("");
-  const [backupMessage, setBackupMessage] = useState("");
   const [pastedText, setPastedText] = useState("");
 
   const showTemporaryToast = useCallback((message: string) => {
@@ -280,14 +278,6 @@ export default function ImportPage() {
           </p>
         </section>
 
-        <details className="mb-8 rounded-2xl border border-[#EEDDCC] bg-white p-5">
-          <summary className="cursor-pointer">恢复学习备份</summary>
-          <p className="mt-3 text-sm">选择之前导出的备份，或粘贴备份内容。恢复会合并资料，不覆盖现有文章和词汇。未保存过的资料仍需重新导入原文件。</p>
-          <input aria-label="选择学习备份" type="file" accept=".json,application/json" className="mt-3" onChange={async e => { const file = e.target.files?.[0]; if (file) setBackupText(await file.text()); }} />
-          <textarea aria-label="备份内容" value={backupText} onChange={e => setBackupText(e.target.value)} placeholder="在这里粘贴之前导出的备份内容" className="mt-3 min-h-24 w-full rounded border p-3" />
-          <button disabled={!backupText.trim()} className="mt-3 rounded-full bg-[#8B5E3C] px-5 py-2 text-white disabled:opacity-50" onClick={() => { try { const result = restoreAnalysisBackup(backupText); setDocuments(JSON.parse(localStorage.getItem("kikoscope_documents") || "[]")); setBackupMessage(`恢复完成：新增${result.articles}篇文章、${result.words}个单词。`); } catch (error) { setBackupMessage(error instanceof Error ? error.message : "恢复失败，原数据保留。"); } }}>合并恢复</button>
-          {backupMessage && <p role="status" className="mt-3">{backupMessage}</p>}
-        </details>
         <section className="mb-14">
           <div className="mb-6">
             <h2 className="sf text-2xl font-bold text-[#8B5E3C] mb-1">文件归档</h2>
@@ -323,14 +313,13 @@ export default function ImportPage() {
 
         <section className="mb-10 rounded-2xl border border-[#EEDDCC] p-5">
           <h2 className="mb-2 text-lg text-[#8B5E3C]">也可以粘贴英文原文</h2>
-          <p className="mb-3 text-sm text-[#8D7B6B]">图片在当前浏览器识别，首次使用需要下载英文识别资源。新解析结果保存在这个浏览器，不会自动跨设备同步；请及时备份。</p>
+          <p className="mb-3 text-sm text-[#8D7B6B]">图片在当前浏览器识别，首次使用需要下载英文识别资源。阅读资料保存在当前浏览器，暂不跨设备同步。</p>
           <textarea aria-label="英文原文" className="w-full rounded border border-[#EEDDCC] bg-white p-3" rows={5} value={pastedText} onChange={e => setPastedText(e.target.value)} />
           <button className="mt-3 rounded bg-[#8B5E3C] px-4 py-2 text-white disabled:opacity-50" disabled={!pastedText.trim()} onClick={() => {
             const transfer = new DataTransfer();
             transfer.items.add(new File([pastedText], `原文-${new Date().toISOString().replace(/[:.]/g, "-")}.txt`, { type: "text/plain" }));
             void handleFileUpload(transfer.files);
           }}>整理原文</button>
-          <button className="ml-3 text-sm text-[#8B5E3C] underline" onClick={downloadAnalysisBackup}>备份本机解析结果</button>
         </section>
 
         <section>
