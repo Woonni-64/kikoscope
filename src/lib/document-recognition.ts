@@ -4,11 +4,11 @@ export class RecognitionError extends Error {
 
 /** Two bounded attempts for transient provider errors; never invent recognized text. */
 export async function recognizeDocument(data: string, mimeType: string) {
-  const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+  const key = (process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY)?.trim();
   if (!key) throw new RecognitionError("服务端识别未配置，请使用浏览器图片识别或粘贴原文。", 503, "OCR_NOT_CONFIGURED");
+  let model = process.env.GEMINI_OCR_MODEL || "gemini-2.5-flash";
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const model = process.env.GEMINI_OCR_MODEL || "gemini-2.5-flash";
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
         method: "POST", signal: AbortSignal.timeout(16000),
         headers: { "Content-Type": "application/json", "x-goog-api-key": key },
@@ -21,7 +21,10 @@ export async function recognizeDocument(data: string, mimeType: string) {
         }),
       });
       if (!response.ok) {
-        if (attempt === 0 && (response.status === 429 || response.status >= 500)) continue;
+        if (attempt === 0 && (response.status === 429 || response.status >= 500)) {
+          if (response.status === 429) model = process.env.GEMINI_OCR_FALLBACK_MODEL || "gemini-2.5-flash-lite";
+          continue;
+        }
         throw new RecognitionError(response.status === 429 ? "图片/PDF识别服务繁忙，请稍后重试或粘贴原文。" : "图片/PDF识别服务暂时不可用，请重试或粘贴原文。", response.status === 429 ? 429 : 503, response.status === 429 ? "OCR_RATE_LIMITED" : "OCR_UNAVAILABLE");
       }
       const result = await response.json();
