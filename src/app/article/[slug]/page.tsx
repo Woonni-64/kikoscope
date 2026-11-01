@@ -4,6 +4,7 @@ import { use, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Nav from "@/components/Nav";
+import FullReading from "@/components/FullReading";
 import { loadAnalysis } from "@/lib/analysis-client";
 import SpeakerIcon from "@/components/SpeakerIcon";
 import { addToWordbook, getWordbook, isInWordbook, removeFromWordbook, updateWordDefinition } from "@/lib/wordbook";
@@ -45,7 +46,7 @@ type SentenceBlock = {
 };
 
 const invalidLinePattern =
-  /\b(Passage\s+\d+|You should spend|Questions?\s+\d|Questions?\b|Page\s+\d+|第\s*\d+\s*页|TRUE\s*\/\s*FALSE|YES\s*\/\s*NO|NOT\s+GIVEN|Choose the correct|Complete the|Do the following statements agree)\b/i;
+  /^\s*(?:Reading\s+Passage\s+\d+\b|Passage\s+\d+\b|You should spend\b|Questions?\s+\d+\b|Questions?\s*[:：]?\s*$|Page\s+\d+(?:\s+of\s+\d+)?\s*$|第\s*\d+\s*页\s*$|TRUE\s*\/\s*FALSE|YES\s*\/\s*NO|NOT\s+GIVEN\s*$|Choose the correct\b|Complete the\b|Do the following statements agree\b)/i;
 
 function splitParagraphIntoSentences(paragraph: string) {
   return (
@@ -395,6 +396,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
 
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
           <div className="min-w-0 flex-1">
+            <FullReading key={article.id} article={article} />
             <section className="mb-4">
               <h2 className="text-xl font-semibold text-[#3E2723]">正文精读</h2>
             </section>
