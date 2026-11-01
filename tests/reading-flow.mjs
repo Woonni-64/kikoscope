@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
 import { Document, Paragraph, Packer } from 'docx';
+import { jsPDF } from 'jspdf';
 const load = (path, context={}) => {
  const exports={};
  vm.runInNewContext(ts.transpileModule(fs.readFileSync(path,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{exports,require:()=>({downloadBlob:()=>{}}),...context});
@@ -41,6 +42,10 @@ const base='http://127.0.0.1:3101';
 const docx=await Packer.toBuffer(new Document({sections:[{children:[new Paragraph('Urban Green Spaces'),new Paragraph('Cities tend to be hotter than nearby rural areas. Greenery releases moisture into the air.')]}]}));
 const form=new FormData();form.set('file',new File([docx],'roundtrip.docx',{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}));
 const response=await fetch(base+'/api/analyze-document',{method:'POST',body:form});const data=await response.json();assert.equal(response.status,200);assert.match(data.analysis.extractedText,/Greenery releases moisture/);assert.equal(data.analysis.sentences.length,2);assert.equal(data.analysis.title,'Urban Green Spaces');
+const pdf = new jsPDF();pdf.text(['Urban Green Spaces','Cities tend to be hotter than nearby rural areas.','Greenery releases moisture into the air.'],10,20);
+const pdfForm=new FormData();pdfForm.set('file',new File([pdf.output('arraybuffer')],'roundtrip.pdf',{type:'application/pdf'}));
+const pdfResponse=await fetch(base+'/api/analyze-document',{method:'POST',body:pdfForm});const pdfData=await pdfResponse.json();assert.equal(pdfResponse.status,200,JSON.stringify(pdfData));assert.match(pdfData.analysis.extractedText,/Greenery releases moisture/);assert.equal(pdfData.analysis.sentences.length,2);
+const corruptForm=new FormData();corruptForm.set('file',new File(['not a PDF'],'broken.pdf',{type:'application/pdf'}));const corruptResponse=await fetch(base+'/api/analyze-document',{method:'POST',body:corruptForm});assert.equal(corruptResponse.status,422);assert.equal((await corruptResponse.json()).code,'INVALID_PDF');
 for(const id of ['analysis_1779531124471_9v9sir8ru','analysis_1779527295507_m617i85bp'])assert.equal((await fetch(base+'/api/analyze-document?id='+id)).status,200);
 assert.equal((await fetch(base+'/api/generate-quiz',{method:'POST',body:JSON.stringify({article:'tiny'}),headers:{'Content-Type':'application/json'}})).status,400);
 console.log('PASS: DOCX real-file upload on Vercel-mode build, title/line wrapping, restored historic documents, evidence-based quiz validation/scoring, non-destructive/idempotent backup restore, cross-article word deduplication.');
