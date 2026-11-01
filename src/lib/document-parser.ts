@@ -1,4 +1,5 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import sharp from "sharp";
+import { recognizeDocument, RecognitionError } from "./document-recognition";
 import { execFile } from "child_process";
 import fs from "fs/promises";
 import os from "os";
@@ -50,22 +51,17 @@ async function parseWithPython(tempPath: string) {
 }
 
 async function parseWithGeminiOcr(file: File, bytes: Buffer) {
-  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) throw new Error("服务端图片识别尚未配置。请通过上传页的浏览器识别，或粘贴英文原文。");
-
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: process.env.GEMINI_OCR_MODEL || "gemini-2.5-flash" });
-  const result = await model.generateContent([
-    "请精准提取并还原以下图片中的英文文本内容，保持原有的段落和句子结构，不要总结或翻译。",
-    {
-      inlineData: {
-        data: bytes.toString("base64"),
-        mimeType: file.type || "application/octet-stream",
-      },
-    },
-  ]);
-
-  return cleanText(result.response.text());
+  const isImage = imageExtensions.has(getExtension(file));
+  let prepared = bytes;
+  if (isImage) {
+    try {
+      prepared = await sharp(bytes, { limitInputPixels: 40_000_000 })
+        .rotate().flatten({ background: "#ffffff" })
+        .resize({ width: 2000, height: 2400, fit: "inside", withoutEnlargement: true })
+        .jpeg({ quality: 90 }).toBuffer();
+    } catch { throw new RecognitionError("图片文件无法读取，请重新保存为 PNG 或 JPG。", 422, "INVALID_IMAGE"); }
+  }
+  return cleanText(await recognizeDocument(prepared.toString("base64"), isImage ? "image/jpeg" : "application/pdf"));
 }
 
 async function readMarkdown(file: File) {
@@ -94,11 +90,7 @@ export async function parseDocument(file: File) {
   try {
     if (imageExtensions.has(extension)) {
       if (process.env.VERCEL) {
-        try {
-          const text = await parseWithGeminiOcr(file, bytes);
-          if (!text) throw new Error("图片未识别到正文");
-          return text;
-        } catch { throw new Error("服务端图片识别不可用，请从上传页使用浏览器识别，或粘贴英文原文。"); }
+        return parseWithGeminiOcr(file, bytes);
       }
       const geminiText = await parseWithGeminiOcr(file, bytes).catch(() => "");
       if (geminiText) return geminiText;
@@ -111,8 +103,7 @@ export async function parseDocument(file: File) {
     if (pythonText) return pythonText;
 
     if (extension === ".pdf") {
-      const geminiText = await parseWithGeminiOcr(file, bytes).catch(() => "");
-      if (geminiText) return geminiText;
+      return parseWithGeminiOcr(file, bytes);
     }
 
     throw new Error("未能读取这个文件。请先将 PDF 或 Word 中的英文正文复制到粘贴原文区域，或上传清晰图片。");
