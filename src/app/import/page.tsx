@@ -130,9 +130,16 @@ export default function ImportPage() {
         const isImage = /\.(png|jpe?g|webp)$/i.test(file.name) || file.type.startsWith("image/");
         if (isImage) {
           setDocuments(prev => prev.map(d => d.id === doc.id ? { ...d, status: "analyzing" } : d));
-          const text = await recognizeImage(file);
-          formData.append("file", new File([text], "recognized.txt", { type: "text/plain" }));
-          formData.append("originalName", file.name);
+          try {
+            const text = await recognizeImage(file);
+            if (!text.trim()) throw new Error("图片未识别到文字");
+            formData.append("file", new File([text], "recognized.txt", { type: "text/plain" }));
+            formData.append("originalName", file.name);
+          } catch {
+            // Browser OCR can fail to load its language data; retain a server route.
+            if (file.size > 4 * 1024 * 1024) throw new Error("浏览器图片识别失败，且原图超过4MB；请缩小图片或粘贴原文。");
+            formData.append("file", file);
+          }
         } else {
           if (file.size > 4 * 1024 * 1024) throw new Error("文件超过4MB，请分成较小的文件或粘贴原文。");
           formData.append("file", file);
