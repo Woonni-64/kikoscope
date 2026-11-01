@@ -36,3 +36,8 @@ result=await call({GEMINI_API_KEY:'test'},async(url,options)=>{
 });
 assert.equal(result.body.analysis,analysis);assert.equal(result.body.source,'gemini');
 console.log('PASS: grammar route validation, real response passthrough, Gemini, missing key, auth/balance/quota/timeout/empty responses; no fake fallback or secret disclosure. Provider responses mocked.');
+
+let calls=0;
+result=await call({GEMINI_API_KEY:'test'},async(url)=>{calls++;if(calls===1)return new Response('',{status:429});assert.ok(url.includes('gemini-3.5-flash-lite'));return Response.json({candidates:[{content:{parts:[{text:analysis}]}}]});});
+assert.equal(result.body.analysis,analysis);assert.equal(calls,2);
+console.log('PASS: grammar Gemini rate-limit fallback preserves a real analysis.');

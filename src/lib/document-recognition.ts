@@ -17,12 +17,12 @@ export async function recognizeDocument(data: string, mimeType: string) {
             { text: "Extract all visible English text verbatim, including headings and questions. Preserve paragraphs. Do not translate, summarize, answer questions, or invent illegible text. Return only the extracted text. If no readable text exists, return an empty string." },
             { inlineData: { mimeType, data } },
           ] }],
-          generationConfig: { temperature: 0, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 0 } },
+          generationConfig: { temperature: 0, maxOutputTokens: 8192, thinkingConfig: model.startsWith("gemini-2.5") ? { thinkingBudget: 0 } : { thinkingLevel: "minimal" } },
         }),
       });
       if (!response.ok) {
-        if (attempt === 0 && (response.status === 429 || response.status >= 500)) {
-          if (response.status === 429) model = process.env.GEMINI_OCR_FALLBACK_MODEL || "gemini-2.5-flash-lite";
+        if (attempt === 0 && (response.status === 404 || response.status === 429 || response.status >= 500)) {
+          if (response.status === 404 || response.status === 429) model = process.env.GEMINI_OCR_FALLBACK_MODEL || "gemini-3.5-flash-lite";
           continue;
         }
         throw new RecognitionError(response.status === 429 ? "图片/PDF识别服务繁忙，请稍后重试或粘贴原文。" : "图片/PDF识别服务暂时不可用，请重试或粘贴原文。", response.status === 429 ? 429 : 503, response.status === 429 ? "OCR_RATE_LIMITED" : "OCR_UNAVAILABLE");
