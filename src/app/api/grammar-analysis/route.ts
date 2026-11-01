@@ -45,13 +45,13 @@ export async function GET(request: NextRequest) {
       } : {
         systemInstruction: { parts: [{ text: instruction }] },
         contents: [{ role: "user", parts: [{ text: sentence }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 4096, thinkingConfig: { thinkingBudget: 0 } },
+        generationConfig: { temperature: 0.2, maxOutputTokens: 4096, thinkingConfig: model.startsWith("gemini-2.5") ? { thinkingBudget: 0 } : { thinkingLevel: "minimal" } },
       }),
       signal: AbortSignal.timeout(provider === "gemini" ? 12000 : 25000),
       cache: "no-store",
     });
-      if (attempt === 0 && provider === "gemini" && [429, 500, 502, 503].includes(response.status)) {
-        model = process.env.GEMINI_GRAMMAR_FALLBACK_MODEL || "gemini-2.5-flash-lite";
+      if (attempt === 0 && provider === "gemini" && [404, 429, 500, 502, 503].includes(response.status)) {
+        model = process.env.GEMINI_GRAMMAR_FALLBACK_MODEL || "gemini-3.5-flash-lite";
         continue;
       }
       break;
