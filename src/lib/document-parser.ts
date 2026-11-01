@@ -85,6 +85,21 @@ export async function parseDocument(file: File) {
     } catch { throw new Error("Word 文件无法读取，请确认是包含英文正文的有效 DOCX 文件。"); }
   }
 
+  if (extension === ".pdf") {
+    const bytes = Buffer.from(await file.arrayBuffer());
+    const { getDocumentProxy, extractText } = await import("unpdf");
+    let document;
+    try { document = await getDocumentProxy(new Uint8Array(bytes)); }
+    catch { throw new RecognitionError("PDF 文件无法读取，请确认文件完整且没有加密。", 422, "INVALID_PDF"); }
+    try {
+      if (document.numPages > 100) throw new RecognitionError("PDF 超过100页，请按阅读篇目拆分上传。", 413, "PDF_TOO_LONG");
+      const { text } = await extractText(document, { mergePages: true });
+      if (text.trim()) return cleanText(text);
+    } finally { if ("destroy" in document && typeof document.destroy === "function") await document.destroy(); }
+    // Only scanned PDFs need a vision model; text PDFs stay deterministic.
+    return parseWithGeminiOcr(file, bytes);
+  }
+
   const { tempDir, tempPath, bytes } = await writeTempFile(file);
 
   try {
